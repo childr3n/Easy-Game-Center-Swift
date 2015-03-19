@@ -724,15 +724,7 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     
     :returns: return GKScore
     */
-    class func getScoreLeaderboard(#leaderboardIdentifier:String) -> GKScore? {
-        let gameCenter = EasyGameCenter.sharedInstance
-        if EasyGameCenter.getStateGameCenter() == .PlayerConnected  {
-            if let scoreLeaderboard = gameCenter.scoresleaderBoard[leaderboardIdentifier] as GKScore? {
-                return scoreLeaderboard
-            }
-        }
-        return nil
-    }
+
     /**
     CheckUp Connection the new
     
