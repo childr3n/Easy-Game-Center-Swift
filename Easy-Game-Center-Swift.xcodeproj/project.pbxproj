@@ -11,8 +11,11 @@
 		8807C7241ABB8B5900D86D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7231ABB8B5900D86D3B /* ViewController.swift */; };
 		8807C7271ABB8B5900D86D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7251ABB8B5900D86D3B /* Main.storyboard */; };
 		8807C7291ABB8B5900D86D3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7281ABB8B5900D86D3B /* Images.xcassets */; };
-		8807C72C1ABB8B5900D86D3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807C72A1ABB8B5900D86D3B /* LaunchScreen.xib */; };
 		8807C7381ABB8B5900D86D3B /* Easy_Game_Center_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7371ABB8B5900D86D3B /* Easy_Game_Center_SwiftTests.swift */; };
+		8807C7421ABB8B7000D86D3B /* EasyGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7411ABB8B7000D86D3B /* EasyGameCenter.swift */; };
+		8807C7441ABB8B7500D86D3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */; };
+		8807C7461ABB8B9200D86D3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */; };
+		8807C7481ABB8B9900D86D3B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7471ABB8B9900D86D3B /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +35,13 @@
 		8807C7231ABB8B5900D86D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8807C7261ABB8B5900D86D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8807C7281ABB8B5900D86D3B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8807C72B1ABB8B5900D86D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8807C7311ABB8B5900D86D3B /* Easy-Game-Center-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Easy-Game-Center-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8807C7361ABB8B5900D86D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8807C7371ABB8B5900D86D3B /* Easy_Game_Center_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Easy_Game_Center_SwiftTests.swift; sourceTree = "<group>"; };
+		8807C7411ABB8B7000D86D3B /* EasyGameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyGameCenter.swift; sourceTree = "<group>"; };
+		8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8807C7471ABB8B9900D86D3B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8807C7481ABB8B9900D86D3B /* GameKit.framework in Frameworks */,
+				8807C7461ABB8B9200D86D3B /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +67,9 @@
 		8807C7131ABB8B5900D86D3B = {
 			isa = PBXGroup;
 			children = (
+				8807C7471ABB8B9900D86D3B /* GameKit.framework */,
+				8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */,
+				8807C7411ABB8B7000D86D3B /* EasyGameCenter.swift */,
 				8807C71E1ABB8B5900D86D3B /* Easy-Game-Center-Swift */,
 				8807C7341ABB8B5900D86D3B /* Easy-Game-Center-SwiftTests */,
 				8807C71D1ABB8B5900D86D3B /* Products */,
@@ -81,7 +92,7 @@
 				8807C7231ABB8B5900D86D3B /* ViewController.swift */,
 				8807C7251ABB8B5900D86D3B /* Main.storyboard */,
 				8807C7281ABB8B5900D86D3B /* Images.xcassets */,
-				8807C72A1ABB8B5900D86D3B /* LaunchScreen.xib */,
+				8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */,
 				8807C71F1ABB8B5900D86D3B /* Supporting Files */,
 			);
 			path = "Easy-Game-Center-Swift";
@@ -161,6 +172,7 @@
 				TargetAttributes = {
 					8807C71B1ABB8B5900D86D3B = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 35AB7NVN6H;
 					};
 					8807C7301ABB8B5900D86D3B = {
 						CreatedOnToolsVersion = 6.2;
@@ -192,8 +204,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8807C7441ABB8B7500D86D3B /* LaunchScreen.xib in Resources */,
 				8807C7271ABB8B5900D86D3B /* Main.storyboard in Resources */,
-				8807C72C1ABB8B5900D86D3B /* LaunchScreen.xib in Resources */,
 				8807C7291ABB8B5900D86D3B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,6 +226,7 @@
 			files = (
 				8807C7241ABB8B5900D86D3B /* ViewController.swift in Sources */,
 				8807C7221ABB8B5900D86D3B /* AppDelegate.swift in Sources */,
+				8807C7421ABB8B7000D86D3B /* EasyGameCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,14 +255,6 @@
 				8807C7261ABB8B5900D86D3B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8807C72A1ABB8B5900D86D3B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8807C72B1ABB8B5900D86D3B /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -289,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -326,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Easy-Game-Center-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -349,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Easy-Game-Center-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
