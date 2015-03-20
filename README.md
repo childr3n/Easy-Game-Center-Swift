@@ -208,68 +208,60 @@ EasyGameCenter.openDialogGameCenterAuthentication(
         buttonOpenGameCenterLogin: "Open Game Center", 
         completion: nil)
 ```
+#Achievements Method
+##Progress Achievements
+* **Add progress to an Achievement with completion**
+```swift
+EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true) {
+        (isSendToGameCenterOrNor) -> Void in
         
-#Checkup Game Center
-* **If player is connected to GameCenter**
+        if isSendToGameCenterOrNor {
+                /* Achievement is reported to Game Center */   
+        } else {
+                /* Achievement is Not reported to Game Center (No Internet or player not identified to Game Center)*/  
+        }
+} 
+```
+* **Add progress to an Achievement without completion**
 ```swift
-if GameCenter.ifPlayerIdentifiedToGameCenter() {
-        print("YES \n")
+EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true, completionIsSend: nil)
+```
+##If Achievement completed 
+* **Is completed Achievement**
+```swift
+let achievementCompleted = EasyGameCenter.isAchievementCompleted(achievementIdentifier: "Identifier")
+if achievementOneCompleted {
+        println("Yes")
 } else {
-        print("NO \n")
+        println("No")
 }
 ```
-
-* **Get State of Game Center**
+##Achievement completed & banner not show = false
+* **Get Achievements completed and banner not show**
 ```swift
-/**
-    Get State of GameCenter
-    
-    :returns: enum
-    - LaunchGameCenter:             Game center is laucher and load
-    - PlayerConnectedLoadDataCache: Player connected and data load in cache
-    - PlayerConnected:              Player connected and data in cache
-    - PlayerNotConnected:           Player not connected to game center
-    - Error:                        Error
-*/
-let gameCenterState = GameCenter.getStateGameCenter()
+        if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
 
-/* Easy Game Center Load */
-if gameCenterState == GameCenter.StateGameCenter.LaunchGameCenter {
-
-/* Player connected and load data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnectedLoadDataCache {
-
-/* Player connected and data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnected {
-
-}
+            for achievement in achievements  {
+                var oneAchievement : GKAchievement = achievement.1
+                if oneAchievement.completed && oneAchievement.showsCompletionBanner == false {
+                    
+                    println("\n/***** Achievement banner not show *****/\n")
+                    println("\(oneAchievement.identifier)")
+                }
+            }
+        } else {
+            println("\n/***** No Achievement with not showing  *****/\n")
+        }
 ```
-
-###Achievements
-* **Add progress to an Achievement**
+* **Show All Achievements completed and banner not show**
 ```swift
-/**
-    Add progress to an achievement
-    
-    :param: Progress achievement Double (ex: 10% = 10.00)
-    :param: Achievement Identifier
-    :param: if you want show banner or not when is completed
-*/
-GameCenter.addProgressToAnAchievement(#progress : Double, achievementIdentifier : String, showBannnerIfCompleted : Bool)
-```
-
-* **If Achievement is completed**
-```swift
-/**
-    If achievement is completed
-    
-    :param: achievementIdentifier
-    :return: Bool True is completed
-*/
-if GameCenter.ifAchievementCompleted(achievementIdentifier: "AchievementIdentifier") {
-        println("YES")
-} else {
-        println("NON")
+EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing { 
+        (isShowAchievement) -> Void in
+        if isShowAchievement {
+              println("One Achievement show, 2, 3, 4 etc...")  
+        } else {
+                println("No Achievements to show")  
+        }
 }
 ```
 
@@ -335,6 +327,44 @@ GameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier")
 ```swift
 GameCenter.resetAllAchievements()
 ```
+#Checkup Game Center
+* **If player is connected to GameCenter**
+```swift
+if GameCenter.ifPlayerIdentifiedToGameCenter() {
+        print("YES \n")
+} else {
+        print("NO \n")
+}
+```
+
+* **Get State of Game Center**
+```swift
+/**
+    Get State of GameCenter
+    
+    :returns: enum
+    - LaunchGameCenter:             Game center is laucher and load
+    - PlayerConnectedLoadDataCache: Player connected and data load in cache
+    - PlayerConnected:              Player connected and data in cache
+    - PlayerNotConnected:           Player not connected to game center
+    - Error:                        Error
+*/
+let gameCenterState = GameCenter.getStateGameCenter()
+
+/* Easy Game Center Load */
+if gameCenterState == GameCenter.StateGameCenter.LaunchGameCenter {
+
+/* Player connected and load data in cache */
+} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnectedLoadDataCache {
+
+/* Player connected and data in cache */
+} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnected {
+
+}
+```
+
+###Achievements
+
 
 ###Leaderboards
 
