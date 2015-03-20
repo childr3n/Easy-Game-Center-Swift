@@ -356,7 +356,7 @@ EasyGameCenter.getGKLeaderboard {
 }
 ```
 ##Get GKScore
-**Get GKScore Leaderboard with completion**
+* **Get GKScore Leaderboard with completion**
 ```swift
 EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
         (resultGKScore) -> Void in
@@ -384,17 +384,17 @@ EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Class
 }
 ```
 #Other methods
+**Is Connected to NetWork**
+```swift
+if EasyGameCenter.isConnectedToNetwork() {
+        /* You have network */
+} 
 
-
-
-
-
-
-
-
+```
 ### Legacy support
-For support of iOS 7 & 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Simple Game Center** as possible.
-
+For support of iOS 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Easy Game Center** as possible.
 ### License
-CC0 1.0 Universal
-<http://creativecommons.org/publicdomain/zero/1.0/>
+The MIT License (MIT)
+Copyright (c) 2015 Red Wolf Studio, Yannick Stephan
+[Red Wolf Studio](http://www.redwolfstudio.fr)
+[Yannick Stephan](https://yannickstephan.com)
