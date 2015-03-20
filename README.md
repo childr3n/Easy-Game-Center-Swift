@@ -8,6 +8,10 @@
 Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
 (version 1.0)
 
+<p align="center">
+        <img src="http://g.recordit.co/Ts9KKv5X9h.gif" height="500" width="280" />
+</p>
+
 # <!> Project code is not finish, in 1hour  please wait :)
 # <!> Project code is not finish, in 1hour  please wait :)
 # <!> Project code is not finish, in 1hour  please wait :)
