@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8807C7221ABB8B5900D86D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7211ABB8B5900D86D3B /* AppDelegate.swift */; };
-		8807C7241ABB8B5900D86D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7231ABB8B5900D86D3B /* ViewController.swift */; };
+		8807C7241ABB8B5900D86D3B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7231ABB8B5900D86D3B /* MainViewController.swift */; };
 		8807C7271ABB8B5900D86D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7251ABB8B5900D86D3B /* Main.storyboard */; };
 		8807C7291ABB8B5900D86D3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7281ABB8B5900D86D3B /* Images.xcassets */; };
 		8807C7381ABB8B5900D86D3B /* Easy_Game_Center_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7371ABB8B5900D86D3B /* Easy_Game_Center_SwiftTests.swift */; };
@@ -16,6 +16,7 @@
 		8807C7441ABB8B7500D86D3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */; };
 		8807C7461ABB8B9200D86D3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */; };
 		8807C7481ABB8B9900D86D3B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7471ABB8B9900D86D3B /* GameKit.framework */; };
+		8807C74A1ABC2D6200D86D3B /* AchievementsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +33,7 @@
 		8807C71C1ABB8B5900D86D3B /* Easy-Game-Center-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy-Game-Center-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8807C7201ABB8B5900D86D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8807C7211ABB8B5900D86D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8807C7231ABB8B5900D86D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8807C7231ABB8B5900D86D3B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8807C7261ABB8B5900D86D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8807C7281ABB8B5900D86D3B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8807C7311ABB8B5900D86D3B /* Easy-Game-Center-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Easy-Game-Center-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +43,7 @@
 		8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8807C7471ABB8B9900D86D3B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				8807C7211ABB8B5900D86D3B /* AppDelegate.swift */,
-				8807C7231ABB8B5900D86D3B /* ViewController.swift */,
+				8807C7231ABB8B5900D86D3B /* MainViewController.swift */,
 				8807C7251ABB8B5900D86D3B /* Main.storyboard */,
 				8807C7281ABB8B5900D86D3B /* Images.xcassets */,
 				8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */,
 				8807C71F1ABB8B5900D86D3B /* Supporting Files */,
+				8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */,
 			);
 			path = "Easy-Game-Center-Swift";
 			sourceTree = "<group>";
@@ -224,7 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8807C7241ABB8B5900D86D3B /* ViewController.swift in Sources */,
+				8807C7241ABB8B5900D86D3B /* MainViewController.swift in Sources */,
+				8807C74A1ABC2D6200D86D3B /* AchievementsActions.swift in Sources */,
 				8807C7221ABB8B5900D86D3B /* AppDelegate.swift in Sources */,
 				8807C7421ABB8B7000D86D3B /* EasyGameCenter.swift in Sources */,
 			);
@@ -414,6 +418,7 @@
 				8807C73D1ABB8B5900D86D3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8807C73E1ABB8B5900D86D3B /* Build configuration list for PBXNativeTarget "Easy-Game-Center-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +427,7 @@
 				8807C7401ABB8B5900D86D3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -49,7 +49,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     class func sharedInstance(#completion: ((resultConnectToGameCenter:Bool) -> Void)?) -> EasyGameCenter {
         
         if Static.instance == nil {
-            dispatch_once(&Static.onceToken) {
+           dispatch_once(&Static.onceToken) {
                 Static.instance = EasyGameCenter()
                 EasyGameCenter.loginPlayerToGameCenter({
                     (result) in
@@ -57,7 +57,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                         completion!(resultConnectToGameCenter: result)
                     }
                 })
-            }
+           }
             
         } else {
             completion!(resultConnectToGameCenter: GKLocalPlayer.localPlayer().authenticated)
@@ -117,6 +117,8 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                     if gameCenterVC != nil {
                         if let delegateController = gameCenter.delegate {
                             delegateController.presentViewController(gameCenterVC, animated: true, completion: nil)
+                        } else {
+                            println("\nError : Delegate for Easy Game Center not set\n")
                         }
                         
                     /* Login is ok */
@@ -162,37 +164,6 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
 
 
-    /**
-        Get Leaderboards
-
-        :param: completion return [GKLeaderboard] or nil
-        
-        Example:
-            for oneLeaderboard in arrayGKLeaderboard  {
-                if let oneLeaderboardOK = oneLeaderboard as? GKLeaderboard {
-
-                }
-            }
-    */
-    private func getLeaderboards(#completion: ((result:[GKLeaderboard]?) -> Void)) {
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-            GKLeaderboard.loadLeaderboardsWithCompletionHandler {
-                (var leaderboards:[AnyObject]!, error:NSError!) -> Void in
-                
-                if error != nil {
-                    println("Game Center: couldn't loadLeaderboards, error: \(error)")
-                }
-                
-                if let leaderboardsIsArrayGKLeaderboard = leaderboards as? [GKLeaderboard] {
-                    completion(result: leaderboardsIsArrayGKLeaderboard)
-                    
-                } else {
-                    completion(result: nil)
-                }
-            }
-        }
-
-    }
 
     /*____________________________ Other Methode Game Center __________________________________________________*/
     /**
@@ -285,7 +256,45 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     */
     class func isPlayerIdentifiedToGameCenter() -> Bool { return GKLocalPlayer.localPlayer().authenticated }
 
+    /**
+    If player is Identified to Game Center
+    
+    :returns: Bool True is identified
+    */
+    class func getLocalPlayer() -> GKLocalPlayer { return GKLocalPlayer.localPlayer() }
     /*____________________________ GameCenter Public LeaderBoard __________________________________________________*/
+    
+    /**
+    Get Leaderboards
+    
+    :param: completion return [GKLeaderboard] or nil
+    
+    Example:
+    for oneLeaderboard in arrayGKLeaderboard  {
+    if let oneLeaderboardOK = oneLeaderboard as? GKLeaderboard {
+    
+    }
+    }
+    */
+    class func getLeaderboards(#completion: ((result:[GKLeaderboard]?) -> Void)) {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            GKLeaderboard.loadLeaderboardsWithCompletionHandler {
+                (var leaderboards:[AnyObject]!, error:NSError!) -> Void in
+                
+                if error != nil {
+                    println("Game Center: couldn't loadLeaderboards, error: \(error)")
+                }
+                
+                if let leaderboardsIsArrayGKLeaderboard = leaderboards as? [GKLeaderboard] {
+                    completion(result: leaderboardsIsArrayGKLeaderboard)
+                    
+                } else {
+                    completion(result: nil)
+                }
+            }
+        }
+        
+    }
     /**
         Reports a  score to Game Center
     
@@ -364,6 +373,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
     
     /*____________________________ Achievement __________________________________________________*/
+
     /**
         Get Tuple ( GKAchievement , GKAchievementDescription) for identifier Achievement
     
