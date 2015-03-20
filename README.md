@@ -4,8 +4,8 @@
         <img src="http://imagizer.imageshack.us/v2/320x240q90/538/RMNfHp.png" height="100" width="100" />
 </p>
 
-Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements.Easy Game Center falicite management of Game Center.
-(version 3.5)
+Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
+(version 1.0)
 
 # <!> Project code is not finish, in 10hour  please wait :)
 # <!> Project code is not finish, in 10hour  please wait :)
@@ -14,17 +14,19 @@ Easy Game Center helps to manage Game Center in iOS. Report and track high score
 # Project Features
 GameCenter Manager is a great way to use Game Center in your iOS app.
 
-* Sync, Submit, Save, Retrieve, and Track any Game Center leaderboards, achievements in only one line of code.
-* Save in cache leaderboards & achievements & automatically refreshed
-* CallBack
+* Submit, Save, Retrieve, and Track any Game Center leaderboards, achievements in only one line of code.
+* Save in cache achievements & automatically refreshed
+* Most of the functions CallBack (Handler)
 * Async
-* Useful delegate methods and properties by use Singleton GameCenter
-* Just drag and drop the files into your project 
+* Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
+* Just drag and drop the files into your project (EasyGameCenter.swift)
 * Frequent updates to the project based on user issues and requests  
 * Easily contribute to the project
+* Example project
+* More is coming ... (Challenges etc..)
 
 ## Requirements
-* Requires a minimum of iOS 7.0+ or 8.0+
+* Requires a minimum of iOS or 8.0+
 
 ## Contributions
 Any contribution is more than welcome! You can contribute through pull requests and issues on GitHub. :D
@@ -32,18 +34,16 @@ Any contribution is more than welcome! You can contribute through pull requests 
 # Documentation
 All methods, properties, types, and delegate methods available on the GameCenterManager class are documented below. If you're using [GameKit](https://developer.apple.com/library/ios/documentation/GameKit/Reference/GameKit_Collection/index.html)
 
-## Example
-Xcode Project : https://github.com/DaRkD0G/Example-GameCenter
-
 ## Example in game
 http://bit.ly/1zGJMNG
 
 ## Setup
-Setting up GameCenter Manager is very straightforward. These instructions do not detail how to enable Game Center in your app. You need to setup Game Center before using GameCenter Manager.
+Setting up Easy Game Center it's really easy. Read the instructions after.
 
-1. Add the `GameKit` frameworks to your Xcode project
- [![](http://imagizer.imageshack.us/v2/640x480q90/540/cLGFV6.png)]()
-
+1. Add the `GameKit`, `SystemConfiguration` frameworks to your Xcode project
+<p align="center">
+        <img src="http://s27.postimg.org/45wds3jub/Capture_d_cran_2558_03_20_19_56_34.png" height="100" width="500" />
+</p>
 2. Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
 4. You can initialize Easy Game Center by using the following method call
 ```swift
