@@ -18,7 +18,6 @@ GameCenter Manager is a great way to use Game Center in your iOS app.
 * Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
 * Save in cache achievements & automatically refreshed
 * Most of the functions CallBack (Handler, completion)
-* Async
 * Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
 * Just drag and drop the files into your project (EasyGameCenter.swift)
 * Frequent updates to the project based on user issues and requests  
