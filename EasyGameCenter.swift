@@ -569,7 +569,14 @@ EasyGameCenter.showBannerWithTitle(title: title, description: description, compl
         }
     }
 
-
+    class func progressForAchievement(#achievementIdentifier:String) -> Double? {
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            if let achievementInArrayInt = EasyGameCenter.sharedInstance.achievementsCache[achievementIdentifier]?.percentComplete {
+                return achievementInArrayInt
+            }
+        }
+        return nil
+    }
     /**
         Remove One Achievements
 
