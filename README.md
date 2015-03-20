@@ -253,7 +253,7 @@ if achievementOneCompleted {
             println("\n/***** No Achievement with not showing  *****/\n")
         }
 ```
-* **Show All Achievements completed and banner not show**
+* **Show All Achievements completed and banner not show with completion**
 ```swift
 EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing { 
         (isShowAchievement) -> Void in
@@ -264,7 +264,36 @@ EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing {
         }
 }
 ```
+* **Show All Achievements completed and banner not show without completion**
+```swift
+EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(completion:nil)
+```
+##Achievements informations
+* **Get all achievements description (GKAchievementDescription) with completion**
+```swift
+        EasyGameCenter.getGKAllAchievementDescription {
+            (arrayGKAD) -> Void in
+            if arrayGKAD != nil {
+                for achievement in arrayGKAD!  {
 
+                    println("\n/***** Achievement Description *****/\n")
+                    println("ID : \(achievement.identifier)")
+                    // The title of the achievement.
+                    println("Title : \(achievement.title)")
+                     // Whether or not the achievement should be listed or displayed if not yet unhidden by the game.
+                    println("Hidden? : \(achievement.hidden)")
+                    // The description for an unachieved achievement.
+                    println("Achieved Description : \(achievement.achievedDescription)")
+                    // The description for an achieved achievement.
+                    println("Unachieved Description : \(achievement.unachievedDescription)")
+                    println("\n/**********/\n")
+
+                }
+            } else {
+                println("\n Not Connected Internet OR Game Center ... \n")
+            }
+        }
+```
 
 /* write ... */
 
