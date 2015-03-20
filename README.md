@@ -16,7 +16,7 @@ GameCenter Manager is a great way to use Game Center in your iOS app.
 
 * Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
 * Save in cache achievements & automatically refreshed
-* Most of the functions CallBack (Handler)
+* Most of the functions CallBack (Handler, completion)
 * Async
 * Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
 * Just drag and drop the files into your project (EasyGameCenter.swift)
@@ -47,24 +47,32 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
 
 2. Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
 
-3. You can initialize Easy Game Center by using the following method call
+3. You can initialize Easy Game Center by using the following method call (With Call back when player is authentified)
 ```swift
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        /* Init Singleton Easy Game Center */
         let eaysGameCenter = EasyGameCenter.sharedInstance {
-            (resultConnectToGameCenter) -> Void in
+            (resultPlayerAuthentified) -> Void in
             
-            /* Player conected to Game Center */
-            if resultConnectToGameCenter {
+            if resultPlayerAuthentified {
                 /* When player is authentified to Game Center */
                 
             /* Player NOT conected to Game Center */
             } else {
+                /* Player not authentified to Game Center */
                 /* No connexion internet or not authentified to Game Center */
             }
         }
         /* Set delegate UIViewController */
+        EasyGameCenter.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* Set new delegate is you change UIViewController */
         EasyGameCenter.delegate = self
     }
 ```
@@ -73,29 +81,34 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
 ###Initialize Easy Game Center
 You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
 
-* **Load with completion**
+* **Initialize with completion**
 ```swift
-/* Init Easy Game Center Singleton */
-let gameCenter = GameCenter.sharedInstance { 
-        (resultConnectToGameCenter) -> Void in
-        if resultConnectToGameCenter {
-                print("Player connected to Game Center")
-        } else {
-                print("No Player connected to Game Center")
-        }
-}
-/* Set Delegate */
-gameCenter.delegate = self
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /* Init Easy Game Center Singleton */
+        let eaysGameCenter = EasyGameCenter.sharedInstance {
+            (resultPlayerAuthentified) -> Void in
+            
+            if resultPlayerAuthentified {
+                /* When player is authentified to Game Center */
                 
-/* Not automatically open login page if player is not login to Game Center, the first launch. */
-// gameCenter.openLoginPageIfPlayerNotLogin = false
+            
+            } else {
+                /* Player not authentified to Game Center */
+                /* No connexion internet or not authentified to Game Center */
+            }
+        }
+        /* Set delegate UIViewController */
+        EasyGameCenter.delegate = self
+    }
 ```
-* **Load without completion**
+* **Initialize without completion**
 ```swift
-/* Init Easy Game Center Singleton */
-let gameCenter = GameCenter.sharedInstance
-/* Set Delegate */
-gameCenter.delegate = self
+        /* Init Easy Game Center Singleton */
+        let gameCenter = GameCenter.sharedInstance
+        /* Set Delegate */
+        gameCenter.delegate = self
 ```
 
 ###Show Game Center
