@@ -8,9 +8,9 @@
 Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
 (version 1.0)
 
-# <!> Project code is not finish, in 1hour  please wait :)
-# <!> Project code is not finish, in 1hour  please wait :)
-# <!> Project code is not finish, in 1hour  please wait :)
+<p align="center">
+        <img src="http://g.recordit.co/K1I3O6BEXq.gif" height="500" width="280" />
+</p>
 
 # Project Features
 GameCenter Manager is a great way to use Game Center in your iOS app.
@@ -34,9 +34,6 @@ Any contribution is more than welcome! You can contribute through pull requests 
 
 # Documentation
 All methods, properties, types, and delegate methods available on the GameCenterManager class are documented below. If you're using [GameKit](https://developer.apple.com/library/ios/documentation/GameKit/Reference/GameKit_Collection/index.html)
-
-## Example in game
-http://bit.ly/1zGJMNG
 
 ## Setup
 Setting up Easy Game Center it's really easy. Read the instructions after.
@@ -253,7 +250,7 @@ if achievementOneCompleted {
             println("\n/***** No Achievement with not showing  *****/\n")
         }
 ```
-* **Show All Achievements completed and banner not show**
+* **Show All Achievements completed and banner not show with completion**
 ```swift
 EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing { 
         (isShowAchievement) -> Void in
@@ -264,118 +261,56 @@ EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing {
         }
 }
 ```
-
-
-/* write ... */
-
-
-
-
-
-
-* **Get Achievement (GKAchievement)**
+* **Show All Achievements completed and banner not show without completion**
 ```swift
-/**
-    Get Achievement (GKAchievement) by string identifier
-    
-    :param: Identifier Achievement
-    
-    :returns: GKAchievement OR nil
-*/
-GameCenter.achievementForIndetifier(identifierAchievement : "IdentifierAchievement")
+EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(completion:nil)
 ```
-
-* **Get all achievements completed and banner not show**
+##Achievements informations
+* **Get all achievements descriptions (GKAchievementDescription) with completion**
 ```swift
-/**
-    Get all Achievements Complete during the game and banner wasn't showing
-   (is you have instanceGameCenter.showBannerAchievementWhenComplete = false OR addProgressToAnAchievement)
-  
-    Example :
-    if let achievements : [String:GKAchievement] = GameCenter.achievementCompleteAndBannerNotShowing() {
-        for achievement in achievements  {
-            var oneAchievement : GKAchievement = achievement.1
-            if oneAchievement.percentComplete == 100.00 {
-                oneAchievement.showsCompletionBanner = true
+        EasyGameCenter.getGKAllAchievementDescription {
+            (arrayGKAD) -> Void in
+            if arrayGKAD != nil {
+                for achievement in arrayGKAD!  {
+
+                    println("\n/***** Achievement Description *****/\n")
+                    println("ID : \(achievement.identifier)")
+                    // The title of the achievement.
+                    println("Title : \(achievement.title)")
+                     // Whether or not the achievement should be listed or displayed if not yet unhidden by the game.
+                    println("Hidden? : \(achievement.hidden)")
+                    // The description for an unachieved achievement.
+                    println("Achieved Description : \(achievement.achievedDescription)")
+                    // The description for an achieved achievement.
+                    println("Unachieved Description : \(achievement.unachievedDescription)")
+                    println("\n/**********/\n")
+
+                }
+            } else {
+                println("\n Not Connected Internet OR Game Center ... \n")
             }
         }
-    }
-    
-    :returns: [String : GKAchievement] or nil
-*/
-if let achievements : [String:GKAchievement] = GameCenter.achievementCompleteAndBannerNotShowing() {
-        for achievement in achievements  {
-                var oneAchievement : GKAchievement = achievement.1
-                if oneAchievement.completed {
-                        oneAchievement.showsCompletionBanner = true
-                }
+```
+* **Get Achievement (GKAchievement)**
+```swift
+if let achievementDes = EasyGameCenter.achievementForIndetifier(identifierAchievement : "IdentifierAchievement") {
+        /* object GKAchievement */
+}
+```
+##Reset Achievements
+* **Reset one Achievement**
+```swift
+EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
+        (isResetToGameCenterOrNor) -> Void in
+            
+        if isResetToGameCenterOrNor {
+                /* Is reset to Game Center */
+        } else {
+                /* Is not reset to Game Center (No internet or player not login */
         }
 }
 ```
-
-* **Shown all achievements completed and banner not show**
-```swift
-/**
-    Show all achievements completed if you have ( showBannerAchievementWhenComplete = false OR addProgressToAnAchievement)
-*/
-GameCenter.showAllBannerAchievementCompleteForBannerNotShowing()
-```
-
-* **Reset one Achievement**
-```swift
-/**
-    Remove One Achievement
-    
-    :param: Achievement identifier
-*/
-GameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier")
-```
-
-* **Reset All Achievements**
-```swift
-GameCenter.resetAllAchievements()
-```
-#Checkup Game Center
-* **If player is connected to GameCenter**
-```swift
-if GameCenter.ifPlayerIdentifiedToGameCenter() {
-        print("YES \n")
-} else {
-        print("NO \n")
-}
-```
-
-* **Get State of Game Center**
-```swift
-/**
-    Get State of GameCenter
-    
-    :returns: enum
-    - LaunchGameCenter:             Game center is laucher and load
-    - PlayerConnectedLoadDataCache: Player connected and data load in cache
-    - PlayerConnected:              Player connected and data in cache
-    - PlayerNotConnected:           Player not connected to game center
-    - Error:                        Error
-*/
-let gameCenterState = GameCenter.getStateGameCenter()
-
-/* Easy Game Center Load */
-if gameCenterState == GameCenter.StateGameCenter.LaunchGameCenter {
-
-/* Player connected and load data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnectedLoadDataCache {
-
-/* Player connected and data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnected {
-
-}
-```
-
-###Achievements
-
-
-###Leaderboards
-
+#Leaderboards
 * **Report to Leaderboard**
 ```swift
 /**
@@ -395,7 +330,6 @@ GameCenter.reportScoreLeaderboard(score: 100.00, leaderboardIdentifier: "classem
 /* Without completion */
 GameCenter.reportScoreLeaderboard(score: Int, leaderboardIdentifier: String, completion: nil)
 ```
-
 **Get SKScore leaderboard**
 ```swift
 /**
@@ -426,6 +360,21 @@ if let resultGKScoreOk =  GameCenter.getScoreLeaderboard(leaderboardIdentifier: 
         /* Etc ... */
 } 
 ```
+#Checkup Game Center
+* **If player is connected to GameCenter**
+```swift
+if GameCenter.ifPlayerIdentifiedToGameCenter() {
+        print("YES \n")
+} else {
+        print("NO \n")
+}
+```
+
+
+
+
+
+
 
 ### Legacy support
 For support of iOS 7 & 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Simple Game Center** as possible.
