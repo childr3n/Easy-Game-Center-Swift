@@ -384,12 +384,26 @@ EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Class
 }
 ```
 #Other methods
+##Player identified to Game Center
+**Is player identified to gameCenter**
+```swift
+if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+        /* It is identified to Game Center */
+} 
+```
+**Is player identified to gameCente and have network**
+```swift
+let validation = EasyGameCenter.isHaveNetworkAndPlayerIdentified()
+```
+**Get local Player (GKLocalPlayer)**
+```swift
+let localPlayer = EasyGameCenter.getLocalPlayer()
+```
 **Is Connected to NetWork**
 ```swift
 if EasyGameCenter.isConnectedToNetwork() {
         /* You have network */
 } 
-
 ```
 ### Legacy support
 For support of iOS 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Easy Game Center** as possible.
