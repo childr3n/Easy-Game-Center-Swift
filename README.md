@@ -118,7 +118,8 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
         EasyGameCenter.delegate = self
     }
 ```
-###Show Game Center
+#Show Method
+##Show Achievements
 * **Show Game Center Achievements with completion**
 ```swift
         EasyGameCenter.showGameCenterAchievements { 
