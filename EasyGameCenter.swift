@@ -55,7 +55,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     
         :returns: GameCenter instance
     */
-    class func sharedInstance(#completion: ((resultConnectToGameCenter:Bool) -> Void)?) -> EasyGameCenter {
+    class func sharedInstance(#completion: ((resultPlayerAuthentified:Bool) -> Void)?) -> EasyGameCenter {
         
         if Static.instance == nil {
            dispatch_once(&Static.onceToken) {
@@ -63,13 +63,13 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 EasyGameCenter.loginPlayerToGameCenter({
                     (result) in
                     if completion != nil {
-                        completion!(resultConnectToGameCenter: result)
+                        completion!(resultPlayerAuthentified: result)
                     }
                 })
            }
             
         } else {
-            completion!(resultConnectToGameCenter: GKLocalPlayer.localPlayer().authenticated)
+            completion!(resultPlayerAuthentified: GKLocalPlayer.localPlayer().authenticated)
         }
         return Static.instance!
     }
@@ -256,7 +256,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: titre   Title of dialog
         :param: message Message of dialog
     */
-    class func openDialogGameCenterAuthentication(#titre:String, message:String, completion: ((result:Bool) -> Void)?) {
+    class func openDialogGameCenterAuthentication(#titre:String, message:String,buttonOK:String,buttonOpenGameCenterLogin:String, completion: ((openGameCenterAuthentification:Bool) -> Void)?) {
         
         var alert = UIAlertController(title: titre, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
@@ -266,24 +266,23 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             
             delegateOK.presentViewController(alert, animated: true, completion: nil)
             
-            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {
+            alert.addAction(UIAlertAction(title: buttonOK, style: .Default, handler: {
                 action in
                 
-                if completion != nil { completion!(result: false) }
+                if completion != nil { completion!(openGameCenterAuthentification: false) }
                 
             }))
             
-            alert.addAction(UIAlertAction(title: "Open Game Center", style: .Default, handler: {
+            alert.addAction(UIAlertAction(title: buttonOpenGameCenterLogin, style: .Default, handler: {
                 action in
                 
                 EasyGameCenter.showGameCenterAuthentication(completion: { (resultOpenGameCenter) -> Void in
                     
-                    if completion != nil { completion!(result: resultOpenGameCenter) }
+                    if completion != nil { completion!(openGameCenterAuthentification: resultOpenGameCenter) }
                 })
                 
             }))
         }
-
     }
     /**
         Show banner game center

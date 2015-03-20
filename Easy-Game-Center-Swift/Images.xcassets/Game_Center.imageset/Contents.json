@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Game_Center.png"
+      "filename" : "easyGameCenterSwift.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Game_Center@2x.png"
+      "filename" : "easyGameCenterSwift@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Game_Center@3x.png"
+      "filename" : "easyGameCenterSwift@3x.png"
     }
   ],
   "info" : {

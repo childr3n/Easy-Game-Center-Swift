@@ -180,7 +180,7 @@ class AchievementsActions: UIViewController {
     
     @IBAction func ShowAchievementCompletedAndNotShowing(sender: AnyObject) {
         EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(nil)
-        
+
     }
     @IBAction func GetAllChievementsDescription(sender: AnyObject) {
         EasyGameCenter.getGKAchievementDescription {

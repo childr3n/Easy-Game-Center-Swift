@@ -21,10 +21,10 @@ class MainViewController: UIViewController {
         
         
         let eaysGameCenter = EasyGameCenter.sharedInstance {
-            (resultConnectToGameCenter) -> Void in
+            (resultPlayerAuthentified) -> Void in
             
             /* Player conected to Game Center */
-            if resultConnectToGameCenter {
+            if resultPlayerAuthentified {
                 
                 self.PlayerID.text = "Player ID : \(EasyGameCenter.getLocalPlayer().playerID)"
                 
@@ -55,19 +55,23 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func ShowGameCenterAchievements(sender: AnyObject) {
-        EasyGameCenter.showGameCenterAchievements { () -> Void in
-        
+        EasyGameCenter.showGameCenterAchievements {
+            () -> Void in
+            
             println("Game Center Achievements Is show")
         }
     }
     @IBAction func ShowGameCenterLeaderboards(sender: AnyObject) {
 
-        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement") { (isShow) -> Void in
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement") {
+            () -> Void in
+            
             println("Game Center Leaderboards Is show")
         }
     }
     @IBAction func ShowGameCenterChallenges(sender: AnyObject) {
-        EasyGameCenter.showGameCenterChallenges { () -> Void in
+        EasyGameCenter.showGameCenterChallenges {
+            () -> Void in
             
             println("Game Center Challenges Is show")
         }
@@ -80,7 +84,7 @@ class MainViewController: UIViewController {
         
         EasyGameCenter.showGameCenterAuthentication { (result) -> Void in
             if result {
-                println("Is open Game Center Authentication :)")
+                println("Game Center Authentication is open")
             }
         }
     }
