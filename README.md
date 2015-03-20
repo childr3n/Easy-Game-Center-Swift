@@ -7,9 +7,8 @@
 Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements.Easy Game Center falicite management of Game Center.
 (version 3.5)
 
-# <!> Project code is not finish, in 1 day please wait :) <!>
-# <!> Project code is not finish, in 1 day please wait :) <!>
-# <!> Project code is not finish, in 1 day please wait :) <!>
+# <!> Project code is not finish, in 1 day please wait :)
+
 
 # Project Features
 GameCenter Manager is a great way to use Game Center in your iOS app.
