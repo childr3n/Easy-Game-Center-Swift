@@ -165,28 +165,19 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showGameCenterAuthentication(completion: nil)
 ```
-
-
-
-* **Show personalize banner game center**
+* **Show custom banner Game Center with completion**
 ```swift
-/**
-    Show banner game center
-    
-    :param: title       title
-    :param: description description
-    :param: completion  if show message is showing
-*/
-/* without completion */
-GameCenter.showBannerWithTitle(title: title, description: description, completion: nil)
-
-/* with completion */
-GameCenter.showBannerWithTitle(title: String, description: String, completion: { (isShow) -> Void in
-        if isShow {
-                println("Banner is show")   
+       EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...") { 
+                () -> Void in
+                println("Custom Banner is finish to Show")
         }
-})
 ```
+* **Show custom banner Game Center without completion**
+```swift
+        EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)
+```
+
+
 ###Checkup Game Center
 * **If player is connected to GameCenter**
 ```swift
