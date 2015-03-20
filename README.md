@@ -112,18 +112,28 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```
 
 ###Show Game Center
-* **Show Game Center**
+* **Show Game Center Achievements with completion**
 ```swift
-GameCenter.showGameCenter()
+        EasyGameCenter.showGameCenterAchievements { () -> Void in
+            println("Game Center Achievements is shown")
+        }
+```
+* **Show Game Center Achievements without completion**
+```swift
+        EasyGameCenter.showGameCenterAchievements(completion: nil)
 ```
 
-* **Show Game Center Leaderboard** (Thanks to J0hnniemac author)
+* **Show Game Center Leaderboard  with completion**
 ```swift
-/**
-    Show Game Center Leaderboard passed as string into function
-    :param: Leaderboard Identifier String
-*/
-GameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "LeaderboardIdentifier")
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard") { 
+                () -> Void in
+                println("Game Center Leaderboards is shown")
+        }
+
+```
+* **Show Game Center Leaderboard  without completion**
+```swift
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)
 ```
 
 * **Open Dialog for authentification player**
