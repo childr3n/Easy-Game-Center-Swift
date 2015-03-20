@@ -37,7 +37,11 @@ class LeaderboardsActions: UIViewController {
         EasyGameCenter.delegate = self
         println("\n/*****/\nDelegate UIViewController is LeaderboardsActions (see viewDidAppear)\n/*****/\n")
     }
-    //(IBAction)refreshClicked:(id)sender
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     @IBAction func openGameCenterLeaderboard(sender: AnyObject) {
         
@@ -62,14 +66,14 @@ class LeaderboardsActions: UIViewController {
     }
     
     @IBAction func ActionGetLeaderboards(sender: AnyObject) {
-        EasyGameCenter.getLeaderboards { (resultArrayGKLeaderboard) -> Void in
+        EasyGameCenter.getGKLeaderboard { (resultArrayGKLeaderboard) -> Void in
             if let resultArrayGKLeaderboardIsOK = resultArrayGKLeaderboard as [GKLeaderboard]? {
                 for oneGKLeaderboard in resultArrayGKLeaderboardIsOK  {
                     
-                    println("\n/***** Achievement Description *****/\n")
+                    println("\n/***** Get Leaderboards (getGKLeaderboard) *****/\n")
                     println("ID : \(oneGKLeaderboard.identifier)")
                     println("Title :\(oneGKLeaderboard.title)")
-                    println("Hight Score : \(oneGKLeaderboard.scores)")
+                    println("Loading ? : \(oneGKLeaderboard.loading)")
                     println("\n/**********/\n")
                     
                 }
@@ -78,12 +82,23 @@ class LeaderboardsActions: UIViewController {
         }
     }
     
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func ActionGetGKScoreLeaderboard(sender: AnyObject) {
+        EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
+            (resultGKScore) -> Void in
+            if let resultGKScoreIsOK = resultGKScore as GKScore? {
+               
+                println("\n/***** Get GKScore Leaderboard (getGKScoreLeaderboard) *****/\n")
+                
+                println("Leaderboard Identifier : \(resultGKScoreIsOK.leaderboardIdentifier)")
+                println("Date : \(resultGKScoreIsOK.date)")
+                println("Rank :\(resultGKScoreIsOK.rank)")
+                println("Hight Score : \(resultGKScoreIsOK.value)")
+                println("\n/**********/\n")
+            }
+        }
     }
+    
+
     
 
 }

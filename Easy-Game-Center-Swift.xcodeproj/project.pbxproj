@@ -94,12 +94,12 @@
 			children = (
 				8807C7211ABB8B5900D86D3B /* AppDelegate.swift */,
 				8807C7231ABB8B5900D86D3B /* MainViewController.swift */,
+				8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */,
+				8815C1FC1ABC7F020054A2CF /* LeaderboardsActions.swift */,
 				8807C7251ABB8B5900D86D3B /* Main.storyboard */,
 				8807C7281ABB8B5900D86D3B /* Images.xcassets */,
 				8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */,
 				8807C71F1ABB8B5900D86D3B /* Supporting Files */,
-				8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */,
-				8815C1FC1ABC7F020054A2CF /* LeaderboardsActions.swift */,
 			);
 			path = "Easy-Game-Center-Swift";
 			sourceTree = "<group>";

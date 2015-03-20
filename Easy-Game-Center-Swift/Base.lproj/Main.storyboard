@@ -555,7 +555,7 @@
                                     <constraint firstAttribute="height" constant="50" id="edc-fP-Vvu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Get Leaderboards">
+                                <state key="normal" title="Get GKLeaderboard">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -570,10 +570,13 @@
                                     <constraint firstAttribute="height" constant="50" id="FLs-VU-JVA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="If achievement one finished">
+                                <state key="normal" title="Get GKScore Leaderboard">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ActionGetGKScoreLeaderboard:" destination="idv-H2-3S8" eventType="touchUpInside" id="uq7-Q0-17Z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EYo-pN-3un">
                                 <rect key="frame" x="0.0" y="96" width="600" height="50"/>
