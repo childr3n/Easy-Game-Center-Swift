@@ -434,7 +434,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         
         if let achievementGKScore = gameCenter.achievementsCache[achievementIdentifier] {
             
-            EasyGameCenter.getGKAchievementDescription(completion: {
+            EasyGameCenter.getGKAllAchievementDescription(completion: {
                 (arrayGKAD) -> Void in
                 
                 if let arrayGKADIsOK = arrayGKAD as [GKAchievementDescription]? {
@@ -534,7 +534,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
     }
     */
-    class func getGKAchievementDescription(#completion: ((arrayGKAD:[GKAchievementDescription]?) -> Void)){
+    class func getGKAllAchievementDescription(#completion: ((arrayGKAD:[GKAchievementDescription]?) -> Void)){
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
                 (var achievementsDescription:[AnyObject]!, error:NSError!) -> Void in

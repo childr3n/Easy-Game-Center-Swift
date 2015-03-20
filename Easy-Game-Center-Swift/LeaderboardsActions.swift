@@ -21,7 +21,7 @@ class LeaderboardsActions: UIViewController {
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
         
         // Do any additional setup after loading the view, typically from a nib.
-        EasyGameCenter.getGKAchievementDescription { (arrayGKAD) -> Void in
+        EasyGameCenter.getGKAllAchievementDescription { (arrayGKAD) -> Void in
             if arrayGKAD != nil {
            //     self.AchievementsNumber.text = "Number Achievements :  \(arrayGKAD!.count)"
             }

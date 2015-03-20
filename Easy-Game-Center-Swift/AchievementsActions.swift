@@ -21,7 +21,7 @@ class AchievementsActions: UIViewController {
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
         
         // Do any additional setup after loading the view, typically from a nib.
-        EasyGameCenter.getGKAchievementDescription { (arrayGKAD) -> Void in
+        EasyGameCenter.getGKAllAchievementDescription { (arrayGKAD) -> Void in
             if arrayGKAD != nil {
                 self.AchievementsNumber.text = "Number Achievements :  \(arrayGKAD!.count)"
             }
@@ -46,7 +46,8 @@ class AchievementsActions: UIViewController {
         }
     }
     @IBAction func ActionGetAchievementsDescription(sender: AnyObject) {
-        EasyGameCenter.getGKAchievementDescription { (arrayGKAD) -> Void in
+        EasyGameCenter.getGKAllAchievementDescription {
+            (arrayGKAD) -> Void in
             if arrayGKAD != nil {
                 for achievement in arrayGKAD!  {
 
@@ -180,10 +181,11 @@ class AchievementsActions: UIViewController {
     
     @IBAction func ShowAchievementCompletedAndNotShowing(sender: AnyObject) {
         EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(nil)
-
+        
+    
     }
     @IBAction func GetAllChievementsDescription(sender: AnyObject) {
-        EasyGameCenter.getGKAchievementDescription {
+        EasyGameCenter.getGKAllAchievementDescription {
             (arrayGKAD) -> Void in
             if let arrayGKADIsOK = arrayGKAD {
                 for achievement in arrayGKADIsOK  {
