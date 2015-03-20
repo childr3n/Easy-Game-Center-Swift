@@ -9,7 +9,7 @@ Easy Game Center helps to manage Game Center in iOS. Report and track high score
 (version 1.0)
 
 <p align="center">
-        <img src="http://g.recordit.co/GdUALBCalH.gif" height="500" width="280" />
+        <img src="http://g.recordit.co/K1I3O6BEXq.gif" height="500" width="280" />
 </p>
 
 # <!> Project code is not finish, in 1hour  please wait :)
@@ -38,9 +38,6 @@ Any contribution is more than welcome! You can contribute through pull requests 
 
 # Documentation
 All methods, properties, types, and delegate methods available on the GameCenterManager class are documented below. If you're using [GameKit](https://developer.apple.com/library/ios/documentation/GameKit/Reference/GameKit_Collection/index.html)
-
-## Example in game
-http://bit.ly/1zGJMNG
 
 ## Setup
 Setting up Easy Game Center it's really easy. Read the instructions after.
