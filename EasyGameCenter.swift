@@ -6,25 +6,10 @@
 //
 //	iOS 7.0, 8.0+
 //
-//	The MIT License (MIT)
-//	Copyright (c) 2014 Tobias Due Munk
-//
-//	Permission is hereby granted, free of charge, to any person obtaining a copy of
-//	this software and associated documentation files (the "Software"), to deal in
-//	the Software without restriction, including without limitation the rights to
-//	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-//	the Software, and to permit persons to whom the Software is furnished to do so,
-//	subject to the following conditions:
-//
-//	The above copyright notice and this permission notice shall be included in all
-//	copies or substantial portions of the Software.
-//
-//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-//	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-//	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-//	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-//	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//  CC0 1.0 Universal
+//  For more information, please see
+//  <http://creativecommons.org/publicdomain/zero/1.0/>
+
 
 import Foundation
 import GameKit
@@ -32,86 +17,56 @@ import SystemConfiguration
 
 
 /**
-GameCenter iOS
+    Easy Game Center Swift
 */
 class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     
     /**
-    Enum of state of game center
+    Enum of state of Easy Game Center
     
-    - LaunchGameCenter:             Game center is laucher and load
-    - PlayerConnected:              Player connected and data in cache
-    - PlayerConnectedLoadDataCache: Player connected and data load in cache
-    - PlayerNotConnected:           Player not connected to game center
-    - Error:                        Error
+    - Loading:            Easy Game center is loading
+    - PlayerConnected:    Player connected to Game Center and data achievements in cache
+    - PlayerNotConnected: Player not connected to Game Center
+    - Error:              Error
     */
-    enum StateGameCenter {
+   /* enum StateGameCenter {
         
         case Loading
-        case PlayerConnected
-        case PlayerNotConnected
+        case PlayerIdentified
+        case PlayerNotIdentified
         case Error
         
-        
-    }
+    }*/
 
     /// State of Game Center
-    var stateOfGameCenter : StateGameCenter = .Loading
+    //var stateOfGameCenter : StateGameCenter = .Loading
     
-    /**
-    Load Game Center and load data in cache
-    
-    :param: completion if load Game Center is OK
-    */
-    /* func loadDataGameCenter(#completion: ((result:Bool) -> Void)?) {
-    self.loadGKAchievement(completion: {
-    (result) -> Void in
-    
-    print("loadGKAchievement\n\(result)\n")
-    
-    if (!result) {
-    completion!(result: false)
-    } else {
-    
-    
-    }
-    
-    })
-    }*/
     /// The local player object.
-    var localPlayer = GKLocalPlayer.localPlayer()
+    //var localPlayer = GKLocalPlayer.localPlayer()
     
     /// Achievements GKAchievement Cache
     private var achievementsCache = [String:GKAchievement]()
-    
-    /// Achievements GKAchievementDescription Cache
-    //private var achievementsInformationCache = [String:GKAchievementDescription]()
-    
-    /// Achievements GKAchievementDescription Cache
-    //private var leaderBoardsCache = [String:GKLeaderboard]()
-    
-    //localPlayerScore
-    private var scoresleaderBoard = [String:GKScore]()
+
     
     /// ViewController MainView
     var delegate: UIViewController?
 
     
-    
     /*_______________________________________ STARTER _______________________________________*/
+
     /**
-    *  Static Value
+        Static EasyGameCenter
     */
     struct Static {
         static var onceToken: dispatch_once_t = 0
         static var instance: EasyGameCenter? = nil
     }
     /**
-    Start Singleton GameCenter Instance
+        Start Singleton GameCenter Instance
     
-    :param: completion Return when Game Center login player and Cache is loaded
+        :param: completion Return when Game Center login player and Cache is loaded
     
-    :returns: GameCenter instance
+        :returns: GameCenter instance
     */
     class func sharedInstance(#completion: ((resultConnectToGameCenter:Bool) -> Void)?) -> EasyGameCenter {
         
@@ -126,12 +81,14 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 })
             }
             
+        } else {
+            completion!(resultConnectToGameCenter: GKLocalPlayer.localPlayer().authenticated)
         }
         return Static.instance!
     }
     private var timer: NSTimer?
     /**
-    Start Singleton GameCenter Instance
+        Start Singleton GameCenter Instance
     */
     class var sharedInstance: EasyGameCenter {
         
@@ -147,29 +104,34 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
     
     /**
-    Constructor
+        Constructor
     */
-    override init() { super.init() }
+    override init() {
+        super.init()
+    }
     /*____________________________ GameCenter Private Function __________________________________________________*/
     /**
-    Login player to GameCenter With Handler Authentification
+        Login player to GameCenter With Handler Authentification
+        This function is recall When player connect to Game Center
     
-    :param: completion (Bool) if player login to Game Center (true or false)
+        :param: completion (Bool) if player login to Game Center
     */
     class func loginPlayerToGameCenter(#completion: ((result:Bool) -> Void)?)  {
         let gameCenter = EasyGameCenter.sharedInstance
         
-        if EasyGameCenter.isConnectedToNetwork() {
-            gameCenter.localPlayer.authenticateHandler = {(var gameCenterVC:UIViewController!, var error:NSError!) ->
+        /* No Internet */
+        if !EasyGameCenter.isConnectedToNetwork() {
+            completion!(result: false)
+            
+        /* Yes Internet */
+        } else {
+            GKLocalPlayer.localPlayer().authenticateHandler = {(var gameCenterVC:UIViewController!, var error:NSError!) ->
                 Void in
                 
                 /* If got error / Or player not set value for login */
                 if error != nil {
                     
-                    gameCenter.stateOfGameCenter = .Error
-                    if completion != nil {
-                        completion!(result: false)
-                    }
+                    if completion != nil { completion!(result: false) }
                     
                 } else {
                     
@@ -179,20 +141,18 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                             delegateController.presentViewController(gameCenterVC, animated: true, completion: nil)
                         }
                         
-                        
                     /* Login is ok */
-                    } else if gameCenter.localPlayer.authenticated == true {
+                    } else if EasyGameCenter.isPlayerIdentifiedToGameCenter() == true {
                         
-                        gameCenter.stateOfGameCenter = .Loading
-                        gameCenter.loadGKAchievement(completion: { (result) -> Void in
+                        gameCenter.loadGKAchievement(completion: { (result) ->
+                            Void in
                             
-                            gameCenter.stateOfGameCenter = .PlayerConnected
-                            
-                            if completion != nil { completion!(result: true) }
+                            if completion != nil { completion!(result: EasyGameCenter.isPlayerIdentifiedToGameCenter()) }
                         })
                         
                     } else  {
-                        gameCenter.stateOfGameCenter = .PlayerNotConnected
+                        
+                        
                         if completion != nil { completion!(result: false) }
                     }
                 }
@@ -205,7 +165,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     Load achievement in cache
     */
     private func loadGKAchievement(#completion: ((result:Bool) -> Void)?){
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.getStateGameCenter() == .PlayerConnected {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isConnectedToNetwork() {
             GKAchievement.loadAchievementsWithCompletionHandler({ (var achievements:[AnyObject]!, error:NSError!) -> Void in
                 if error != nil {
                     println("Game Center: could not load achievements, error: \(error)")
@@ -238,7 +198,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     :param: completion load is ok
     */
     private func getGKAchievementDescription(#completion: ((result:[GKAchievementDescription]?) -> Void)){
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.getStateGameCenter() == .PlayerConnected {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
                 (var achievementsDescription:[AnyObject]!, error:NSError!) -> Void in
                 
@@ -268,7 +228,7 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     :param: completion if completion is ok
     */
     private func getLeaderboards(#completion: ((result:[GKLeaderboard]?) -> Void)) {
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.getStateGameCenter() == .PlayerConnected {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             GKLeaderboard.loadLeaderboardsWithCompletionHandler {
                 (var leaderboards:[AnyObject]!, error:NSError!) -> Void in
                 
@@ -286,40 +246,40 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
         }
 
     }
+    /*oneLeaderBoard.loadScoresWithCompletionHandler { (scores, error) ->
+    Void in
+    if error != nil {
+    println("Error: \(error!.localizedDescription)")
+    completion!(result: false)
+    } else if (scores != nil) {
+    print(oneLeaderBoard.identifier)
+    print(oneLeaderBoard.localPlayerScore)
+    self.scoresleaderBoard[oneLeaderBoard.identifier] = oneLeaderBoard.localPlayerScore
+    if completion != nil { completion!(result: true) }
+    }
+    }*/
     /**
     Load GKScore of leaderboards in cache
     
     :param: completion if load in cache is OK
     */
     private func  getGKScoreOfLeaderboard(#leaderboardIdentifier:String, completion: ((result:GKScore?) -> Void)) {
-            /*oneLeaderBoard.loadScoresWithCompletionHandler { (scores, error) ->
-                Void in
-                if error != nil {
-                    println("Error: \(error!.localizedDescription)")
-                    completion!(result: false)
-                } else if (scores != nil) {
-                    print(oneLeaderBoard.identifier)
-                    print(oneLeaderBoard.localPlayerScore)
-                    self.scoresleaderBoard[oneLeaderBoard.identifier] = oneLeaderBoard.localPlayerScore
-                    if completion != nil { completion!(result: true) }
-                }
-            }*/
-        
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.getStateGameCenter() == .PlayerConnected {
+
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             let leaderBoardRequest = GKLeaderboard()
             leaderBoardRequest.identifier = leaderboardIdentifier
-            leaderBoardRequest.loadScoresWithCompletionHandler { (resultGKScore, error) ->
-                Void in
+            leaderBoardRequest.loadScoresWithCompletionHandler {
+                (resultGKScore, error) ->Void in
+                
                 if error != nil || resultGKScore == nil {
                     completion(result: nil)
                     
                 } else  {
                     completion(result: leaderBoardRequest.localPlayerScore)
+                    
                 }
             }
         }
-        
-        
     }
     
     
@@ -340,7 +300,7 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     
     */
     class func showGameCenter(#completion: ((result:Bool) -> Void)) {
-        if EasyGameCenter.getStateGameCenter() == .PlayerConnected || EasyGameCenter.getStateGameCenter() == .Loading {
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
         let gameCenter = EasyGameCenter.Static.instance!
         if let delegateController = gameCenter.delegate {
             
@@ -430,8 +390,8 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     */
     class func showGameCenterLeaderboard(#leaderboardIdentifier :String) {
         
-        if EasyGameCenter.getStateGameCenter() == .PlayerConnected || EasyGameCenter.getStateGameCenter() == .Loading && leaderboardIdentifier != "" {
-        let gameCenter = EasyGameCenter.Static.instance!
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
+        let gameCenter = EasyGameCenter.sharedInstance
         if let delegateController = gameCenter.delegate {
             
                 var gc = GKGameCenterViewController()
@@ -452,10 +412,10 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     - PlayerNotConnected:           Player not connected to game center
     - Error:                        Error
     */
-    class func getStateGameCenter() -> StateGameCenter {
+   /* class func getStateGameCenter() -> StateGameCenter {
         let state = EasyGameCenter.Static.instance!.stateOfGameCenter
         return state
-    }
+    }*/
     /*____________________________ GameCenter Public LeaderBoard __________________________________________________*/
     /**
     Reports a  score to Game Center
@@ -467,31 +427,27 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     class func reportScoreLeaderboard(#leaderboardIdentifier:String, score: Int,completion: ((result:Bool) -> Void)?) {
         
         
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.getStateGameCenter() == .PlayerConnected {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             
-            let gameCenter = EasyGameCenter.Static.instance!
-            if let scoreReporter =  gameCenter.scoresleaderBoard[leaderboardIdentifier] {
-                let score64 = Int64(score)
-                if score64 > scoreReporter.value {
-                    scoreReporter.value = score64
-                    scoreReporter.context = 0
-                    scoreReporter.shouldSetDefaultLeaderboard = true
-                    GKScore.reportScores([scoreReporter], {(error : NSError!) -> Void in
-                        
-                        if error != nil {
-                            if completion != nil { completion!(result:false) }
-                            println(error.localizedDescription)
-                        } else {
-                            completion!(result:true)
-                        //    gameCenter.loadScores(completion: nil)
-                        }
-                        
-                    })
-                }
+            let gameCenter = EasyGameCenter.sharedInstance
+              // }
+            
+            
+            // if player is logged in to GC, then report the score
+            if GKLocalPlayer.localPlayer().authenticated {
+                let gkScore = GKScore(leaderboardIdentifier: leaderboardIdentifier)
                 
+                gkScore.value = Int64(score)
+                gkScore.shouldSetDefaultLeaderboard = true
+                
+                GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError!) -> Void in
+                    if (error != nil) {
+                        if completion != nil { completion!(result:false) }
+                    } else {
+                        if completion != nil { completion!(result:true) }
+                    }
+                }))
             }
-            
-            
             
         }
     }
@@ -528,9 +484,9 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     :returns: GKAchievement Or nil if not exist
     */
     class func achievementForIndetifier(#identifierAchievement : NSString) -> GKAchievement? {
-        let gameCenter = EasyGameCenter.Static.instance!
+        let gameCenter = EasyGameCenter.sharedInstance
         
-        if gameCenter.stateOfGameCenter == .PlayerConnected  {
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter()  {
             
             if let achievementFind = gameCenter.achievementsCache[identifierAchievement]? {
                 return achievementFind
@@ -582,16 +538,10 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     
     :returns: Bool True is identified
     */
-    class func ifPlayerIdentifiedToGameCenter() -> Bool {
-        let gameCenter = EasyGameCenter.Static.instance!
+    class func isPlayerIdentifiedToGameCenter() -> Bool {
         
-        if gameCenter.stateOfGameCenter == .PlayerConnected {
-            return true
-        }
-        return false
-        
+        return GKLocalPlayer.localPlayer().authenticated
     }
-    
     /**
     If achievement is Finished
     
@@ -723,8 +673,17 @@ self.leaderBoardsCache[oneLeaderboardOK.identifier] = oneLeaderboardOK
     :param: Leaderboard Identifier
     
     :returns: return GKScore
-    */
 
+    class func getScoreLeaderboard(#leaderboardIdentifier:String) -> GKScore? {
+        
+        if EasyGameCenter.getStateGameCenter() == .PlayerIdentified  {
+            let gameCenter = EasyGameCenter.sharedInstance
+            if let scoreLeaderboard = gameCenter.scoresleaderBoard[leaderboardIdentifier] as GKScore? {
+                return scoreLeaderboard
+            }
+        }
+        return nil
+    }  */
     /**
     CheckUp Connection the new
     
