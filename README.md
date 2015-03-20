@@ -297,6 +297,21 @@ if let achievementDes = EasyGameCenter.achievementForIndetifier(identifierAchiev
         /* object GKAchievement */
 }
 ```
+* **Get Tuple ( GKAchievement , GKAchievementDescription) for identifier Achievement**
+```swift
+EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: "AchievementIdentifier") { 
+        (tupleGKAchievementAndDescription) -> Void in
+        if let tupleOK = tupleGKAchievementAndDescription {
+                let title = tupleOK.gkAchievementDescription.title
+                let description = tupleOK.gkAchievementDescription.achievedDescription
+        }
+}
+```
+* **Get Progress to an achievement**
+```swift
+let progressAchievement = EasyGameCenter.getProgressForAchievement(achievementIdentifier: "AchievementIdentifier")
+
+```
 * **Load GKAchievement in cache**
 * (Is call when you init EasyGameCenter, but if is fail example for cut connection, you can recall)
 * And when you get Achievement or all Achievement, it shall automatically cached
