@@ -4,7 +4,7 @@
 //  Created by Yannick Stephan DaRk-_-D0G on 19/12/2014.
 //  YannickStephan.com
 //
-//	iOS 7.0, 8.0+
+//	iOS 8.0+
 //
 //  CC0 1.0 Universal
 //  For more information, please see
@@ -137,8 +137,6 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             }
         }
     }
-    
-    
     /**
         Load achievement in cache
     */
@@ -160,51 +158,9 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 }
             })
         }
-
+        
     }
-    
-    /*for achievement in achievementsDescription  {
-    /* if let oneAchievementDes = achievement as? GKAchievementDescription {
-    self.achievementsInformationCache[oneAchievementDes.identifier] = oneAchievementDes
-    }*/
-    }*/
-    
-    
-    /**
-        Get GKAchievementDescription
-    
-    :param: completion load is ok
-    */
-    /**
-    Get GKAchievementDescription
-    
-    :param: completion return array [GKAchievementDescription] or nil
-    
-    Example:
-        for achievement in arrayGKAchievementDescription  {
-            if let oneAchievementDes = achievement as? GKAchievementDescription {
-    
-            }
-        }
-    */
-    private func getGKAchievementDescription(#completion: ((result:[GKAchievementDescription]?) -> Void)){
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-            GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
-                (var achievementsDescription:[AnyObject]!, error:NSError!) -> Void in
-                
-                if error != nil {
-                    println("Game Center: couldn't load achievementInformation, error: \(error)")
-                }
-                if let achievementsIsArrayGKAchievementDescription = achievementsDescription as? [GKAchievementDescription] {
-                    completion(result: achievementsIsArrayGKAchievementDescription)
-                    
-                } else {
-                    completion(result: nil)
-                }
-            }
-        }
 
-    }
 
     /**
         Get Leaderboards
@@ -237,59 +193,38 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         }
 
     }
-    /**
-        get GKScoreOfLeaderboard
-    
-    :param: completion GKScore or nil
-    */
-    private func  getGKScoreOfLeaderboard(#leaderboardIdentifier:String, completion: ((result:GKScore?) -> Void)) {
 
-        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-            let leaderBoardRequest = GKLeaderboard()
-            leaderBoardRequest.identifier = leaderboardIdentifier
-            leaderBoardRequest.loadScoresWithCompletionHandler {
-                (resultGKScore, error) ->Void in
-                
-                if error != nil || resultGKScore == nil {
-                    completion(result: nil)
-                    
-                } else  {
-                    completion(result: leaderBoardRequest.localPlayerScore)
-                    
-                }
-            }
-        }
-    }
-    /*____________________________ GameCenter Public __________________________________________________*/
+    /*____________________________ Other Methode Game Center __________________________________________________*/
     /**
-    Show Game Center Player
+        Show Game Center Player
     
+        :param: completion isShow (Bool) if is show or not (example not connected)
     */
-    class func showGameCenter(#completion: ((result:Bool) -> Void)) {
+    class func showGameCenter(#completion: ((isShow:Bool) -> Void)?) {
+ 
         if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
         let gameCenter = EasyGameCenter.Static.instance!
         if let delegateController = gameCenter.delegate {
-            
                 var gc = GKGameCenterViewController()
                 gc.gameCenterDelegate = gameCenter
                 delegateController.presentViewController(gc, animated: true, completion: {
                     () -> Void in
                     
-                    completion(result:true)
+                    if completion != nil { completion!(isShow:true) }
                 })
 
             } else {
-                completion(result:false)
+            if completion != nil { completion!(isShow:false) }
             }
         } else {
-            completion(result:false)
+            if completion != nil { completion!(isShow:false) }
         }
     }
     /**
-    Open Dialog for player see he wasn't authentifate to Game Center and can go to login
+        Open Dialog for player see he wasn't authentifate to Game Center and can go to login
     
-    :param: titre   Title of dialog
-    :param: message Message of dialog
+        :param: titre   Title of dialog
+        :param: message Message of dialog
     */
     class func openDialogGameCenterAuthentication(#titre:String, message:String, completion: ((result:Bool) -> Void)?) {
         
@@ -324,71 +259,39 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
 
     }
     /**
-    Open authetification Game Center
+        Show banner game center
+    
+        :param: title       title
+        :param: description description
+        :param: completion  when show message
+    */
+    class func showBannerWithTitle(#title:String, description:String,completion: (() -> Void)?) {
+        GKNotificationBanner.showBannerWithTitle(title, message: description, completionHandler: { () -> Void in
+            if completion != nil { completion!() }
+        })
+    }
+    /**
+        Open page Authentication Game Center
     */
     class func openGameCenterAuthentication(#completion: ((result:Bool) -> Void)?) {
         if completion != nil {
             completion!(result: UIApplication.sharedApplication().openURL(NSURL(string: "gamecenter:")!))
         }
-        
-    }
-    /* class func authenticateLocalPlayer(){
-    let gameCenter = GameCenter.sharedInstance
-    if let delegateController = gameCenter.delegate {
-    var localPlayer = GKLocalPlayer()
-    localPlayer.authenticateHandler = {(viewController, error) -> Void in
-    if ((viewController) != nil) {
-    delegateController.presentViewController(viewController, animated: true, completion: nil)
-    }else{
-    println("(GameCenter) Player authenticated: \(GKLocalPlayer.localPlayer().authenticated)")
-    }
-    
-    }
-    }
-    
-    
-    }*/
-    
-    /**
-    Show Game Center Leaderboard passed as string into func
-    
-    :param: leaderboard Identifier
-    */
-    class func showGameCenterLeaderboard(#leaderboardIdentifier :String) {
-        
-        if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
-        let gameCenter = EasyGameCenter.sharedInstance
-        if let delegateController = gameCenter.delegate {
-            
-                var gc = GKGameCenterViewController()
-                gc.gameCenterDelegate = gameCenter
-                gc.leaderboardIdentifier = leaderboardIdentifier
-                gc.viewState = GKGameCenterViewControllerState.Leaderboards
-                delegateController.presentViewController(gc, animated: true, completion: nil)
-            }
-        }
     }
     /**
-    Get State of GameCenter
+        If player is Identified to Game Center
     
-    :returns: enum
-    - LaunchGameCenter:             Game center is laucher and load
-    - PlayerConnected:              Player connected and data in cache
-    - PlayerConnectedLoadDataCache: Player connected and data load in cache
-    - PlayerNotConnected:           Player not connected to game center
-    - Error:                        Error
+        :returns: Bool True is identified
     */
-   /* class func getStateGameCenter() -> StateGameCenter {
-        let state = EasyGameCenter.Static.instance!.stateOfGameCenter
-        return state
-    }*/
+    class func isPlayerIdentifiedToGameCenter() -> Bool { return GKLocalPlayer.localPlayer().authenticated }
+
     /*____________________________ GameCenter Public LeaderBoard __________________________________________________*/
     /**
-    Reports a  score to Game Center
+        Reports a  score to Game Center
     
-    :param: The score Int
-    :param: Leaderboard identifier
-    :param: completion (bool) when the score is report to game center or Fail
+        :param: The score Int
+        :param: Leaderboard identifier
+        :param: completion (bool) when the score is report to game center or Fail
     */
     class func reportScoreLeaderboard(#leaderboardIdentifier:String, score: Int,completion: ((result:Bool) -> Void)?) {
         
@@ -417,20 +320,73 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             
         }
     }
-    
-    
-    /*____________________________ GameCenter Public GKAchievement __________________________________________________*/
     /**
-    Get Tuple ( GKAchievement , GKAchievementDescription) for identifier Achievement
+        Show Game Center Leaderboard passed as string into func
     
-    :param: achievementIdentifier Identifier Achievement
-    
-    :returns: (gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?
+        :param: leaderboard Identifier
     */
-    class func getTupleGKAchievementAndDescription(#achievementIdentifier:String) ->(gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)? {
+    class func showGameCenterLeaderboard(#leaderboardIdentifier :String) {
+        
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
+            let gameCenter = EasyGameCenter.sharedInstance
+            if let delegateController = gameCenter.delegate {
+                
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                gc.leaderboardIdentifier = leaderboardIdentifier
+                gc.viewState = GKGameCenterViewControllerState.Leaderboards
+                delegateController.presentViewController(gc, animated: true, completion: nil)
+            }
+        }
+    }
+    /**
+        Get GKScoreOfLeaderboard
+    
+        :param: completion GKScore or nil
+    */
+    class func  getGKScoreOfLeaderboard(#leaderboardIdentifier:String, completion: ((result:GKScore?) -> Void)) {
+        
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            let leaderBoardRequest = GKLeaderboard()
+            leaderBoardRequest.identifier = leaderboardIdentifier
+            leaderBoardRequest.loadScoresWithCompletionHandler {
+                (resultGKScore, error) ->Void in
+                
+                if error != nil || resultGKScore == nil {
+                    completion(result: nil)
+                    
+                } else  {
+                    completion(result: leaderBoardRequest.localPlayerScore)
+                    
+                }
+            }
+        }
+    }
+    
+    /*____________________________ Achievement __________________________________________________*/
+    /**
+        Get Tuple ( GKAchievement , GKAchievementDescription) for identifier Achievement
+    
+        :param: achievementIdentifier Identifier Achievement
+    
+        :returns: (gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?
+    */
+    class func getTupleGKAchievementAndDescription(#achievementIdentifier:String,completion: (
+        (result:(gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?) -> Void)
+        ) {
         let gameCenter = EasyGameCenter.sharedInstance
         
         if let achievementGKScore = gameCenter.achievementsCache[achievementIdentifier] {
+            
+            EasyGameCenter.getGKAchievementDescription(completion: { (arrayGKAD) -> Void in
+                
+                if let arrayGKADIsOK = arrayGKAD {
+                    completion(result: (achievementGKScore,arrayGKADIsOK[0]))
+                } else {
+                    completion(result: nil)
+                }
+                
+            })
           /*  if let achievementGKInformation = gameCenter.achievementsInformationCache[achievementIdentifier] {
                 
                 return (gkAchievement:achievementGKScore,gkAchievementDescription:achievementGKInformation)
@@ -439,7 +395,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             }*/
             
         }
-        return nil
+        //return nil
         
     }
     /**
@@ -508,16 +464,37 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             }
         }
     }
- 
     /**
-        If player is Identified to Game Center
+    Get GKAchievementDescription
     
-        :returns: Bool True is identified
-    */
-    class func isPlayerIdentifiedToGameCenter() -> Bool {
-        
-        return GKLocalPlayer.localPlayer().authenticated
+    :param: completion return array [GKAchievementDescription] or nil
+    
+    Example:
+    for achievement in arrayGKAchievementDescription  {
+    if let oneAchievementDes = achievement as? GKAchievementDescription {
+    
     }
+    }
+    */
+    class func getGKAchievementDescription(#completion: ((arrayGKAD:[GKAchievementDescription]?) -> Void)){
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler {
+                (var achievementsDescription:[AnyObject]!, error:NSError!) -> Void in
+                
+                if error != nil {
+                    println("Game Center: couldn't load achievementInformation, error: \(error)")
+                }
+                if let achievementsIsArrayGKAchievementDescription = achievementsDescription as? [GKAchievementDescription] {
+                    completion(arrayGKAD: achievementsIsArrayGKAchievementDescription)
+                    
+                } else {
+                    completion(arrayGKAD: nil)
+                }
+            }
+        }
+        
+    }
+
     /**
         If achievement is Completed
     
@@ -574,39 +551,28 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             for achievement in achievements  {
                 
                 var oneAchievement : GKAchievement = achievement.1
-                if oneAchievement.completed {
-                    print(oneAchievement.showsCompletionBanner)
+                if oneAchievement.showsCompletionBanner == false {
                     oneAchievement.showsCompletionBanner = true
-                    
-                    if let tupleAchievementInformation = EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier) {
-                        
-                        let title = tupleAchievementInformation.gkAchievementDescription.title
-                        let description = tupleAchievementInformation.gkAchievementDescription.unachievedDescription
-                        
-                        EasyGameCenter.showBannerWithTitle(title: title, description: description, completion: nil)
-                        
-                    }
-                    
+/*
+if let tupleAchievementInformation = EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier) {
+
+
+let title = tupleAchievementInformation.gkAchievementDescription.title
+let description = tupleAchievementInformation.gkAchievementDescription.unachievedDescription
+
+EasyGameCenter.showBannerWithTitle(title: title, description: description, completion: nil)
+
+}*/
+
                 }
-                
             }
         }
     }
-    /**
-        Show banner game center
-    
-        :param: title       title
-        :param: description description
-        :param: completion  when show message
-    */
-    class func showBannerWithTitle(#title:String, description:String,completion: (() -> Void)?) {
-        GKNotificationBanner.showBannerWithTitle(title, message: description, completionHandler: { () -> Void in
-            if completion != nil { completion!() }
-        })
-    }
+
+
     /**
         Remove One Achievements
-    
+
         :param: Achievement Identifier
         :param: completion  If achievement is reset to Game Center server
     */
@@ -659,6 +625,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         }
 
     }
+
 
     /*_______________________________ Internet _______________________________________________*/
     /**
