@@ -1,7 +1,7 @@
 # Easy Game Center [![](http://img.shields.io/badge/iOS-7.0%2B-lightgrey.svg)]() [![](http://img.shields.io/badge/iOS-8.0%2B-lightgrey.svg)]()
 
 <p align="center">
-        <img src="http://imagizer.imageshack.us/v2/320x240q90/538/RMNfHp.png" height="100" width="100" />
+        <img src="http://postimg.org/image/qhn8vaegl/" height="100" width="100" />
 </p>
 
 Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
