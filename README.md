@@ -131,6 +131,7 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showGameCenterAchievements(completion: nil)
 ```
+##Show Leaderboard
 * **Show Game Center Leaderboard  with completion**
 ```swift
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard") { 
@@ -142,6 +143,7 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)
 ```
+##Show Challenges
 * **Show Game Center Challenges  with completion**
 ```swift
         EasyGameCenter.showGameCenterChallenges {
@@ -154,6 +156,7 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showGameCenterChallenges(completion: nil)
 ```
+##Show authentification page Game Center
 * **Show Game Center authentification page with completion**
 ```swift
         EasyGameCenter.showGameCenterAuthentication { 
@@ -167,6 +170,7 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showGameCenterAuthentication(completion: nil)
 ```
+##Show custom banner
 * **Show custom banner Game Center with completion**
 ```swift
        EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...") { 
@@ -178,6 +182,7 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)
 ```
+##Show custom dialog
 * **Show custom dialog Game Center Authentication with completion**
 ```swift
         EasyGameCenter.openDialogGameCenterAuthentication(
@@ -204,7 +209,7 @@ EasyGameCenter.openDialogGameCenterAuthentication(
         completion: nil)
 ```
         
-###Checkup Game Center
+#Checkup Game Center
 * **If player is connected to GameCenter**
 ```swift
 if GameCenter.ifPlayerIdentifiedToGameCenter() {
