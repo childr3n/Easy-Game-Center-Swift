@@ -291,11 +291,21 @@ EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(completion:ni
             }
         }
 ```
-* **Get Achievement (GKAchievement)**
+* **Get One Achievement (GKAchievement)**
 ```swift
 if let achievementDes = EasyGameCenter.achievementForIndetifier(identifierAchievement : "IdentifierAchievement") {
         /* object GKAchievement */
 }
+```
+* **Load GKAchievement in cache**
+* (Is call when you init EasyGameCenter, but if is fail example for cut connection, you can recall)
+* And when you get Achievement or all Achievement, it shall automatically cached
+```swift
+EasyGameCenter.loadGKAchievement(completion: { (result) -> Void in
+        if result {
+                /* GKAchievement it in cache */
+        }
+})
 ```
 ##Reset Achievements
 * **Reset one Achievement**
@@ -311,74 +321,94 @@ EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
 }
 ```
 #Leaderboards
-* **Report to Leaderboard**
+##Report
+* **Report Score Leaderboard with completion**
 ```swift
-/**
-    Reports a score to Game Center
-    
-    :param: The score Int
-    :param: Leaderboard identifier
-    :param: completion (bool) when the score is report to game center or Fail
-*/
-/* With completion */
-GameCenter.reportScoreLeaderboard(score: 100.00, leaderboardIdentifier: "classement_internationale") { 
-        (result) -> Void in
-        if result {
-                println("Score is to Game Center !")
+EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100) {
+        (isSendToGameCenterOrNor) -> Void in
+        if isSendToGameCenterOrNor {
+                println("Score send to Game Center")
+        } else {
+                println("Score NO send to Game Center (No connection or player not identified")
         }
 }
-/* Without completion */
-GameCenter.reportScoreLeaderboard(score: Int, leaderboardIdentifier: String, completion: nil)
 ```
-**Get SKScore leaderboard**
+* **Report Score Leaderboard without completion**
 ```swift
-/**
-    Get SKScore
-    
-    :param: Leaderboard Identifier
-    :returns: GKScore or nil
-*/
-if let resultGKScoreOk =  GameCenter.getScoreLeaderboard(leaderboardIdentifier: "classement_internationale") {
-       /* Hight score player */    
-        print(resultGKScoreOk.value)
-        
-        /* Rank */
-        print(resultGKScoreOk.rank)
-        
-        /* Date last win (Rank) */
-        print(resultGKScoreOk.date)
-        
-        /* Context */
-        print(resultGKScoreOk.context)
-        
-        /* Player info */
-        print(resultGKScoreOk.player)
-        
-        /* Player ID */
-        print(resultGKScoreOk.playerID)
-
-        /* Etc ... */
-} 
+EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100,completion:nil)
 ```
-#Checkup Game Center
-* **If player is connected to GameCenter**
+##Get GKLeaderboard
+* **Get GKLeaderboard with completion**
 ```swift
-if GameCenter.ifPlayerIdentifiedToGameCenter() {
-        print("YES \n")
-} else {
-        print("NO \n")
+EasyGameCenter.getGKLeaderboard { 
+        (resultArrayGKLeaderboard) -> Void in
+        if let resultArrayGKLeaderboardIsOK = resultArrayGKLeaderboard as [GKLeaderboard]? {
+                for oneGKLeaderboard in resultArrayGKLeaderboardIsOK  {
+                    
+                    println("\n/***** Get Leaderboards (getGKLeaderboard) *****/\n")
+                    println("ID : \(oneGKLeaderboard.identifier)")
+                    println("Title :\(oneGKLeaderboard.title)")
+                    println("Loading ? : \(oneGKLeaderboard.loading)")
+                    println("\n/**********/\n")
+                    
+                }
+        }
 }
 ```
-
-
-
-
-
-
-
+##Get GKScore
+* **Get GKScore Leaderboard with completion**
+```swift
+EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
+        (resultGKScore) -> Void in
+        if let resultGKScoreIsOK = resultGKScore as GKScore? {
+                /* Hight score player */
+                print(resultGKScoreIsOK.value)
+                
+                /* Rank */
+                print(resultGKScoreIsOK.rank)
+                
+                /* Date last win (Rank) */
+                print(resultGKScoreIsOK.date)
+                
+                /* Context */
+                print(resultGKScoreIsOK.context)
+                
+                /* Player info */
+                print(resultGKScoreIsOK.player)
+                
+                /* Player ID */
+                print(resultGKScoreIsOK.playerID)
+                
+                /* Etc ... */
+        }
+}
+```
+#Other methods
+##Player identified to Game Center
+**Is player identified to gameCenter**
+```swift
+if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+        /* It is identified to Game Center */
+} 
+```
+**Is player identified to gameCente and have network**
+```swift
+let validation = EasyGameCenter.isHaveNetworkAndPlayerIdentified()
+```
+**Get local Player (GKLocalPlayer)**
+```swift
+let localPlayer = EasyGameCenter.getLocalPlayer()
+```
+**Is Connected to NetWork**
+```swift
+if EasyGameCenter.isConnectedToNetwork() {
+        /* You have network */
+} 
+```
 ### Legacy support
-For support of iOS 7 & 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Simple Game Center** as possible.
-
+For support of iOS 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Easy Game Center** as possible.
 ### License
-CC0 1.0 Universal
-<http://creativecommons.org/publicdomain/zero/1.0/>
+The MIT License (MIT)
+Copyright (c) 2015 Red Wolf Studio, Yannick Stephan
+[Red Wolf Studio](http://www.redwolfstudio.fr)
+[Yannick Stephan](https://yannickstephan.com)
