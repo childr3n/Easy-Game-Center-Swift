@@ -83,7 +83,12 @@ class AchievementsActions: UIViewController {
         if achievementOneCompleted {
             AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "Yes", uiViewController: self)
         } else {
-            AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "No", uiViewController: self)
+            if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+                AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "No", uiViewController: self)
+            } else {
+                AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "Player not identified", uiViewController: self)
+            }
+            
         }
     }
     

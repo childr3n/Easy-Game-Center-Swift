@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="30" id="cuL-BJ-P1A"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hK-aU-xds">
@@ -296,21 +296,24 @@
             </objects>
             <point key="canvasLocation" x="443" y="678"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Easy Game Center-->
         <scene sceneID="JXh-8x-U4H">
             <objects>
-                <navigationController id="dCk-HE-H6c" sceneMemberID="viewController">
+                <navigationController title="Easy Game Center" id="dCk-HE-H6c" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nBx-n9-c3b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="buM-9J-rfJ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="U8B-Ow-evW" kind="relationship" relationship="rootViewController" id="4jv-ra-nkE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrI-iW-d9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-933" y="338"/>
+            <point key="canvasLocation" x="-989" y="315"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="sQU-qZ-KCh">
@@ -330,7 +333,7 @@
                                     <constraint firstAttribute="height" constant="30" id="5gK-TO-T88"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player ID : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXj-x5-L8K">
@@ -339,7 +342,7 @@
                                     <constraint firstAttribute="height" constant="30" id="rco-Km-hMR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-fn-1oK">
@@ -357,6 +360,21 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="hc8-hc-TM8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3LO-Ws-IXn">
+                                <rect key="frame" x="0.0" y="307" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="j4F-Bb-h14"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Show Game Center Achievement">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowGameCenterAchievements:" destination="U8B-Ow-evW" eventType="touchUpInside" id="qCN-jx-Ld6"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xfh-op-YRO">
                                 <rect key="frame" x="0.0" y="254" width="600" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -372,48 +390,116 @@
                                     <segue destination="3nD-hK-efs" kind="show" id="sQG-z2-2dK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player Authetified : false" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWd-Oe-KRk">
-                                <rect key="frame" x="-11" y="158" width="600" height="30"/>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="g90-sw-rWG">
+                                <rect key="frame" x="0.0" y="365" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="28G-0S-TJ6"/>
+                                    <constraint firstAttribute="height" constant="50" id="e9g-5t-Ko9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Show Game Center Leaderboards">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowGameCenterLeaderboards:" destination="U8B-Ow-evW" eventType="touchUpInside" id="KXy-10-HR0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player Authentified : False" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkQ-9j-3az">
+                                <rect key="frame" x="-16" y="158" width="600" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="zbP-TQ-Yyt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QsQ-Gg-S7s">
+                                <rect key="frame" x="29" y="423" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ZYE-CF-5wG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Show Game Center Defis">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowGameCenterAchievements:" destination="U8B-Ow-evW" eventType="touchUpInside" id="0lJ-Sb-5nq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HHV-Bj-RfG">
+                                <rect key="frame" x="7" y="481" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3yK-wy-UH9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Open Game Center Authetification">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowAuthetificationGameCenter:" destination="U8B-Ow-evW" eventType="touchUpInside" id="GVN-S1-q08"/>
+                                    <action selector="ShowGameCenterLeaderboards:" destination="U8B-Ow-evW" eventType="touchUpInside" id="SSS-lA-CsG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QsQ-Gg-S7s" firstAttribute="top" secondItem="g90-sw-rWG" secondAttribute="bottom" constant="1" id="2x0-LM-zJX"/>
+                            <constraint firstItem="QsQ-Gg-S7s" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="4hc-P9-pkl"/>
                             <constraint firstItem="Nch-fn-1oK" firstAttribute="top" secondItem="KXj-x5-L8K" secondAttribute="bottom" constant="10" id="7ZQ-td-BKa"/>
                             <constraint firstItem="xfh-op-YRO" firstAttribute="top" secondItem="Nch-fn-1oK" secondAttribute="bottom" constant="1" id="AhB-q9-fqr"/>
                             <constraint firstItem="KXj-x5-L8K" firstAttribute="top" secondItem="Nch-fn-1oK" secondAttribute="top" constant="-68" id="GFS-jp-ctG"/>
+                            <constraint firstItem="AkQ-9j-3az" firstAttribute="top" secondItem="KXj-x5-L8K" secondAttribute="bottom" constant="1" id="Goi-Ff-CQN"/>
                             <constraint firstAttribute="centerX" secondItem="Nch-fn-1oK" secondAttribute="centerX" id="HHh-6w-OiL"/>
                             <constraint firstAttribute="centerX" secondItem="KXj-x5-L8K" secondAttribute="centerX" constant="16" id="HHq-oE-vNx"/>
+                            <constraint firstAttribute="centerX" secondItem="g90-sw-rWG" secondAttribute="centerX" id="IHD-Y7-rme"/>
+                            <constraint firstItem="QsQ-Gg-S7s" firstAttribute="top" secondItem="g90-sw-rWG" secondAttribute="bottom" constant="1" id="Lqr-yq-dtr"/>
                             <constraint firstAttribute="centerX" secondItem="xfh-op-YRO" secondAttribute="centerX" id="QIA-RU-sS9"/>
+                            <constraint firstItem="3LO-Ws-IXn" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="USs-FB-och"/>
                             <constraint firstItem="xfh-op-YRO" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="W4m-xn-DZL"/>
                             <constraint firstItem="rRZ-QQ-F9l" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="Wjo-Hj-7CD"/>
+                            <constraint firstItem="g90-sw-rWG" firstAttribute="top" secondItem="3LO-Ws-IXn" secondAttribute="bottom" constant="1" id="X4F-RI-27a"/>
+                            <constraint firstAttribute="centerX" secondItem="QsQ-Gg-S7s" secondAttribute="centerX" id="ZcO-DN-Qjw"/>
+                            <constraint firstItem="3LO-Ws-IXn" firstAttribute="top" secondItem="xfh-op-YRO" secondAttribute="bottom" constant="1" id="ZjS-Qs-vjh"/>
+                            <constraint firstItem="g90-sw-rWG" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="aLV-RE-YrW"/>
+                            <constraint firstAttribute="centerX" secondItem="HHV-Bj-RfG" secondAttribute="centerX" id="cBl-9d-MMr"/>
+                            <constraint firstAttribute="width" secondItem="HHV-Bj-RfG" secondAttribute="width" id="cHw-zZ-rqK"/>
+                            <constraint firstItem="Nch-fn-1oK" firstAttribute="leading" secondItem="AkQ-9j-3az" secondAttribute="trailing" constant="-584" id="dTp-h6-oKf"/>
+                            <constraint firstItem="HHV-Bj-RfG" firstAttribute="top" secondItem="QsQ-Gg-S7s" secondAttribute="bottom" constant="1" id="etU-il-p0k"/>
                             <constraint firstItem="KXj-x5-L8K" firstAttribute="top" secondItem="rRZ-QQ-F9l" secondAttribute="bottom" constant="1" id="frF-YN-5lk"/>
                             <constraint firstItem="KXj-x5-L8K" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="gdm-12-5v1"/>
                             <constraint firstAttribute="width" secondItem="Nch-fn-1oK" secondAttribute="width" id="j3e-GP-h4r"/>
                             <constraint firstAttribute="centerX" secondItem="rRZ-QQ-F9l" secondAttribute="centerX" constant="27" id="mP6-hF-nn2"/>
+                            <constraint firstItem="AkQ-9j-3az" firstAttribute="width" secondItem="etC-50-90n" secondAttribute="width" id="nxn-7J-GpA"/>
+                            <constraint firstItem="Nch-fn-1oK" firstAttribute="top" secondItem="AkQ-9j-3az" secondAttribute="bottom" constant="10" id="p9k-Ze-7jD"/>
                             <constraint firstItem="rRZ-QQ-F9l" firstAttribute="top" secondItem="Dkp-5Y-Fex" secondAttribute="bottom" constant="35" id="u4B-HN-7TR"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="GFS-jp-ctG"/>
+                                <exclude reference="7ZQ-td-BKa"/>
+                                <exclude reference="dTp-h6-oKf"/>
+                                <exclude reference="Lqr-yq-dtr"/>
+                                <exclude reference="ZcO-DN-Qjw"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="gmr-7Z-r9V"/>
+                    <navigationItem key="navigationItem" id="gmr-7Z-r9V">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="Name" destination="rRZ-QQ-F9l" id="8XY-za-p7J"/>
-                        <outlet property="PlayerAuthentified" destination="jWd-Oe-KRk" id="qdW-hq-LjO"/>
+                        <outlet property="PlayerAuthentified" destination="AkQ-9j-3az" id="3ga-fx-YGq"/>
                         <outlet property="PlayerID" destination="KXj-x5-L8K" id="axx-aG-7rB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="viR-Qk-rcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-268" y="330"/>
+            <point key="canvasLocation" x="-281" y="330"/>
         </scene>
     </scenes>
 </document>

@@ -16,6 +16,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationItem.title = "Easy Game Center"
+
+        
         
         let eaysGameCenter = EasyGameCenter.sharedInstance {
             (resultConnectToGameCenter) -> Void in
@@ -32,16 +35,47 @@ class MainViewController: UIViewController {
                 
             }
             
-            self.PlayerAuthentified.text = "Player Authetified : \(EasyGameCenter.isPlayerIdentifiedToGameCenter())"
+            if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+                    self.PlayerAuthentified.text = "Player Authentified : True"
+            } else {
+                    self.PlayerAuthentified.text = "Player Authentified : False"
+            }
+            
         }
         eaysGameCenter.delegate = self
         
     }
 
+    @IBAction func ShowGameCenterAchievements(sender: AnyObject) {
+        EasyGameCenter.showGameCenterAchievements { (isShow) -> Void in
+        
+            println("Is show : \(isShow)")
+        }
+    }
+    @IBAction func ShowGameCenterLeaderboards(sender: AnyObject) {
+
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement") { (isShow) -> Void in
+            println("Is show : \(isShow)")
+        }
+    }
+    
+    
+    /* pdpfkdp */
+    
+    @IBAction func ShowAuthetificationGameCenter(sender: AnyObject) {
+        
+        EasyGameCenter.showGameCenterAuthentication { (result) -> Void in
+            if result {
+                println("Is open Game Center Authentication :)")
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    
 
 
 }
