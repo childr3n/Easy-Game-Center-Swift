@@ -341,7 +341,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
     }
     */
-    class func getLeaderboards(#completion: ((result:[GKLeaderboard]?) -> Void)) {
+    class func getLeaderboards(#completion: ((resultArrayGKLeaderboard:[GKLeaderboard]?) -> Void)) {
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             GKLeaderboard.loadLeaderboardsWithCompletionHandler {
                 (var leaderboards:[AnyObject]!, error:NSError!) -> Void in
@@ -351,10 +351,10 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 }
                 
                 if let leaderboardsIsArrayGKLeaderboard = leaderboards as? [GKLeaderboard] {
-                    completion(result: leaderboardsIsArrayGKLeaderboard)
+                    completion(resultArrayGKLeaderboard: leaderboardsIsArrayGKLeaderboard)
                     
                 } else {
-                    completion(result: nil)
+                    completion(resultArrayGKLeaderboard: nil)
                 }
             }
         }
@@ -367,31 +367,33 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: Leaderboard identifier
         :param: completion (bool) when the score is report to game center or Fail
     */
-    class func reportScoreLeaderboard(#leaderboardIdentifier:String, score: Int,completion: ((result:Bool) -> Void)?) {
+    
+    class func reportScoreLeaderboard(#leaderboardIdentifier:String, score: Int,completion: ((isSendToGameCenterOrNor:Bool) -> Void)?) {
         
         
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             
             let gameCenter = EasyGameCenter.sharedInstance
-              // }
-            
-            
-            // if player is logged in to GC, then report the score
+
             if GKLocalPlayer.localPlayer().authenticated {
-                let gkScore = GKScore(leaderboardIdentifier: leaderboardIdentifier)
-                
+
+                let gkScore = GKScore(leaderboardIdentifier: leaderboardIdentifier, player: EasyGameCenter.getLocalPlayer())
                 gkScore.value = Int64(score)
-                gkScore.shouldSetDefaultLeaderboard = true
-                
-                GKScore.reportScores([gkScore], withCompletionHandler: ( { (error: NSError!) -> Void in
-                    if (error != nil) {
-                        if completion != nil { completion!(result:false) }
+                gkScore.shouldSetDefaultLeaderboard = false
+         
+                GKScore.reportScores([gkScore], withCompletionHandler: ( {
+                    (error: NSError!) -> Void in
+                     print(gkScore.value)
+                    if ((error) != nil) {
+                        if completion != nil { completion!(isSendToGameCenterOrNor:false) }
                     } else {
-                        if completion != nil { completion!(result:true) }
+                        if completion != nil { completion!(isSendToGameCenterOrNor:true) }
                     }
                 }))
             }
             
+        } else {
+            if completion != nil { completion!(isSendToGameCenterOrNor:false) }
         }
     }
 
@@ -400,7 +402,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     
         :param: completion GKScore or nil
     */
-    class func  getGKScoreOfLeaderboard(#leaderboardIdentifier:String, completion: ((result:GKScore?) -> Void)) {
+    class func  getGKScoreOfLeaderboard(#leaderboardIdentifier:String, completion: ((resultGKScore:GKScore?) -> Void)) {
         
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             let leaderBoardRequest = GKLeaderboard()
@@ -409,10 +411,10 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 (resultGKScore, error) ->Void in
                 
                 if error != nil || resultGKScore == nil {
-                    completion(result: nil)
+                    completion(resultGKScore: nil)
                     
                 } else  {
-                    completion(result: leaderBoardRequest.localPlayerScore)
+                    completion(resultGKScore: leaderBoardRequest.localPlayerScore)
                     
                 }
             }

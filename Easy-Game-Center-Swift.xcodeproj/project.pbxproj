@@ -17,6 +17,7 @@
 		8807C7461ABB8B9200D86D3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */; };
 		8807C7481ABB8B9900D86D3B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8807C7471ABB8B9900D86D3B /* GameKit.framework */; };
 		8807C74A1ABC2D6200D86D3B /* AchievementsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */; };
+		8815C1FD1ABC7F020054A2CF /* LeaderboardsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815C1FC1ABC7F020054A2CF /* LeaderboardsActions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		8807C7451ABB8B9200D86D3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8807C7471ABB8B9900D86D3B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsActions.swift; sourceTree = "<group>"; };
+		8815C1FC1ABC7F020054A2CF /* LeaderboardsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardsActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				8807C7431ABB8B7500D86D3B /* LaunchScreen.xib */,
 				8807C71F1ABB8B5900D86D3B /* Supporting Files */,
 				8807C7491ABC2D6200D86D3B /* AchievementsActions.swift */,
+				8815C1FC1ABC7F020054A2CF /* LeaderboardsActions.swift */,
 			);
 			path = "Easy-Game-Center-Swift";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				8807C7241ABB8B5900D86D3B /* MainViewController.swift in Sources */,
 				8807C74A1ABC2D6200D86D3B /* AchievementsActions.swift in Sources */,
 				8807C7221ABB8B5900D86D3B /* AppDelegate.swift in Sources */,
+				8815C1FD1ABC7F020054A2CF /* LeaderboardsActions.swift in Sources */,
 				8807C7421ABB8B7000D86D3B /* EasyGameCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,6 +23,9 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-c2-xZj">
+                    <rect key="frame" x="120" y="215" width="240" height="128"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.58151668310000004" green="0.58176195620000004" blue="0.5888671875" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
