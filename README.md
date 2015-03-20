@@ -59,7 +59,6 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
             if resultPlayerAuthentified {
                 /* When player is authentified to Game Center */
                 
-            /* Player NOT conected to Game Center */
             } else {
                 /* Player not authentified to Game Center */
                 /* No connexion internet or not authentified to Game Center */
@@ -110,6 +109,18 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
         /* Set Delegate */
         gameCenter.delegate = self
 ```
+
+* **Initialize change UIViewController Delegate**
+```swift
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* Set new view controller delegate */
+        EasyGameCenter.delegate = self
+    }
+```
+
+
 
 ###Show Game Center
 * **Show Game Center Achievements with completion**
