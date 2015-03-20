@@ -236,8 +236,8 @@ if achievementOneCompleted {
         println("No")
 }
 ```
-##Achievement completed & banner not show = false
-* **Get Achievements completed and banner not show**
+##Achievements completed & banner not show = false
+* **Get All Achievements completed and banner not show**
 ```swift
         if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
 
@@ -264,6 +264,14 @@ EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing {
         }
 }
 ```
+
+
+/* write ... */
+
+
+
+
+
 
 * **Get Achievement (GKAchievement)**
 ```swift
