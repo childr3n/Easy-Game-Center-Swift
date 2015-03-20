@@ -177,8 +177,32 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 ```swift
         EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)
 ```
-
-
+* **Show custom dialog Game Center Authentication with completion**
+```swift
+        EasyGameCenter.openDialogGameCenterAuthentication(
+        titre: "Title", 
+        message: "Please login you Game Center", 
+        buttonOK: "Ok", 
+        buttonOpenGameCenterLogin: "Open Game Center") 
+        {
+            (openGameCenterAuthentification) -> Void in
+            if openGameCenterAuthentification {
+                println("Player open Game Center authentification")
+            } else {
+                println("Player cancel Open Game Center authentification")
+            }
+        }
+```
+* **Show custom dialog Game Center Authentication without completion**
+```swift
+EasyGameCenter.openDialogGameCenterAuthentication(
+        titre: Title", 
+        message: "Please login you Game Center", 
+        buttonOK: "Cancel", 
+        buttonOpenGameCenterLogin: "Open Game Center", 
+        completion: nil)
+```
+        
 ###Checkup Game Center
 * **If player is connected to GameCenter**
 ```swift
