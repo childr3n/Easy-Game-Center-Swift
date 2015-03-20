@@ -9,7 +9,7 @@ Easy Game Center helps to manage Game Center in iOS. Report and track high score
 (version 1.0)
 
 <p align="center">
-        <img src="http://g.recordit.co/Ts9KKv5X9h.gif" height="500" width="280" />
+        <img src="http://g.recordit.co/fTu2Omk6AA.gif" height="500" width="280" />
 </p>
 
 # <!> Project code is not finish, in 1hour  please wait :)
