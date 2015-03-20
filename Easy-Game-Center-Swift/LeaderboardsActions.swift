@@ -20,13 +20,6 @@ class LeaderboardsActions: UIViewController {
         let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Leaderboards", style: .Bordered, target: self, action: "openGameCenterLeaderboard:")
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
         
-        // Do any additional setup after loading the view, typically from a nib.
-        EasyGameCenter.getGKAllAchievementDescription { (arrayGKAD) -> Void in
-            if arrayGKAD != nil {
-           //     self.AchievementsNumber.text = "Number Achievements :  \(arrayGKAD!.count)"
-            }
-            
-        }
         
     }
     
@@ -62,6 +55,8 @@ class LeaderboardsActions: UIViewController {
             }
         }
         
+        
+        
 
     }
     
@@ -78,7 +73,6 @@ class LeaderboardsActions: UIViewController {
                     
                 }
             }
-
         }
     }
     
@@ -96,6 +90,8 @@ class LeaderboardsActions: UIViewController {
                 println("\n/**********/\n")
             }
         }
+        
+
     }
     
 
