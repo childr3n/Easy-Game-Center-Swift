@@ -382,7 +382,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :returns: (gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?
     */
     class func getTupleGKAchievementAndDescription(#achievementIdentifier:String,completion: (
-        (result:(gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?) -> Void)
+        (tupleGKAchievementAndDescription:(gkAchievement:GKAchievement,gkAchievementDescription:GKAchievementDescription)?) -> Void)
         ) {
         let gameCenter = EasyGameCenter.sharedInstance
         
@@ -391,9 +391,9 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             EasyGameCenter.getGKAchievementDescription(completion: { (arrayGKAD) -> Void in
                 
                 if let arrayGKADIsOK = arrayGKAD {
-                    completion(result: (achievementGKScore,arrayGKADIsOK[0]))
+                    completion(tupleGKAchievementAndDescription: (achievementGKScore,arrayGKADIsOK[0]))
                 } else {
-                    completion(result: nil)
+                    completion(tupleGKAchievementAndDescription: nil)
                 }
                 
             })
@@ -444,7 +444,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: showBannnerIfCompleted if you want show banner when now or not when is completed
         :param: completionIsSend       Completion if is send to Game Center
     */
-    class func reportAchievements( #progress : Double, achievementIdentifier : String, showBannnerIfCompleted : Bool,completionIsSend: ((isSendOrNor:Bool) -> Void)?) {
+    class func reportAchievements( #progress : Double, achievementIdentifier : String, showBannnerIfCompleted : Bool,completionIsSend: ((isSendToGameCenterOrNor:Bool) -> Void)?) {
         
         if let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
             if !achievement.completed {
@@ -469,9 +469,13 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                        
                     }
                     
-                    if completionIsSend != nil { completionIsSend!(isSendOrNor: validation) }
+                    if completionIsSend != nil { completionIsSend!(isSendToGameCenterOrNor: validation) }
                 })
+            } else {
+               if completionIsSend != nil { completionIsSend!(isSendToGameCenterOrNor: false) }
             }
+        } else {
+            if completionIsSend != nil { completionIsSend!(isSendToGameCenterOrNor: false) }
         }
     }
     /**
@@ -501,6 +505,8 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                     completion(arrayGKAD: nil)
                 }
             }
+        } else {
+            completion(arrayGKAD: nil)
         }
         
     }
@@ -511,7 +517,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: Achievement Identifier
         :return: (Bool) if finished
     */
-    class func ifAchievementCompleted(#achievementIdentifier: String) -> Bool{
+    class func isAchievementCompleted(#achievementIdentifier: String) -> Bool{
         
         if let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
             if achievement.completed { return true }
@@ -524,7 +530,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         Get Achievements Completes during the game and banner was not showing
     
         Example :
-            if let achievements : [String:GKAchievement] = EasyGameCenter.achievementCompleteAndBannerNotShowing() {
+            if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
                 for achievement in achievements  {
                     var oneAchievement : GKAchievement = achievement.1
                     if oneAchievement.completed {
@@ -535,8 +541,8 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     
     :returns: [String : GKAchievement] or nil
     */
-    class func achievementCompleteAndBannerNotShowing() -> [String : GKAchievement]? {
-        let achievements : [String:GKAchievement] = EasyGameCenter.Static.instance!.achievementsCache
+    class func getAchievementCompleteAndBannerNotShowing() -> [String : GKAchievement]? {
+        let achievements : [String:GKAchievement] = EasyGameCenter.sharedInstance.achievementsCache
         var achievementsTemps = [String:GKAchievement]()
         if achievements.count > 0 {
             
@@ -549,33 +555,49 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 }
                 
             }
+            return achievementsTemps
         }
-        return achievementsTemps
+        return nil
+        
     }
     /**
         Show all save achievement Complete if you have ( showBannerAchievementWhenComplete = false )
     */
-    class func showAllBannerAchievementCompleteForBannerNotShowing() {
-        if let achievements : [String:GKAchievement] = EasyGameCenter.achievementCompleteAndBannerNotShowing() {
-            
-            for achievement in achievements  {
+    class func showAllBannerAchievementCompleteForBannerNotShowing(#completion: ((isShowAchievement:Bool) -> Void)?) {
+        
+        if isPlayerIdentifiedToGameCenter() && isConnectedToNetwork() {
+            if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
                 
-                var oneAchievement : GKAchievement = achievement.1
-                if oneAchievement.showsCompletionBanner == false {
-                    oneAchievement.showsCompletionBanner = true
-/*
-if let tupleAchievementInformation = EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier) {
-
-
-let title = tupleAchievementInformation.gkAchievementDescription.title
-let description = tupleAchievementInformation.gkAchievementDescription.unachievedDescription
-
-EasyGameCenter.showBannerWithTitle(title: title, description: description, completion: nil)
-
-}*/
-
+                for achievement in achievements  {
+                    
+                    var oneAchievement : GKAchievement = achievement.1
+                    if oneAchievement.showsCompletionBanner == false {
+                        oneAchievement.showsCompletionBanner = true
+                        EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier, completion: {
+                            (tupleGKAchievementAndDescription) -> Void in
+                            
+                            if let tupleOK = tupleGKAchievementAndDescription {
+                                
+                                let title = tupleOK.gkAchievementDescription.title
+                                let description = tupleOK.gkAchievementDescription.achievedDescription
+                                
+                                EasyGameCenter.showBannerWithTitle(title: title, description: description, completion: { () -> Void in
+                                    if completion != nil { completion!(isShowAchievement: true) }
+                                })
+                                
+                                
+                            } else {
+                                if completion != nil { completion!(isShowAchievement: false) }
+                            }
+                        })
+                    }
                 }
+            } else {
+                if completion != nil { completion!(isShowAchievement: false) }
             }
+
+        } else {
+            if completion != nil { completion!(isShowAchievement: false) }
         }
     }
 
@@ -593,7 +615,7 @@ EasyGameCenter.showBannerWithTitle(title: title, description: description, compl
         :param: Achievement Identifier
         :param: completion  If achievement is reset to Game Center server
     */
-    class func resetOneAchievement(#achievementIdentifier :String, completion: ((isReset:Bool) -> Void)?) {
+    class func resetOneAchievement(#achievementIdentifier :String, completion: ((isResetToGameCenterOrNor:Bool) -> Void)?) {
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             if let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
                 GKAchievement.resetAchievementsWithCompletionHandler({
@@ -610,7 +632,7 @@ EasyGameCenter.showBannerWithTitle(title: title, description: description, compl
                         println("Reset achievement (\(achievementIdentifier))")
                         
                     }
-                    if completion != nil { completion!(isReset: validation) }
+                    if completion != nil { completion!(isResetToGameCenterOrNor: validation) }
                     
                 })
             }

@@ -36,6 +36,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ReportAchievementOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="apF-Bv-Jsu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.74999999999999978" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EAc-7t-P9v">
                                 <rect key="frame" x="0.0" y="263" width="600" height="50"/>
@@ -48,6 +51,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ReportAchievementTwo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyt-uO-OSJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-DZ-pUZ">
                                 <rect key="frame" x="-92" y="161" width="692" height="50"/>
@@ -60,6 +66,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="IfAchievementIsFinished:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NKP-NB-3eZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-Ab-L8e">
                                 <rect key="frame" x="0.0" y="365" width="600" height="50"/>
@@ -72,6 +81,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ShowAchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04b-bH-Ivb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7lN-6u-x2B">
                                 <rect key="frame" x="-4" y="212" width="604" height="50"/>
@@ -80,10 +92,13 @@
                                     <constraint firstAttribute="height" constant="50" id="OJn-Hz-ysn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Reset one achievement">
+                                <state key="normal" title="Reset achievement one">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ResetAchievementOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOh-4q-n3l"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="79G-2u-6O6">
                                 <rect key="frame" x="0.0" y="314" width="600" height="50"/>
@@ -96,6 +111,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="AchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUK-dk-TLf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6gQ-OV-5TC">
                                 <rect key="frame" x="-70" y="416" width="670" height="50"/>
@@ -108,6 +126,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="GetAllChievementsDescription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXC-p8-Iab"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-0v-NZC">
                                 <rect key="frame" x="0.0" y="59" width="600" height="50"/>
@@ -135,6 +156,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ResetAllAchievements:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kxw-RX-3vx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

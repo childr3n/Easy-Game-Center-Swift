@@ -43,15 +43,136 @@ class AchievementsActions: UIViewController {
                     println("\n/**********/\n")
 
                 }
+            } else {
+                println("\n Not Connected Internet OR Game Center ... \n")
             }
         }
-        
     }
+    
+    @IBAction func ReportAchievementOne(sender: AnyObject) {
+        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_One", showBannnerIfCompleted: true) {
+            (isSendToGameCenterOrNor) -> Void in
+            
+            /* Yes it is reported */
+            if isSendToGameCenterOrNor {
+                AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am !", uiViewController: self)
+            
+            } else {
+                /* Check for what ? */
+                let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: "Achievement_One")
+                
+                /* Completed */
+                if (achievement?.completed != nil) {
+                    AppDelegate.simpleMessage(title: "report Achievements", message: "it is already completed.", uiViewController: self)
+                
+                /* No Connection or not connected */
+                } else {
+                    AppDelegate.simpleMessage(title: "report Achievements", message: "Not completed (No Connection)", uiViewController: self)
+                }
+                
+            }
+        }
+    }
+    
+
+    @IBAction func IfAchievementIsFinished(sender: AnyObject) {
+        
+        
+        let achievementOneCompleted = EasyGameCenter.isAchievementCompleted(achievementIdentifier: "Achievement_One")
+        
+        if achievementOneCompleted {
+            AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "Yes", uiViewController: self)
+        } else {
+            AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "No", uiViewController: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func ResetAchievementOne(sender: AnyObject) {
+        
+        EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
+            (isResetToGameCenterOrNor) -> Void in
+            
+            if isResetToGameCenterOrNor {
+                AppDelegate.simpleMessage(title: "ResetAchievementOne", message: "Yes", uiViewController: self)
+            } else {
+                AppDelegate.simpleMessage(title: "ResetAchievementOne", message: "No", uiViewController: self)
+            }
+        }
+    }
+   
+   
+    @IBAction func ReportAchievementTwo(sender: AnyObject) {
+        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_Two", showBannnerIfCompleted: false) {
+            (isSendToGameCenterOrNor) -> Void in
+            
+            /* Yes it is reported */
+            if isSendToGameCenterOrNor {
+                AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am ! but i'm not show", uiViewController: self)
+                
+            } else {
+                /* Check for what ? */
+                let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: "Achievement_One")
+                
+                /* Completed */
+                if (achievement?.completed != nil) {
+                    AppDelegate.simpleMessage(title: "report Achievements", message: "it is already completed.", uiViewController: self)
+                    
+                    /* No Connection or not connected */
+                } else {
+                    AppDelegate.simpleMessage(title: "report Achievements", message: "Not completed (No Connection)", uiViewController: self)
+                }
+                
+            }
+        }
+    }
     
+
+    @IBAction func AchievementCompletedAndNotShowing(sender: AnyObject) {
+
+        if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
+
+            for achievement in achievements  {
+                var oneAchievement : GKAchievement = achievement.1
+                if oneAchievement.completed && oneAchievement.showsCompletionBanner == false {
+                    
+                    println("\n/***** Achievement Description *****/\n")
+                    println("\(oneAchievement.identifier)")
+                    println("\n/**********/\n")
+                    
+                }
+            }
+        } else {
+            println("\n/***** NO Achievement with not showing  *****/\n")
+        }
+        
+        
+    }
+    
+    @IBAction func ShowAchievementCompletedAndNotShowing(sender: AnyObject) {
+        EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(nil)
+        
+    }
+    @IBAction func GetAllChievementsDescription(sender: AnyObject) {
+        EasyGameCenter.getGKAchievementDescription {
+            (arrayGKAD) -> Void in
+            if let arrayGKADIsOK = arrayGKAD {
+                for achievement in arrayGKADIsOK  {
+                    println("\n/***** Achievement Description *****/\n")
+                    println(achievement)
+                    println("\n/**********/\n")
+                }
+            }
+
+        }
+    }
+    
+    @IBAction func ResetAllAchievements(sender: AnyObject) {
+        EasyGameCenter.resetAllAchievements(nil)
+    }
 }
 
