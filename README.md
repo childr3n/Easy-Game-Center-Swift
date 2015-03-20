@@ -1,30 +1,33 @@
-# Easy Game Center [![](http://img.shields.io/badge/iOS-7.0%2B-lightgrey.svg)]() [![](http://img.shields.io/badge/iOS-8.0%2B-lightgrey.svg)]()
+# Easy Game Center  [![](https://img.shields.io/packagist/l/doctrine/orm.svg)]() [![](http://img.shields.io/badge/iOS-8.0%2B-lightgrey.svg)]()
+
 
 <p align="center">
-        <img src="http://imagizer.imageshack.us/v2/320x240q90/538/RMNfHp.png" height="100" width="100" />
+        <img src="http://s2.postimg.org/jr6rlurax/easy_Game_Center_Swift.png" height="200" width="200" />
 </p>
 
-Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements.Easy Game Center falicite management of Game Center.
-(version 3.5)
+Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
+(version 1.0)
 
-# <!> Project code is not finish, in 10hour  please wait :)
-# <!> Project code is not finish, in 10hour  please wait :)
-# <!> Project code is not finish, in 10hour  please wait :)
+# <!> Project code is not finish, in 1hour  please wait :)
+# <!> Project code is not finish, in 1hour  please wait :)
+# <!> Project code is not finish, in 1hour  please wait :)
 
 # Project Features
 GameCenter Manager is a great way to use Game Center in your iOS app.
 
-* Sync, Submit, Save, Retrieve, and Track any Game Center leaderboards, achievements in only one line of code.
-* Save in cache leaderboards & achievements & automatically refreshed
-* CallBack
+* Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
+* Save in cache achievements & automatically refreshed
+* Most of the functions CallBack (Handler, completion)
 * Async
-* Useful delegate methods and properties by use Singleton GameCenter
-* Just drag and drop the files into your project 
+* Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
+* Just drag and drop the files into your project (EasyGameCenter.swift)
 * Frequent updates to the project based on user issues and requests  
 * Easily contribute to the project
+* Example project
+* More is coming ... (Challenges etc..)
 
 ## Requirements
-* Requires a minimum of iOS 7.0+ or 8.0+
+* Requires a minimum of iOS or 8.0+
 
 ## Contributions
 Any contribution is more than welcome! You can contribute through pull requests and issues on GitHub. :D
@@ -32,187 +35,243 @@ Any contribution is more than welcome! You can contribute through pull requests 
 # Documentation
 All methods, properties, types, and delegate methods available on the GameCenterManager class are documented below. If you're using [GameKit](https://developer.apple.com/library/ios/documentation/GameKit/Reference/GameKit_Collection/index.html)
 
-## Example
-Xcode Project : https://github.com/DaRkD0G/Example-GameCenter
-
 ## Example in game
 http://bit.ly/1zGJMNG
 
 ## Setup
-Setting up GameCenter Manager is very straightforward. These instructions do not detail how to enable Game Center in your app. You need to setup Game Center before using GameCenter Manager.
+Setting up Easy Game Center it's really easy. Read the instructions after.
 
-1. Add the `GameKit` frameworks to your Xcode project
- [![](http://imagizer.imageshack.us/v2/640x480q90/540/cLGFV6.png)]()
+1. Add the `GameKit`, `SystemConfiguration` frameworks to your Xcode project
+<p align="center">
+        <img src="http://s27.postimg.org/45wds3jub/Capture_d_cran_2558_03_20_19_56_34.png" height="100" width="500" />
+</p>
 
 2. Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
-4. You can initialize Easy Game Center by using the following method call
-```swift
-class MyClassViewController: UIViewController {
 
-        override func viewDidLoad() {
-                super.viewDidLoad()
-        
-                // Init Easy Game Center Singleton
-                let gameCenter = GameCenter.sharedInstance { 
-                        (resultConnectToGameCenter) -> Void in
-                        if resultConnectToGameCenter {
-                                print("Player connected to Game Center")
-                        } else {
-                                print("No Player connected to Game Center")
-                        }
-                }
-                // Set Delegate
-                gameCenter.delegate = self
+3. You can initialize Easy Game Center by using the following method call (With Call back when player is authentified)
+```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /* Init Singleton Easy Game Center */
+        let eaysGameCenter = EasyGameCenter.sharedInstance {
+            (resultPlayerAuthentified) -> Void in
+            
+            if resultPlayerAuthentified {
+                /* When player is authentified to Game Center */
                 
-                /** Options **/
-                // Not open login page if player is not login to Game Center, the first launch.
-                // gameCenter.openLoginPageIfPlayerNotLogin = false
+            } else {
+                /* Player not authentified to Game Center */
+                /* No connexion internet or not authentified to Game Center */
+            }
         }
-}
+        /* Set delegate UIViewController */
+        EasyGameCenter.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* Set new delegate is you change UIViewController */
+        EasyGameCenter.delegate = self
+    }
 ```
 
 ## Methods
 ###Initialize Easy Game Center
 You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
-
-* **Load with completion**
+* **Initialize with completion**
 ```swift
-/* Init Easy Game Center Singleton */
-let gameCenter = GameCenter.sharedInstance { 
-        (resultConnectToGameCenter) -> Void in
-        if resultConnectToGameCenter {
-                print("Player connected to Game Center")
-        } else {
-                print("No Player connected to Game Center")
-        }
-}
-/* Set Delegate */
-gameCenter.delegate = self
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /* Init Easy Game Center Singleton */
+        let eaysGameCenter = EasyGameCenter.sharedInstance {
+            (resultPlayerAuthentified) -> Void in
+            
+            if resultPlayerAuthentified {
+                /* When player is authentified to Game Center */
                 
-/* Not automatically open login page if player is not login to Game Center, the first launch. */
-// gameCenter.openLoginPageIfPlayerNotLogin = false
-```
-* **Load without completion**
-```swift
-/* Init Easy Game Center Singleton */
-let gameCenter = GameCenter.sharedInstance
-/* Set Delegate */
-gameCenter.delegate = self
-```
-
-###Show Game Center
-* **Show Game Center**
-```swift
-GameCenter.showGameCenter()
-```
-
-* **Show Game Center Leaderboard** (Thanks to J0hnniemac author)
-```swift
-/**
-    Show Game Center Leaderboard passed as string into function
-    :param: Leaderboard Identifier String
-*/
-GameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "LeaderboardIdentifier")
-```
-
-* **Open Dialog for authentification player**
-```swift
-/**
-    Open Dialog for player see he wasn't authentifate to Game Center and can go to login
-    
-    :param: Title of dialog
-    :param: Message of dialog
-*/
-GameCenter.openDialogGameCenterAuthentication(#titre:String, message:String)
-```
-
-* **Open authentification Game Center page**
-```swift
-GameCenter.openGameCenterAuthentication()
-```
-
-* **Show personalize banner game center**
-```swift
-/**
-    Show banner game center
-    
-    :param: title       title
-    :param: description description
-    :param: completion  if show message is showing
-*/
-/* without completion */
-GameCenter.showBannerWithTitle(title: title, description: description, completion: nil)
-
-/* with completion */
-GameCenter.showBannerWithTitle(title: String, description: String, completion: { (isShow) -> Void in
-        if isShow {
-                println("Banner is show")   
+            
+            } else {
+                /* Player not authentified to Game Center */
+                /* No connexion internet or not authentified to Game Center */
+            }
         }
-})
+        /* Set delegate UIViewController */
+        EasyGameCenter.delegate = self
+    }
 ```
-###Checkup Game Center
-* **If player is connected to GameCenter**
+* **Initialize without completion**
 ```swift
-if GameCenter.ifPlayerIdentifiedToGameCenter() {
-        print("YES \n")
+        /* Init Easy Game Center Singleton */
+        let gameCenter = GameCenter.sharedInstance
+        /* Set Delegate */
+        gameCenter.delegate = self
+```
+* **Initialize change UIViewController Delegate**
+```swift
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* Set new view controller delegate */
+        EasyGameCenter.delegate = self
+    }
+```
+#Show Method
+##Show Achievements
+* **Show Game Center Achievements with completion**
+```swift
+        EasyGameCenter.showGameCenterAchievements { 
+                () -> Void in
+                println("Game Center Achievements is shown")
+        }
+```
+* **Show Game Center Achievements without completion**
+```swift
+        EasyGameCenter.showGameCenterAchievements(completion: nil)
+```
+##Show Leaderboard
+* **Show Game Center Leaderboard  with completion**
+```swift
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard") { 
+                () -> Void in
+                println("Game Center Leaderboards is shown")
+        }
+```
+* **Show Game Center Leaderboard  without completion**
+```swift
+        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)
+```
+##Show Challenges
+* **Show Game Center Challenges  with completion**
+```swift
+        EasyGameCenter.showGameCenterChallenges {
+            () -> Void in
+            
+            println("Game Center Challenges Is shown")
+        }
+```
+* **Show Game Center Challenges  without completion**
+```swift
+        EasyGameCenter.showGameCenterChallenges(completion: nil)
+```
+##Show authentification page Game Center
+* **Show Game Center authentification page with completion**
+```swift
+        EasyGameCenter.showGameCenterAuthentication { 
+                (result) -> Void in
+                if result {
+                        println("Game Center Authentication is open")
+                }
+        }
+```
+* **Show Game Center authentification page without completion**
+```swift
+        EasyGameCenter.showGameCenterAuthentication(completion: nil)
+```
+##Show custom banner
+* **Show custom banner Game Center with completion**
+```swift
+       EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...") { 
+                () -> Void in
+                println("Custom Banner is finish to Show")
+        }
+```
+* **Show custom banner Game Center without completion**
+```swift
+        EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)
+```
+##Show custom dialog
+* **Show custom dialog Game Center Authentication with completion**
+```swift
+        EasyGameCenter.openDialogGameCenterAuthentication(
+        titre: "Title", 
+        message: "Please login you Game Center", 
+        buttonOK: "Ok", 
+        buttonOpenGameCenterLogin: "Open Game Center") 
+        {
+            (openGameCenterAuthentification) -> Void in
+            if openGameCenterAuthentification {
+                println("Player open Game Center authentification")
+            } else {
+                println("Player cancel Open Game Center authentification")
+            }
+        }
+```
+* **Show custom dialog Game Center Authentication without completion**
+```swift
+EasyGameCenter.openDialogGameCenterAuthentication(
+        titre: Title", 
+        message: "Please login you Game Center", 
+        buttonOK: "Cancel", 
+        buttonOpenGameCenterLogin: "Open Game Center", 
+        completion: nil)
+```
+#Achievements Method
+##Progress Achievements
+* **Add progress to an Achievement with completion**
+```swift
+EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true) {
+        (isSendToGameCenterOrNor) -> Void in
+        
+        if isSendToGameCenterOrNor {
+                /* Achievement is reported to Game Center */   
+        } else {
+                /* Achievement is Not reported to Game Center (No Internet or player not identified to Game Center)*/  
+        }
+} 
+```
+* **Add progress to an Achievement without completion**
+```swift
+EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true, completionIsSend: nil)
+```
+##If Achievement completed 
+* **Is completed Achievement**
+```swift
+let achievementCompleted = EasyGameCenter.isAchievementCompleted(achievementIdentifier: "Identifier")
+if achievementOneCompleted {
+        println("Yes")
 } else {
-        print("NO \n")
+        println("No")
+}
+```
+##Achievements completed & banner not show = false
+* **Get All Achievements completed and banner not show**
+```swift
+        if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
+
+            for achievement in achievements  {
+                var oneAchievement : GKAchievement = achievement.1
+                if oneAchievement.completed && oneAchievement.showsCompletionBanner == false {
+                    
+                    println("\n/***** Achievement banner not show *****/\n")
+                    println("\(oneAchievement.identifier)")
+                }
+            }
+        } else {
+            println("\n/***** No Achievement with not showing  *****/\n")
+        }
+```
+* **Show All Achievements completed and banner not show**
+```swift
+EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing { 
+        (isShowAchievement) -> Void in
+        if isShowAchievement {
+              println("One Achievement show, 2, 3, 4 etc...")  
+        } else {
+                println("No Achievements to show")  
+        }
 }
 ```
 
-* **Get State of Game Center**
-```swift
-/**
-    Get State of GameCenter
-    
-    :returns: enum
-    - LaunchGameCenter:             Game center is laucher and load
-    - PlayerConnectedLoadDataCache: Player connected and data load in cache
-    - PlayerConnected:              Player connected and data in cache
-    - PlayerNotConnected:           Player not connected to game center
-    - Error:                        Error
-*/
-let gameCenterState = GameCenter.getStateGameCenter()
 
-/* Easy Game Center Load */
-if gameCenterState == GameCenter.StateGameCenter.LaunchGameCenter {
+/* write ... */
 
-/* Player connected and load data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnectedLoadDataCache {
 
-/* Player connected and data in cache */
-} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnected {
 
-}
-```
 
-###Achievements
-* **Add progress to an Achievement**
-```swift
-/**
-    Add progress to an achievement
-    
-    :param: Progress achievement Double (ex: 10% = 10.00)
-    :param: Achievement Identifier
-    :param: if you want show banner or not when is completed
-*/
-GameCenter.addProgressToAnAchievement(#progress : Double, achievementIdentifier : String, showBannnerIfCompleted : Bool)
-```
 
-* **If Achievement is completed**
-```swift
-/**
-    If achievement is completed
-    
-    :param: achievementIdentifier
-    :return: Bool True is completed
-*/
-if GameCenter.ifAchievementCompleted(achievementIdentifier: "AchievementIdentifier") {
-        println("YES")
-} else {
-        println("NON")
-}
-```
 
 * **Get Achievement (GKAchievement)**
 ```swift
@@ -276,6 +335,44 @@ GameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier")
 ```swift
 GameCenter.resetAllAchievements()
 ```
+#Checkup Game Center
+* **If player is connected to GameCenter**
+```swift
+if GameCenter.ifPlayerIdentifiedToGameCenter() {
+        print("YES \n")
+} else {
+        print("NO \n")
+}
+```
+
+* **Get State of Game Center**
+```swift
+/**
+    Get State of GameCenter
+    
+    :returns: enum
+    - LaunchGameCenter:             Game center is laucher and load
+    - PlayerConnectedLoadDataCache: Player connected and data load in cache
+    - PlayerConnected:              Player connected and data in cache
+    - PlayerNotConnected:           Player not connected to game center
+    - Error:                        Error
+*/
+let gameCenterState = GameCenter.getStateGameCenter()
+
+/* Easy Game Center Load */
+if gameCenterState == GameCenter.StateGameCenter.LaunchGameCenter {
+
+/* Player connected and load data in cache */
+} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnectedLoadDataCache {
+
+/* Player connected and data in cache */
+} else if gameCenterState == GameCenter.StateGameCenter.PlayerConnected {
+
+}
+```
+
+###Achievements
+
 
 ###Leaderboards
 
