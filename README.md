@@ -79,7 +79,6 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
 ## Methods
 ###Initialize Easy Game Center
 You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
-
 * **Initialize with completion**
 ```swift
     override func viewDidLoad() {
@@ -109,7 +108,6 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
         /* Set Delegate */
         gameCenter.delegate = self
 ```
-
 * **Initialize change UIViewController Delegate**
 ```swift
     override func viewDidAppear(animated: Bool) {
@@ -119,49 +117,56 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
         EasyGameCenter.delegate = self
     }
 ```
-
-
-
 ###Show Game Center
 * **Show Game Center Achievements with completion**
 ```swift
-        EasyGameCenter.showGameCenterAchievements { () -> Void in
-            println("Game Center Achievements is shown")
+        EasyGameCenter.showGameCenterAchievements { 
+                () -> Void in
+                println("Game Center Achievements is shown")
         }
 ```
 * **Show Game Center Achievements without completion**
 ```swift
         EasyGameCenter.showGameCenterAchievements(completion: nil)
 ```
-
 * **Show Game Center Leaderboard  with completion**
 ```swift
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard") { 
                 () -> Void in
                 println("Game Center Leaderboards is shown")
         }
-
 ```
 * **Show Game Center Leaderboard  without completion**
 ```swift
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)
 ```
-
-* **Open Dialog for authentification player**
+* **Show Game Center Challenges  with completion**
 ```swift
-/**
-    Open Dialog for player see he wasn't authentifate to Game Center and can go to login
-    
-    :param: Title of dialog
-    :param: Message of dialog
-*/
-GameCenter.openDialogGameCenterAuthentication(#titre:String, message:String)
+        EasyGameCenter.showGameCenterChallenges {
+            () -> Void in
+            
+            println("Game Center Challenges Is shown")
+        }
+```
+* **Show Game Center Challenges  without completion**
+```swift
+        EasyGameCenter.showGameCenterChallenges(completion: nil)
+```
+* **Show Game Center authentification page with completion**
+```swift
+        EasyGameCenter.showGameCenterAuthentication { 
+                (result) -> Void in
+                if result {
+                        println("Game Center Authentication is open")
+                }
+        }
+```
+* **Show Game Center authentification page without completion**
+```swift
+        EasyGameCenter.showGameCenterAuthentication(completion: nil)
 ```
 
-* **Open authentification Game Center page**
-```swift
-GameCenter.openGameCenterAuthentication()
-```
+
 
 * **Show personalize banner game center**
 ```swift
