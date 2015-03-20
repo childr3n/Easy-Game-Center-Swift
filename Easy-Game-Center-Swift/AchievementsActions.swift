@@ -10,12 +10,10 @@ import UIKit
 import GameKit
 
 class AchievementsActions: UIViewController {
-    
 
     @IBOutlet weak var AchievementsNumber: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Achievement", style: .Bordered, target: self, action: "openGameCenterAchievement:")
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
@@ -25,9 +23,7 @@ class AchievementsActions: UIViewController {
             if arrayGKAD != nil {
                 self.AchievementsNumber.text = "Number Achievements :  \(arrayGKAD!.count)"
             }
-
         }
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,7 +33,9 @@ class AchievementsActions: UIViewController {
         EasyGameCenter.delegate = self
         println("\n/*****/\nDelegate UIViewController is AchievementsActions (see viewDidAppear)\n/*****/\n")
     }
-    //(IBAction)refreshClicked:(id)sender
+    
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+
     
     @IBAction func openGameCenterAchievement(sender: AnyObject) {
     
@@ -98,7 +96,6 @@ class AchievementsActions: UIViewController {
 
     @IBAction func IfAchievementIsFinished(sender: AnyObject) {
         
-        
         let achievementOneCompleted = EasyGameCenter.isAchievementCompleted(achievementIdentifier: "Achievement_One")
         
         if achievementOneCompleted {
@@ -113,10 +110,7 @@ class AchievementsActions: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     @IBAction func ResetAchievementOne(sender: AnyObject) {
         
@@ -152,7 +146,6 @@ class AchievementsActions: UIViewController {
                 } else {
                     AppDelegate.simpleMessage(title: "report Achievements", message: "Not completed (No Connection)", uiViewController: self)
                 }
-                
             }
         }
     }
@@ -175,15 +168,12 @@ class AchievementsActions: UIViewController {
         } else {
             println("\n/***** NO Achievement with not showing  *****/\n")
         }
-        
-        
     }
     
     @IBAction func ShowAchievementCompletedAndNotShowing(sender: AnyObject) {
         EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing(nil)
-        
-    
     }
+
     @IBAction func GetAllChievementsDescription(sender: AnyObject) {
         EasyGameCenter.getGKAllAchievementDescription {
             (arrayGKAD) -> Void in
@@ -194,12 +184,9 @@ class AchievementsActions: UIViewController {
                     println("\n/**********/\n")
                 }
             }
-
         }
     }
     
-    @IBAction func ResetAllAchievements(sender: AnyObject) {
-        EasyGameCenter.resetAllAchievements(nil)
-    }
+    @IBAction func ResetAllAchievements(sender: AnyObject) { EasyGameCenter.resetAllAchievements(nil) }
 }
 

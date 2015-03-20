@@ -16,10 +16,8 @@ class LeaderboardsActions: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Leaderboards", style: .Bordered, target: self, action: "openGameCenterLeaderboard:")
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
-        
         
     }
     
@@ -31,10 +29,7 @@ class LeaderboardsActions: UIViewController {
         println("\n/*****/\nDelegate UIViewController is LeaderboardsActions (see viewDidAppear)\n/*****/\n")
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
     
     @IBAction func openGameCenterLeaderboard(sender: AnyObject) {
         
@@ -54,10 +49,6 @@ class LeaderboardsActions: UIViewController {
                 println("Score NO send to Game Center (No connection or player not identified")
             }
         }
-        
-        
-        
-
     }
     
     @IBAction func ActionGetLeaderboards(sender: AnyObject) {
@@ -90,12 +81,6 @@ class LeaderboardsActions: UIViewController {
                 println("\n/**********/\n")
             }
         }
-        
-
     }
-    
-
-    
-
 }
 

@@ -13,12 +13,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var PlayerID: UILabel!
     @IBOutlet weak var PlayerAuthentified: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.title = "Easy Game Center"
-
-        
         
         let eaysGameCenter = EasyGameCenter.sharedInstance {
             (resultPlayerAuthentified) -> Void in
@@ -45,7 +43,7 @@ class MainViewController: UIViewController {
         EasyGameCenter.delegate = self
         
     }
-    
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -76,10 +74,6 @@ class MainViewController: UIViewController {
             println("Game Center Challenges Is show")
         }
     }
-    
-    
-    /* pdpfkdp */
-    
     @IBAction func ShowAuthetificationGameCenter(sender: AnyObject) {
         
         EasyGameCenter.showGameCenterAuthentication { (result) -> Void in
@@ -94,13 +88,5 @@ class MainViewController: UIViewController {
             println("Custom Banner is finish to Show")
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
-
-
 }
 

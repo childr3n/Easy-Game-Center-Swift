@@ -350,8 +350,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ShowAuthetificationGameCenter:" destination="U8B-Ow-evW" eventType="touchUpInside" id="GVN-S1-q08"/>
-                                    <action selector="ShowGameCenterLeaderboards:" destination="U8B-Ow-evW" eventType="touchUpInside" id="SSS-lA-CsG"/>
+                                    <action selector="ShowAuthetificationGameCenter:" destination="U8B-Ow-evW" eventType="touchUpInside" id="Rsa-GH-VFy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="d6u-Bp-TiE">
