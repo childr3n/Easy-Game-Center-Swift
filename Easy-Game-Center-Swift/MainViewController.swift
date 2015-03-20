@@ -42,8 +42,15 @@ class MainViewController: UIViewController {
             }
             
         }
-        eaysGameCenter.delegate = self
+        EasyGameCenter.delegate = self
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        /* Set New view controller delegate */
+        EasyGameCenter.delegate = self
+        println("\n/*****/\nReturn main page in viewDidAppear set the MainViewController delegate\n/*****/\n")
     }
 
     @IBAction func ShowGameCenterAchievements(sender: AnyObject) {

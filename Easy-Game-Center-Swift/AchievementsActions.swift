@@ -15,6 +15,13 @@ class AchievementsActions: UIViewController {
     @IBOutlet weak var AchievementsNumber: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /* Set New view controller delegate */
+        EasyGameCenter.delegate = self
+        
+        let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Achievement", style: .Bordered, target: self, action: "openGameCenterAchievement:")
+        self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
+        
         // Do any additional setup after loading the view, typically from a nib.
         EasyGameCenter.getGKAchievementDescription { (arrayGKAD) -> Void in
             if arrayGKAD != nil {
@@ -24,7 +31,14 @@ class AchievementsActions: UIViewController {
         }
         
     }
+    //(IBAction)refreshClicked:(id)sender
     
+    @IBAction func openGameCenterAchievement(sender: AnyObject) {
+    
+        EasyGameCenter.showGameCenterAchievements { (isShow) -> Void in
+            println("You open Game Center Achievements")
+        }
+    }
     @IBAction func ActionGetAchievementsDescription(sender: AnyObject) {
         EasyGameCenter.getGKAchievementDescription { (arrayGKAD) -> Void in
             if arrayGKAD != nil {

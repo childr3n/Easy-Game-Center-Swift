@@ -27,9 +27,23 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
 
     
     /// ViewController MainView
-    var delegate: UIViewController?
+    private var delegateUIViewController:UIViewController?
+    class var delegate: UIViewController? {
+        
+        get {
+            return EasyGameCenter.sharedInstance.delegateUIViewController
+        }
+        set {
+            var currentDelegate = EasyGameCenter.sharedInstance.delegateUIViewController
+            if newValue != currentDelegate {
+                EasyGameCenter.sharedInstance.delegateUIViewController  = newValue
+            }
+            
+        }
 
-    
+    }
+
+
     /*_______________________________________ STARTER _______________________________________*/
 
     /**
@@ -115,7 +129,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                     
                     /* Login to game center need Open page */
                     if gameCenterVC != nil {
-                        if let delegateController = gameCenter.delegate {
+                        if let delegateController = EasyGameCenter.delegate {
                             delegateController.presentViewController(gameCenterVC, animated: true, completion: nil)
                         } else {
                             println("\nError : Delegate for Easy Game Center not set\n")
@@ -167,7 +181,33 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
 
     /*____________________________ Other Methode Game Center __________________________________________________*/
     /**
-        Show Game Center Player
+    Show Game Center Player
+    
+    :param: completion isShow (Bool) if is show or not (example not connected)
+    */
+    class func showGameCenterChallenges(#completion: ((isShow:Bool) -> Void)?) {
+        
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            let gameCenter = EasyGameCenter.Static.instance!
+            if let delegateController = EasyGameCenter.delegate {
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                gc.viewState = GKGameCenterViewControllerState.Challenges
+                delegateController.presentViewController(gc, animated: true, completion: {
+                    () -> Void in
+                    
+                    if completion != nil { completion!(isShow:true) }
+                })
+                
+            } else {
+                if completion != nil { completion!(isShow:false) }
+            }
+        } else {
+            if completion != nil { completion!(isShow:false) }
+        }
+    }
+    /**
+        Show Game Center Player Achievement
     
         :param: completion isShow (Bool) if is show or not (example not connected)
     */
@@ -175,9 +215,10 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
  
         if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
         let gameCenter = EasyGameCenter.Static.instance!
-        if let delegateController = gameCenter.delegate {
+        if let delegateController = EasyGameCenter.delegate {
                 var gc = GKGameCenterViewController()
                 gc.gameCenterDelegate = gameCenter
+                gc.viewState = GKGameCenterViewControllerState.Achievements
                 delegateController.presentViewController(gc, animated: true, completion: {
                     () -> Void in
                     
@@ -202,7 +243,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         let gameCenter = EasyGameCenter.Static.instance!
         var alert = UIAlertController(title: titre, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        if let delegateOK = gameCenter.delegate {
+        if let delegateOK = EasyGameCenter.delegate {
             alert.popoverPresentationController?.sourceView = delegateOK.view as UIView
             
             delegateOK.presentViewController(alert, animated: true, completion: nil)
@@ -338,7 +379,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         
         if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
             let gameCenter = EasyGameCenter.sharedInstance
-            if let delegateController = gameCenter.delegate {
+            if let delegateController = EasyGameCenter.delegate {
                 
                 var gc = GKGameCenterViewController()
                 gc.gameCenterDelegate = gameCenter
