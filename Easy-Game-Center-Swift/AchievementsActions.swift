@@ -15,9 +15,7 @@ class AchievementsActions: UIViewController {
     @IBOutlet weak var AchievementsNumber: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /* Set New view controller delegate */
-        EasyGameCenter.delegate = self
+    
         
         let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Achievement", style: .Bordered, target: self, action: "openGameCenterAchievement:")
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
@@ -30,6 +28,14 @@ class AchievementsActions: UIViewController {
 
         }
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* Set New view controller delegate */
+        EasyGameCenter.delegate = self
+        println("\n/*****/\nDelegate UIViewController is AchievementsActions (see viewDidAppear)\n/*****/\n")
     }
     //(IBAction)refreshClicked:(id)sender
     

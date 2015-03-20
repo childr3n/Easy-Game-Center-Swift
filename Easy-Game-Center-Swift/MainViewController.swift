@@ -48,21 +48,28 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         /* Set New view controller delegate */
         EasyGameCenter.delegate = self
-        println("\n/*****/\nReturn main page in viewDidAppear set the MainViewController delegate\n/*****/\n")
+        println("\n/*****/\nDelegate UIViewController is MainViewController (see viewDidAppear)\n/*****/\n")
     }
 
     @IBAction func ShowGameCenterAchievements(sender: AnyObject) {
-        EasyGameCenter.showGameCenterAchievements { (isShow) -> Void in
+        EasyGameCenter.showGameCenterAchievements { () -> Void in
         
-            println("Is show : \(isShow)")
+            println("Game Center Achievements Is show")
         }
     }
     @IBAction func ShowGameCenterLeaderboards(sender: AnyObject) {
 
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement") { (isShow) -> Void in
-            println("Is show : \(isShow)")
+            println("Game Center Leaderboards Is show")
+        }
+    }
+    @IBAction func ShowGameCenterChallenges(sender: AnyObject) {
+        EasyGameCenter.showGameCenterChallenges { () -> Void in
+            
+            println("Game Center Challenges Is show")
         }
     }
     
@@ -75,6 +82,12 @@ class MainViewController: UIViewController {
             if result {
                 println("Is open Game Center Authentication :)")
             }
+        }
+    }
+    @IBAction func ShowCustomBanner(sender: AnyObject) {
+        
+       EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...") { () -> Void in
+            println("Custom Banner is finish to Show")
         }
     }
     override func didReceiveMemoryWarning() {

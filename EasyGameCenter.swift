@@ -34,11 +34,14 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             return EasyGameCenter.sharedInstance.delegateUIViewController
         }
         set {
-            var currentDelegate = EasyGameCenter.sharedInstance.delegateUIViewController
-            if newValue != currentDelegate {
-                EasyGameCenter.sharedInstance.delegateUIViewController  = newValue
+            /* If EasyGameCenter is start instance (for not instance Here) */
+            if EasyGameCenter.Static.instance != nil {
+                var currentDelegate = EasyGameCenter.sharedInstance.delegateUIViewController
+                /* Different and not equal */
+                if newValue != currentDelegate && !(newValue == currentDelegate) {
+                    EasyGameCenter.sharedInstance.delegateUIViewController  = newValue
+                }
             }
-            
         }
 
     }
@@ -174,47 +177,21 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 }
             })
         }
-        
     }
 
 
 
     /*____________________________ Other Methode Game Center __________________________________________________*/
-    /**
-    Show Game Center Player
-    
-    :param: completion isShow (Bool) if is show or not (example not connected)
-    */
-    class func showGameCenterChallenges(#completion: ((isShow:Bool) -> Void)?) {
-        
-        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-            let gameCenter = EasyGameCenter.Static.instance!
-            if let delegateController = EasyGameCenter.delegate {
-                var gc = GKGameCenterViewController()
-                gc.gameCenterDelegate = gameCenter
-                gc.viewState = GKGameCenterViewControllerState.Challenges
-                delegateController.presentViewController(gc, animated: true, completion: {
-                    () -> Void in
-                    
-                    if completion != nil { completion!(isShow:true) }
-                })
-                
-            } else {
-                if completion != nil { completion!(isShow:false) }
-            }
-        } else {
-            if completion != nil { completion!(isShow:false) }
-        }
-    }
+
     /**
         Show Game Center Player Achievement
     
         :param: completion isShow (Bool) if is show or not (example not connected)
     */
-    class func showGameCenterAchievements(#completion: ((isShow:Bool) -> Void)?) {
+    class func showGameCenterAchievements(#completion: (() -> Void)?) {
  
         if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-        let gameCenter = EasyGameCenter.Static.instance!
+        let gameCenter = EasyGameCenter.sharedInstance
         if let delegateController = EasyGameCenter.delegate {
                 var gc = GKGameCenterViewController()
                 gc.gameCenterDelegate = gameCenter
@@ -222,14 +199,58 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                 delegateController.presentViewController(gc, animated: true, completion: {
                     () -> Void in
                     
-                    if completion != nil { completion!(isShow:true) }
+                    if completion != nil { completion!() }
                 })
 
-            } else {
-            if completion != nil { completion!(isShow:false) }
             }
-        } else {
-            if completion != nil { completion!(isShow:false) }
+        }
+    }
+    /**
+    Show Game Center Leaderboard passed as string into func
+    
+    :param: leaderboard Identifier
+    */
+    class func showGameCenterLeaderboard(#leaderboardIdentifier :String, completion: (() -> Void)?) {
+        
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
+            let gameCenter = EasyGameCenter.sharedInstance
+            if let delegateController = EasyGameCenter.delegate {
+                
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                gc.leaderboardIdentifier = leaderboardIdentifier
+                gc.viewState = GKGameCenterViewControllerState.Leaderboards
+                delegateController.presentViewController(gc, animated: true, completion: { () -> Void in
+                    if completion != nil { completion!() }
+                })
+            }
+        }
+    }
+    /**
+    Show Game Center Player
+    
+    :param: completion isShow (Bool) if is show or not (example not connected)
+    */
+    class func showGameCenterChallenges(#completion: (() -> Void)?) {
+        
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            let gameCenter = EasyGameCenter.sharedInstance
+            if let delegateController = EasyGameCenter.delegate {
+                
+                
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                gc.viewState = GKGameCenterViewControllerState.Challenges
+                
+                
+                
+                delegateController.presentViewController(gc, animated: true, completion: {
+                    () -> Void in
+                    
+                    if completion != nil { completion!() }
+                })
+                
+            }
         }
     }
     /**
@@ -277,10 +298,13 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: description description
         :param: completion  when show message
     */
-    class func showBannerWithTitle(#title:String, description:String,completion: (() -> Void)?) {
-        GKNotificationBanner.showBannerWithTitle(title, message: description, completionHandler: { () -> Void in
-            if completion != nil { completion!() }
-        })
+    class func showCustomBanner(#title:String, description:String,completion: (() -> Void)?) {
+        if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
+            GKNotificationBanner.showBannerWithTitle(title, message: description, completionHandler: { () -> Void in
+                if completion != nil { completion!() }
+            })
+        }
+
     }
     /**
         Open page Authentication Game Center
@@ -370,29 +394,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             
         }
     }
-    /**
-        Show Game Center Leaderboard passed as string into func
-    
-        :param: leaderboard Identifier
-    */
-    class func showGameCenterLeaderboard(#leaderboardIdentifier :String, completion: ((isShow:Bool) -> Void)?) {
-        
-        if EasyGameCenter.isPlayerIdentifiedToGameCenter() && leaderboardIdentifier != "" {
-            let gameCenter = EasyGameCenter.sharedInstance
-            if let delegateController = EasyGameCenter.delegate {
-                
-                var gc = GKGameCenterViewController()
-                gc.gameCenterDelegate = gameCenter
-                gc.leaderboardIdentifier = leaderboardIdentifier
-                gc.viewState = GKGameCenterViewControllerState.Leaderboards
-                delegateController.presentViewController(gc, animated: true, completion: { () -> Void in
-                    if completion != nil { completion!(isShow: true) }
-                })
-            }
-        } else {
-            completion!(isShow: false)
-        }
-    }
+
     /**
         Get GKScoreOfLeaderboard
     
@@ -630,7 +632,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                                 let title = tupleOK.gkAchievementDescription.title
                                 let description = tupleOK.gkAchievementDescription.achievedDescription
                                 
-                                EasyGameCenter.showBannerWithTitle(title: title, description: description, completion: { () -> Void in
+                                EasyGameCenter.showCustomBanner(title: title, description: description, completion: { () -> Void in
                                     if completion != nil { completion!(isShowAchievement: true) }
                                 })
                                 
