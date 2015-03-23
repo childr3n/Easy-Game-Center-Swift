@@ -69,28 +69,10 @@ class AchievementsActions: UIViewController {
     }
     
     @IBAction func ReportAchievementOne(sender: AnyObject) {
-        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_One", showBannnerIfCompleted: true) {
-            (isSendToGameCenterOrNor) -> Void in
-            
-            /* Yes it is reported */
-            if isSendToGameCenterOrNor {
-                AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am !", uiViewController: self)
-            
-            } else {
-                /* Check for what ? */
-                let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: "Achievement_One")
-                
-                /* Completed */
-                if (achievement?.completed != nil) {
-                    AppDelegate.simpleMessage(title: "report Achievements", message: "it is already completed.", uiViewController: self)
-                
-                /* No Connection or not connected */
-                } else {
-                    AppDelegate.simpleMessage(title: "report Achievements", message: "Not completed (No Connection)", uiViewController: self)
-                }
-                
-            }
-        }
+        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_One", showBannnerIfCompleted: true)
+        AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am ! i haven't internet i save Achievemet and report when connection whith Game Center Apple is OK", uiViewController: self)
+        
+
     }
     
 
@@ -127,27 +109,10 @@ class AchievementsActions: UIViewController {
    
    
     @IBAction func ReportAchievementTwo(sender: AnyObject) {
-        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_Two", showBannnerIfCompleted: false) {
-            (isSendToGameCenterOrNor) -> Void in
-            
-            /* Yes it is reported */
-            if isSendToGameCenterOrNor {
-                AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am ! but i'm not show", uiViewController: self)
-                
-            } else {
-                /* Check for what ? */
-                let achievement = EasyGameCenter.achievementForIndetifier(identifierAchievement: "Achievement_One")
-                
-                /* Completed */
-                if (achievement?.completed != nil) {
-                    AppDelegate.simpleMessage(title: "report Achievements", message: "it is already completed.", uiViewController: self)
-                    
-                    /* No Connection or not connected */
-                } else {
-                    AppDelegate.simpleMessage(title: "report Achievements", message: "Not completed (No Connection)", uiViewController: self)
-                }
-            }
-        }
+        EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Achievement_Two", showBannnerIfCompleted: false)
+        
+        AppDelegate.simpleMessage(title: "report Achievements", message: "Yes i'am ! but i'm not show", uiViewController: self)
+
     }
     
 

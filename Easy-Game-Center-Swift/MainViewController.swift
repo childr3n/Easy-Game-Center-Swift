@@ -53,11 +53,12 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func ShowGameCenterAchievements(sender: AnyObject) {
-        EasyGameCenter.showGameCenterAchievements {
-            () -> Void in
+        EasyGameCenter.showGameCenterAchievements(completion: {
+            (isShow) -> Void in
+        
             
-            println("Game Center Achievements Is show")
-        }
+            println("Game Center Achievements Is show : \(isShow)")
+        })
     }
     @IBAction func ShowGameCenterLeaderboards(sender: AnyObject) {
 
