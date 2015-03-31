@@ -18,6 +18,7 @@ GameCenter Manager is a great way to use Game Center in your iOS app.
 * Swift
 * Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
 * Save in cache GKachievements & GKachievementsDescription automatically refreshed
+* (New delagate) When player is connected or not etc...
 * Most of the functions CallBack (Handler, completion)
 * Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
 * Just drag and drop the files into your project (EasyGameCenter.swift)
@@ -45,76 +46,93 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
 
 2. Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
 
-3. You can initialize Easy Game Center by using the following method call (With Call back when player is authentified)
+3. You can initialize Easy Game Center by using the following method call (This is an example, see doc)
 ```swift
+class MainViewController: UIViewController,EasyGameCenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /* Init Singleton Easy Game Center */
-        let eaysGameCenter = EasyGameCenter.sharedInstance {
-            (resultPlayerAuthentified) -> Void in
-            
-            if resultPlayerAuthentified {
-                /* When player is authentified to Game Center */
-                
-            } else {
-                /* Player not authentified to Game Center */
-                /* No connexion internet or not authentified to Game Center */
-            }
-        }
-        /* Set delegate UIViewController */
-        EasyGameCenter.delegate = self
+        // Init Easy Game Center
+        EasyGameCenter.sharedInstance(self)
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        /* Set new delegate is you change UIViewController */
+        //Set New view controller delegate, that's when you change UIViewController
         EasyGameCenter.delegate = self
     }
+    /**
+        Player conected to Game Center, Delegate Func of Easy Game Center
+    */
+    func easyGameCenterAuthentified() {
+        println("\nPlayer Authentified\n")
+    }
+    /**
+        Player not connected to Game Center, Delegate Func of Easy Game Center
+    */
+    func easyGameCenterNotAuthentified() {
+        println("\nPlayer not authentified\n")
+    }
+    /**
+        When GkAchievement & GKAchievementDescription in cache, Delegate Func of Easy Game Center
+    */
+    func easyGameCenterInCache() {
+        println("\nGkAchievement & GKAchievementDescription in cache\n")
+    }
+}
 ```
 
 ## Methods
 ###Initialize Easy Game Center
-You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
-* **Initialize with completion**
+* **Description :** You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
 ```swift
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /* Init Easy Game Center Singleton */
-        let eaysGameCenter = EasyGameCenter.sharedInstance {
-            (resultPlayerAuthentified) -> Void in
-            
-            if resultPlayerAuthentified {
-                /* When player is authentified to Game Center */
-                
-            
-            } else {
-                /* Player not authentified to Game Center */
-                /* No connexion internet or not authentified to Game Center */
-            }
-        }
-        /* Set delegate UIViewController */
-        EasyGameCenter.delegate = self
+        // Init Easy Game Center
+        EasyGameCenter.sharedInstance(self)
     }
 ```
-* **Initialize without completion**
-```swift
-        /* Init Easy Game Center Singleton */
-        let gameCenter = GameCenter.sharedInstance
-        /* Set Delegate */
-        gameCenter.delegate = self
-```
-* **Initialize change UIViewController Delegate**
+###Set new delegate when you change UIViewController
+* **Description :** If you have several UIViewController just add this in your UIViewController for set new Delegate
+* **Option :** It is optional 
 ```swift
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        /* Set new view controller delegate */
+
+        //Set New view controller delegate, that's when you change UIViewController
         EasyGameCenter.delegate = self
     }
 ```
+##Delegate function for listen
+###Listener Player is authentified
+* **Description :** This function is call when player is authentified to Game Center
+* **Option :** It is optional 
+```swift
+    func easyGameCenterAuthentified() {
+        println("\nPlayer Authentified\n")
+    }
+```
+###Listener Player is not authentified
+* **Description :** This function is call when player is not authentified to Game Center
+* **Option :** It is optional 
+```swift
+    func easyGameCenterNotAuthentified() {
+        println("\nPlayer not authentified\n")
+    }
+```
+###Listener when Achievement is in cache
+* **Description :** This function is call when GKachievements GKachievementsDescription is in cache
+* **Option :** It is optional 
+```swift
+    func easyGameCenterInCache() {
+        println("\nGkAchievement & GKAchievementDescription in cache\n")
+    }
+```
+
+
+
 #Show Method
 ##Show Achievements
 * **Show Game Center Achievements with completion**
