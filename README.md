@@ -141,7 +141,7 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
 #Show Methods
 ##Show Achievements
 * **Show Game Center Achievements with completion**
-* **Option :** Without completion ```swift EasyGameCenter.showGameCenterAchievements(completion: nil)```
+* **Option :** Without completion ```EasyGameCenter.showGameCenterAchievements(completion: nil)```
 ```swift
         EasyGameCenter.showGameCenterAchievements { 
                 (isShow) -> Void in
@@ -152,18 +152,16 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
 ```
 ##Show Leaderboard
 * **Show Game Center Leaderboard  with completion**
+* **Option :** Without completion ```EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)```
 ```swift
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard") { 
                 () -> Void in
                 println("Game Center Leaderboards is shown")
         }
 ```
-* **Show Game Center Leaderboard  without completion**
-```swift
-        EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "IdentifierLeaderboard", completion: nil)
-```
 ##Show Challenges
 * **Show Game Center Challenges  with completion**
+* **Option :** Without completion ```EasyGameCenter.showGameCenterChallenges(completion: nil)```
 ```swift
         EasyGameCenter.showGameCenterChallenges {
             () -> Void in
@@ -171,12 +169,9 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
             println("Game Center Challenges Is shown")
         }
 ```
-* **Show Game Center Challenges  without completion**
-```swift
-        EasyGameCenter.showGameCenterChallenges(completion: nil)
-```
 ##Show authentification page Game Center
 * **Show Game Center authentification page with completion**
+* **Option :** Without completion ```EasyGameCenter.showGameCenterAuthentication(completion: nil)```
 ```swift
         EasyGameCenter.showGameCenterAuthentication { 
                 (result) -> Void in
@@ -185,21 +180,14 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
                 }
         }
 ```
-* **Show Game Center authentification page without completion**
-```swift
-        EasyGameCenter.showGameCenterAuthentication(completion: nil)
-```
 ##Show custom banner
 * **Show custom banner Game Center with completion**
+* **Option :** Without completion ```EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)```
 ```swift
        EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...") { 
                 () -> Void in
                 println("Custom Banner is finish to Show")
         }
-```
-* **Show custom banner Game Center without completion**
-```swift
-        EasyGameCenter.showCustomBanner(title: "Title", description: "My Description...", completion: nil)
 ```
 ##Show custom dialog
 * **Show custom dialog Game Center Authentication with completion**
@@ -218,7 +206,7 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
             }
         }
 ```
-* **Show custom dialog Game Center Authentication without completion**
+* **Option :** Without completion
 ```swift
 EasyGameCenter.openDialogGameCenterAuthentication(
         titre: Title", 
@@ -227,15 +215,12 @@ EasyGameCenter.openDialogGameCenterAuthentication(
         buttonOpenGameCenterLogin: "Open Game Center", 
         completion: nil)
 ```
-#Achievements Method
+#Achievements Methods
 ##Progress Achievements
 * **Add progress to an Achievement with show banner**
+* **Option :** Without show banner ```EasyGameCenter.reportAchievements(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: false)```
 ```swift
-EasyGameCenter.reportAchievements(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true)
-```
-* **Add progress to an Achievement without show banner**
-```swift
-EasyGameCenter.reportAchievements(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: false)
+EasyGameCenter.reportAchievement(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true)
 ```
 ##If Achievement completed 
 * **Is completed Achievement**
