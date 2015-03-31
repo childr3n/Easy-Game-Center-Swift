@@ -15,13 +15,14 @@ Easy Game Center helps to manage Game Center in iOS. Report and track high score
 # Project Features
 GameCenter Manager is a great way to use Game Center in your iOS app.
 
+* Swift
 * Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
-* Save in cache achievements & automatically refreshed
+* Save in cache GKachievements & GKachievementsDescription automatically refreshed
 * Most of the functions CallBack (Handler, completion)
 * Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
 * Just drag and drop the files into your project (EasyGameCenter.swift)
 * Frequent updates to the project based on user issues and requests  
-* Easily contribute to the project
+* Easily contribute to the project :)
 * Example project
 * More is coming ... (Challenges etc..)
 
@@ -119,8 +120,11 @@ You should setup Easy Game Center when your app is launched. I advise you to **v
 * **Show Game Center Achievements with completion**
 ```swift
         EasyGameCenter.showGameCenterAchievements { 
-                () -> Void in
-                println("Game Center Achievements is shown")
+                (isShow) -> Void in
+                if isShow {
+                        println("Game Center Achievements is shown")
+                }
+                
         }
 ```
 * **Show Game Center Achievements without completion**
@@ -206,21 +210,13 @@ EasyGameCenter.openDialogGameCenterAuthentication(
 ```
 #Achievements Method
 ##Progress Achievements
-* **Add progress to an Achievement with completion**
+* **Add progress to an Achievement with show banner**
 ```swift
-EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true) {
-        (isSendToGameCenterOrNor) -> Void in
-        
-        if isSendToGameCenterOrNor {
-                /* Achievement is reported to Game Center */   
-        } else {
-                /* Achievement is Not reported to Game Center (No Internet or player not identified to Game Center)*/  
-        }
-} 
+EasyGameCenter.reportAchievements(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true)
 ```
-* **Add progress to an Achievement without completion**
+* **Add progress to an Achievement without show banner**
 ```swift
-EasyGameCenter.reportAchievements(progress: 100.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: true, completionIsSend: nil)
+EasyGameCenter.reportAchievements(progress: 42.00, achievementIdentifier: "Identifier", showBannnerIfCompleted: false)
 ```
 ##If Achievement completed 
 * **Is completed Achievement**
@@ -252,12 +248,8 @@ if achievementOneCompleted {
 * **Show All Achievements completed and banner not show with completion**
 ```swift
 EasyGameCenter.showAllBannerAchievementCompleteForBannerNotShowing { 
-        (isShowAchievement) -> Void in
-        if isShowAchievement {
-              println("One Achievement show, 2, 3, 4 etc...")  
-        } else {
-                println("No Achievements to show")  
-        }
+        (achievementShow) -> Void in
+        println(achievementShow?.identifier)
 }
 ```
 * **Show All Achievements completed and banner not show without completion**
