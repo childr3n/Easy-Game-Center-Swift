@@ -306,10 +306,11 @@ let progressAchievement = EasyGameCenter.getProgressForAchievement(achievementId
 ```
 ##Reset Achievements
 * **Reset one Achievement**
+* **Option :** Without completion ```EasyGameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier", completion: nil)```
 ```swift
-EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
+EasyGameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier") {
         (isResetToGameCenterOrNor) -> Void in
-            
+        
         if isResetToGameCenterOrNor {
                 /* Is reset to Game Center */
         } else {
@@ -317,68 +318,63 @@ EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
         }
 }
 ```
+##Reset all Achievements
+* **Reset all Achievement**
+* **Option :** Without completion ```EasyGameCenter.resetAllAchievements(nil)```
+```swift
+        EasyGameCenter.resetAllAchievements { 
+                (achievementReset) -> Void in
+                /* achievementReset = GKAchievement */
+        }
+```
 #Leaderboards
 ##Report
-* **Report Score Leaderboard with completion**
+* **Report Score Leaderboard**
 ```swift
-EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100) {
-        (isSendToGameCenterOrNor) -> Void in
-        if isSendToGameCenterOrNor {
-                println("Score send to Game Center")
-        } else {
-                println("Score NO send to Game Center (No connection or player not identified")
-        }
-}
-```
-* **Report Score Leaderboard without completion**
-```swift
-EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100,completion:nil)
+EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "LeaderboardIdentifier", score: 100)
 ```
 ##Get GKLeaderboard
 * **Get GKLeaderboard with completion**
 ```swift
-EasyGameCenter.getGKLeaderboard { 
-        (resultArrayGKLeaderboard) -> Void in
-        if let resultArrayGKLeaderboardIsOK = resultArrayGKLeaderboard as [GKLeaderboard]? {
+        EasyGameCenter.getGKLeaderboard { 
+            (resultArrayGKLeaderboard) -> Void in
+            if let resultArrayGKLeaderboardIsOK = resultArrayGKLeaderboard as [GKLeaderboard]? {
                 for oneGKLeaderboard in resultArrayGKLeaderboardIsOK  {
-                    
-                    println("\n/***** Get Leaderboards (getGKLeaderboard) *****/\n")
+                
                     println("ID : \(oneGKLeaderboard.identifier)")
                     println("Title :\(oneGKLeaderboard.title)")
                     println("Loading ? : \(oneGKLeaderboard.loading)")
-                    println("\n/**********/\n")
-                    
                 }
+            }
         }
-}
 ```
 ##Get GKScore
 * **Get GKScore Leaderboard with completion**
 ```swift
-EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
-        (resultGKScore) -> Void in
-        if let resultGKScoreIsOK = resultGKScore as GKScore? {
-                /* Hight score player */
-                print(resultGKScoreIsOK.value)
-                
-                /* Rank */
-                print(resultGKScoreIsOK.rank)
-                
-                /* Date last win (Rank) */
-                print(resultGKScoreIsOK.date)
-                
-                /* Context */
-                print(resultGKScoreIsOK.context)
-                
-                /* Player info */
-                print(resultGKScoreIsOK.player)
-                
-                /* Player ID */
-                print(resultGKScoreIsOK.playerID)
-                
-                /* Etc ... */
+        EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
+            (resultGKScore) -> Void in
+            if let resultGKScoreIsOK = resultGKScore as GKScore? {
+
+                println("Leaderboard Identifier : \(resultGKScoreIsOK.leaderboardIdentifier)")
+                println("Date : \(resultGKScoreIsOK.date)")
+                println("Rank :\(resultGKScoreIsOK.rank)")
+                println("Hight Score : \(resultGKScoreIsOK.value)")
+            }
         }
-}
+```
+##Get Hight Score (Tuple)
+* **Get Hight Score Leaderboard with completion, (Tuple of name,score,rank)**
+```swift
+        EasyGameCenter.getHighScore(leaderboardIdentifier: "International_Classement") {
+            (tupleHighScore) -> Void in
+            //(playerName:String, score:Int,rank:Int)
+            
+            if  tupleHighScore != nil {
+                println("Leaderboard Identifier : \(tupleHighScore!.playerName)")
+                println("Date : \(tupleHighScore!.score)")
+                println("Rank :\(tupleHighScore!.rank)")
+            }
+        }
 ```
 #Other methods
 ##Player identified to Game Center
