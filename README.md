@@ -138,24 +138,17 @@ class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
         println("\nGkAchievement & GKAchievementDescription in cache\n")
     }
 ```
-
-
-
 #Show Methods
 ##Show Achievements
 * **Show Game Center Achievements with completion**
+* **Option :** Without completion ```swift EasyGameCenter.showGameCenterAchievements(completion: nil)```
 ```swift
         EasyGameCenter.showGameCenterAchievements { 
                 (isShow) -> Void in
                 if isShow {
                         println("Game Center Achievements is shown")
                 }
-                
         }
-```
-* **Show Game Center Achievements without completion**
-```swift
-        EasyGameCenter.showGameCenterAchievements(completion: nil)
 ```
 ##Show Leaderboard
 * **Show Game Center Leaderboard  with completion**
