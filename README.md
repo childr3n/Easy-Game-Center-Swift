@@ -85,7 +85,7 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
 }
 ```
 
-## Methods
+## Initialize
 ###Protocol Easy Game Center
 * **Description :** You should add **EasyGameCenterDelegate** protocol if you want use delegate functions (**easyGameCenterAuthentified,easyGameCenterNotAuthentified,easyGameCenterInCache**)
 * **Option :** It is optional (if you do not use the functions, do not add)
