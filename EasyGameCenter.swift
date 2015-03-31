@@ -436,10 +436,10 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     Is have network and player identified to Game Center
     
     :returns: (Bool)
-    */
+
     class func isHaveNetworkAndPlayerIdentified() -> Bool {
         return ( EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() )
-    }
+    } */
     /*####################################################################################################*/
     /*                                      Public Func LeaderBoard                                       */
     /*####################################################################################################*/
@@ -539,7 +539,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     */
     class func  getGKScoreLeaderboard(#leaderboardIdentifier:String, completion:((resultGKScore:GKScore?) -> Void)) {
         
-        if EasyGameCenter.isHaveNetworkAndPlayerIdentified() {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             
             let leaderBoardRequest = GKLeaderboard()
             leaderBoardRequest.identifier = leaderboardIdentifier
@@ -852,7 +852,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     :param: completion  If achievement is reset to Game Center server
     */
     class func resetOneAchievement(#achievementIdentifier :String, completion: ((isResetToGameCenterOrNor:Bool) -> Void)?) {
-        if EasyGameCenter.isHaveNetworkAndPlayerIdentified() {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             if let achievement = EasyGameCenter.achievementForIndentifier(identifierAchievement: achievementIdentifier) {
                 GKAchievement.resetAchievementsWithCompletionHandler({
                     (var error:NSError!) -> Void in
@@ -882,7 +882,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     */
     class func resetAllAchievements( completion:  ((achievementReset:GKAchievement) -> Void)?)  {
         
-        if EasyGameCenter.isHaveNetworkAndPlayerIdentified() {
+        if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             let gameCenter = EasyGameCenter.Static.instance!
             
             for lookupAchievement in gameCenter.achievementsCache {

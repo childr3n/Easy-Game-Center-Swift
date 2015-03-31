@@ -188,6 +188,7 @@ class AchievementsActions: UIViewController {
     
     @IBAction func ResetAllAchievements(sender: AnyObject) {
         EasyGameCenter.resetAllAchievements(nil)
+            
     }
 }
 

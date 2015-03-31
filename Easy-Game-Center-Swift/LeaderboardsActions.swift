@@ -62,7 +62,8 @@ class LeaderboardsActions: UIViewController {
     }
     
     @IBAction func ActionGetLeaderboards(sender: AnyObject) {
-        EasyGameCenter.getGKLeaderboard { (resultArrayGKLeaderboard) -> Void in
+        EasyGameCenter.getGKLeaderboard {
+            (resultArrayGKLeaderboard) -> Void in
             if let resultArrayGKLeaderboardIsOK = resultArrayGKLeaderboard as [GKLeaderboard]? {
                 for oneGKLeaderboard in resultArrayGKLeaderboardIsOK  {
                     
@@ -74,7 +75,6 @@ class LeaderboardsActions: UIViewController {
                     
                 }
             }
-            
         }
     }
     

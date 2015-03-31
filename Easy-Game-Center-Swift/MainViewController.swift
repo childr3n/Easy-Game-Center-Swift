@@ -93,7 +93,8 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
         }
     }
     @IBAction func ShowGameCenterChallenges(sender: AnyObject) {
-        EasyGameCenter.showGameCenterChallenges { () -> Void in
+        EasyGameCenter.showGameCenterChallenges {
+            () -> Void in
             
             println("Game Center Challenges Is show")
         }
@@ -104,7 +105,8 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
     
     @IBAction func ShowAuthetificationGameCenter(sender: AnyObject) {
         
-        EasyGameCenter.showGameCenterAuthentication { (result) -> Void in
+        EasyGameCenter.showGameCenterAuthentication {
+            (result) -> Void in
             if result {
                 println("Is open Game Center Authentication :)")
             }
