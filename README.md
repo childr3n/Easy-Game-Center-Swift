@@ -39,19 +39,19 @@ All methods, properties, types, and delegate methods available on the GameCenter
 ## Setup
 Setting up Easy Game Center it's really easy. Read the instructions after.
 
-1. Add the `GameKit`, `SystemConfiguration` frameworks to your Xcode project
+**1.** Add the `GameKit`, `SystemConfiguration` frameworks to your Xcode project
 <p align="center">
         <img src="http://s27.postimg.org/45wds3jub/Capture_d_cran_2558_03_20_19_56_34.png" height="100" width="500" />
 </p>
 
-2. Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
+**2.** Add the following classes (GameCenter.swift) to your Xcode project (make sure to select Copy Items in the dialog)
 
-3. You can initialize Easy Game Center by using the following method call (This is an example, see doc)
+**3.** You can initialize Easy Game Center by using the following method call (This is an example, see doc)
 ```swift
 class MainViewController: UIViewController,EasyGameCenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Init Easy Game Center
         EasyGameCenter.sharedInstance(self)
     }
@@ -133,7 +133,7 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
 
 
 
-#Show Method
+#Show Methods
 ##Show Achievements
 * **Show Game Center Achievements with completion**
 ```swift
