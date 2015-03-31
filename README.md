@@ -4,21 +4,20 @@
 <p align="center">
         <img src="http://s2.postimg.org/jr6rlurax/easy_Game_Center_Swift.png" height="200" width="200" />
 </p>
-
-Easy Game Center helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
-(version 1.0)
+**Easy Game Center** helps to manage Game Center in iOS. Report and track high scores, achievements. **Easy Game Center falicite management** of Game Center.
+**(version 1.1)**
 
 <p align="center">
         <img src="http://g.recordit.co/K1I3O6BEXq.gif" height="500" width="280" />
 </p>
 
 # Project Features
-GameCenter Manager is a great way to use Game Center in your iOS app.
+Easy Game Center is a great way to use Game Center in your iOS app.
 
 * Swift
 * Submit, Save, Retrieve any Game Center leaderboards, achievements in only one line of code.
 * Save in cache GKachievements & GKachievementsDescription automatically refreshed
-* (New delagate) When player is connected or not etc...
+* (New delegate function) When player is connected or not etc...
 * Most of the functions CallBack (Handler, completion)
 * Useful methods and properties by use Singleton (EasyGameCenter.exampleFunction)
 * Just drag and drop the files into your project (EasyGameCenter.swift)
@@ -30,8 +29,10 @@ GameCenter Manager is a great way to use Game Center in your iOS app.
 ## Requirements
 * Requires a minimum of iOS or 8.0+
 
-## Contributions
+## Contributions & Share
 Any contribution is more than welcome! You can contribute through pull requests and issues on GitHub. :D
+
+Send me your application's link, if you use Easy Game center, I will add on the cover pagee [@RedWolfStudioFR](https://twitter.com/RedWolfStudioFR) :)
 
 # Documentation
 All methods, properties, types, and delegate methods available on the GameCenterManager class are documented below. If you're using [GameKit](https://developer.apple.com/library/ios/documentation/GameKit/Reference/GameKit_Collection/index.html)
