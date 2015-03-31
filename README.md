@@ -49,6 +49,7 @@ Setting up Easy Game Center it's really easy. Read the instructions after.
 
 **3.** You can initialize Easy Game Center by using the following method call (This is an example, see doc)
 ```swift
+// Add Protocol for delegate fonction "EasyGameCenterDelegate"
 class MainViewController: UIViewController,EasyGameCenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +86,12 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
 ```
 
 ## Methods
+###Protocol Easy Game Center
+* **Description :** You should add **EasyGameCenterDelegate** protocol if you want use delegate functions (**easyGameCenterAuthentified,easyGameCenterNotAuthentified,easyGameCenterInCache**)
+* **Option :** It is optional (if you do not use the functions, do not add)
+```swift
+class ExampleViewController: UIViewController,EasyGameCenterDelegate { }
+```
 ###Initialize Easy Game Center
 * **Description :** You should setup Easy Game Center when your app is launched. I advise you to **viewDidLoad()** method
 ```swift
