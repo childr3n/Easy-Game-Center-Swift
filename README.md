@@ -376,30 +376,26 @@ EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "LeaderboardIdentif
             }
         }
 ```
-#Other methods
+#Other methods Game Center
 ##Player identified to Game Center
 **Is player identified to gameCenter**
 ```swift
-if EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-        /* It is identified to Game Center */
-} 
+if EasyGameCenter.isPlayerIdentifiedToGameCenter() { /* Player identified */ } 
 ```
-**Is player identified to gameCente and have network**
-```swift
-let validation = EasyGameCenter.isHaveNetworkAndPlayerIdentified()
-```
+##Local Player
 **Get local Player (GKLocalPlayer)**
 ```swift
 let localPlayer = EasyGameCenter.getLocalPlayer()
 ```
+#Other
 **Is Connected to NetWork**
 ```swift
-if EasyGameCenter.isConnectedToNetwork() {
-        /* You have network */
-} 
+if EasyGameCenter.isConnectedToNetwork() { /* You have network */ } 
 ```
+
 ### Legacy support
-For support of iOS 8+ [Yannick Stephan](https://yannickstephan.com) works hard to have as high feature parity with **Easy Game Center** as possible.
+For support of iOS 8+ [@RedWolfStudioFR](https://twitter.com/RedWolfStudioFR) works hard to have as high feature parity with **Easy Game Center** as possible. 
+
 ### License
 The MIT License (MIT)
 Copyright (c) 2015 Red Wolf Studio, Yannick Stephan
