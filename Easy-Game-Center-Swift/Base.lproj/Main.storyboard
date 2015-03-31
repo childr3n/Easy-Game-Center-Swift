@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dCk-HE-H6c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dCk-HE-H6c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -487,7 +487,7 @@
                                     <action selector="ActionGetLeaderboards:" destination="idv-H2-3S8" eventType="touchUpInside" id="RvS-cm-qsL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VAQ-BP-yYf">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VAQ-BP-yYf">
                                 <rect key="frame" x="0.0" y="198" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -502,7 +502,7 @@
                                     <action selector="ActionGetGKScoreLeaderboard:" destination="idv-H2-3S8" eventType="touchUpInside" id="uq7-Q0-17Z"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EYo-pN-3un">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EYo-pN-3un">
                                 <rect key="frame" x="0.0" y="96" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -517,18 +517,38 @@
                                     <action selector="ActionReportScoreLeaderboard:" destination="idv-H2-3S8" eventType="touchUpInside" id="Hdu-aI-nR0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-wz-4mR">
+                                <rect key="frame" x="0.0" y="256" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lcG-FT-lR5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Get High Score">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionGetGKScoreLeaderboard:" destination="idv-H2-3S8" eventType="touchUpInside" id="gCH-Q5-jjA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="N9B-Bt-CX6" secondAttribute="centerX" id="1v7-Zu-G4Q"/>
+                            <constraint firstAttribute="centerX" secondItem="EYo-pN-3un" secondAttribute="centerX" id="BwH-aM-Zgd"/>
                             <constraint firstItem="VAQ-BP-yYf" firstAttribute="top" secondItem="P6o-Bj-a62" secondAttribute="bottom" constant="1" id="GL3-no-bKS"/>
                             <constraint firstItem="P6o-Bj-a62" firstAttribute="top" secondItem="N9B-Bt-CX6" secondAttribute="bottom" constant="8" id="Kk0-2b-2Pb"/>
                             <constraint firstItem="P6o-Bj-a62" firstAttribute="width" secondItem="iH1-7L-vnB" secondAttribute="width" id="Trt-UY-WIh"/>
+                            <constraint firstAttribute="centerX" secondItem="VAQ-BP-yYf" secondAttribute="centerX" id="VMJ-fd-Hhk"/>
                             <constraint firstItem="N9B-Bt-CX6" firstAttribute="top" secondItem="eMG-jp-jV8" secondAttribute="bottom" constant="1" id="b82-Mx-4wb"/>
                             <constraint firstAttribute="width" secondItem="EYo-pN-3un" secondAttribute="width" id="cOj-Aj-YTV"/>
+                            <constraint firstItem="VXd-wz-4mR" firstAttribute="width" secondItem="iH1-7L-vnB" secondAttribute="width" id="ccC-bB-gqf"/>
                             <constraint firstAttribute="centerX" secondItem="P6o-Bj-a62" secondAttribute="centerX" id="dgb-kW-U5q"/>
                             <constraint firstItem="VAQ-BP-yYf" firstAttribute="width" secondItem="iH1-7L-vnB" secondAttribute="width" id="hDC-CL-aIa"/>
                             <constraint firstAttribute="centerY" secondItem="N9B-Bt-CX6" secondAttribute="centerY" constant="220" id="jrf-DA-wFn"/>
+                            <constraint firstAttribute="centerX" secondItem="VXd-wz-4mR" secondAttribute="centerX" id="slA-tc-neB"/>
+                            <constraint firstItem="VXd-wz-4mR" firstAttribute="top" secondItem="VAQ-BP-yYf" secondAttribute="bottom" constant="1" id="sp5-8y-spx"/>
                             <constraint firstItem="N9B-Bt-CX6" firstAttribute="width" secondItem="iH1-7L-vnB" secondAttribute="width" id="uZf-Bz-sMh"/>
                             <constraint firstItem="EYo-pN-3un" firstAttribute="top" secondItem="N9B-Bt-CX6" secondAttribute="bottom" constant="8" id="vhb-5b-QyT"/>
                             <constraint firstItem="P6o-Bj-a62" firstAttribute="top" secondItem="EYo-pN-3un" secondAttribute="bottom" constant="1" id="ymL-3K-sqJ"/>

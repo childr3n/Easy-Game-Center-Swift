@@ -12,25 +12,40 @@ import GameKit
 class LeaderboardsActions: UIViewController {
     
     
-  
+
+
+    /*####################################################################################################*/
+    /*                                          viewDidLoad                                               */
+    /*####################################################################################################*/
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let buttonBarOpenGameCenter :UIBarButtonItem =  UIBarButtonItem(title: "Game Center Leaderboards", style: .Bordered, target: self, action: "openGameCenterLeaderboard:")
         self.navigationItem.rightBarButtonItem = buttonBarOpenGameCenter
+
         
     }
     
+    /*####################################################################################################*/
+    /*    Set New view controller delegate, is when you change you change UIViewControlle                 */
+    /*####################################################################################################*/
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         /* Set New view controller delegate */
         EasyGameCenter.delegate = self
-        println("\n/*****/\nDelegate UIViewController is LeaderboardsActions (see viewDidAppear)\n/*****/\n")
+        println("\n/*****/\nDelegate UIViewController is AchievementsActions (see viewDidAppear)\n/*****/\n")
     }
     
-    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+    /*####################################################################################################*/
+    /*                                          Button                                                    */
+    /*####################################################################################################*/
     @IBAction func openGameCenterLeaderboard(sender: AnyObject) {
         
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement", completion: {
@@ -38,17 +53,12 @@ class LeaderboardsActions: UIViewController {
             println("You open Game Center Achievements")
         })
     }
-
+    
     @IBAction func ActionReportScoreLeaderboard(sender: AnyObject) {
-
-        EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100) {
-            (isSendToGameCenterOrNor) -> Void in
-            if isSendToGameCenterOrNor {
-                println("Score send to Game Center")
-            } else {
-                println("Score NO send to Game Center (No connection or player not identified")
-            }
-        }
+        
+        EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: "International_Classement", score: 100)
+        println("Score send to Game Center")
+        
     }
     
     @IBAction func ActionGetLeaderboards(sender: AnyObject) {
@@ -64,6 +74,7 @@ class LeaderboardsActions: UIViewController {
                     
                 }
             }
+            
         }
     }
     
@@ -71,7 +82,7 @@ class LeaderboardsActions: UIViewController {
         EasyGameCenter.getGKScoreLeaderboard(leaderboardIdentifier: "International_Classement") {
             (resultGKScore) -> Void in
             if let resultGKScoreIsOK = resultGKScore as GKScore? {
-               
+                
                 println("\n/***** Get GKScore Leaderboard (getGKScoreLeaderboard) *****/\n")
                 
                 println("Leaderboard Identifier : \(resultGKScoreIsOK.leaderboardIdentifier)")
@@ -82,5 +93,23 @@ class LeaderboardsActions: UIViewController {
             }
         }
     }
+    
+    @IBAction func ActionGetHightScore(sender: AnyObject) {
+        EasyGameCenter.getHighScore(leaderboardIdentifier: "International_Classement") {
+            (tupleHighScore) -> Void in
+            //(playerName:String, score:Int,rank:Int)?
+            
+            if  tupleHighScore != nil {
+                println("\n/***** Hight Score (getHighScore) *****/\n")
+                println("Leaderboard Identifier : \(tupleHighScore!.playerName)")
+                println("Date : \(tupleHighScore!.score)")
+                println("Rank :\(tupleHighScore!.rank)")
+                println("\n/**********/\n")
+            }
+            
+        }
+    }
+    
+    
 }
 
