@@ -394,10 +394,15 @@ if EasyGameCenter.isConnectedToNetwork() { /* You have network */ }
 ```
 
 ### Legacy support
-For support of iOS 8+ [@RedWolfStudioFR](https://twitter.com/RedWolfStudioFR) works hard to have as high feature parity with **Easy Game Center** as possible. 
+For support of iOS 8+ [@RedWolfStudioFR](https://twitter.com/RedWolfStudioFR) 
+
+Yannick Stephan works hard to have as high feature parity with **Easy Game Center** as possible. 
 
 ### License
 The MIT License (MIT)
+
 Copyright (c) 2015 Red Wolf Studio, Yannick Stephan
+
 [Red Wolf Studio](http://www.redwolfstudio.fr)
+
 [Yannick Stephan](https://yannickstephan.com)
