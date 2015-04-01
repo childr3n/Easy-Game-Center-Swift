@@ -361,10 +361,8 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         if (delegate == nil || instance == nil) {
             println("\nError EasyGameCenter : Delegate UIViewController not set\n")
         } else {
-            var alert = UIAlertController(title: titre, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            
-            alert.popoverPresentationController?.sourceView = delegateUIVC!.view as UIView
-            
+            var alert = UIAlertController(title: titre, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+
             delegateUIVC!.presentViewController(alert, animated: true, completion: nil)
             
             alert.addAction(UIAlertAction(title: buttonOK, style: .Default, handler: {
