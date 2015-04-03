@@ -218,7 +218,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     /*####################################################################################################*/
     /// Checkup net et Game Center
     private var timerInCache:NSTimer?
-    private func checkupInCache() {
+    func checkupInCache() {
         
         if self.timerInCache == nil {
             self.timerInCache = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("checkupInCache"), userInfo: nil, repeats: true)
@@ -232,7 +232,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
     }
     /// Checkup net et Game Center
     private var timerNetAndPlayer:NSTimer?
-    private func checkupNetAndPlayer() {
+    func checkupNetAndPlayer() {
         
         if self.timerNetAndPlayer == nil {
             self.timerNetAndPlayer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("checkupNetAndPlayer"), userInfo: nil, repeats: true)
