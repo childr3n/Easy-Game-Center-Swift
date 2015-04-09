@@ -110,6 +110,8 @@ class AchievementsActions: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     <!> Remove Apple want reset all achievements.
     @IBAction func ResetAchievementOne(sender: AnyObject) {
         
         EasyGameCenter.resetOneAchievement(achievementIdentifier: "Achievement_One") {
@@ -121,7 +123,7 @@ class AchievementsActions: UIViewController {
                 AppDelegate.simpleMessage(title: "ResetAchievementOne", message: "No", uiViewController: self)
             }
         }
-    }
+    }*/
     
     
     @IBAction func ReportAchievementTwo(sender: AnyObject) {

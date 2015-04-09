@@ -10,7 +10,7 @@
 //  Copyright (c) 2015 Red Wolf Studio & Yannick Stephan
 //  http://www.redwolfstudio.fr
 //  http://yannickstephan.com
-//  Version 1.1
+//  Version 1.02
 
 import Foundation
 import GameKit
@@ -179,33 +179,40 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         } else {
             if  EasyGameCenter.isConnectedToNetwork() &&
                 EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-                    
                     GKAchievement.loadAchievementsWithCompletionHandler({
                         (var achievements:[AnyObject]!, error:NSError!) -> Void in
                         if error != nil {
                             println("\nGame Center: could not load achievements, error: \(error)\n")
                             
                         } else {
-                            
-                            if achievements != nil {
-                                
-                                for achievement in achievements  {
-                                    if let oneAchievement = achievement as? GKAchievement {
-                                        self.achievementsCache[oneAchievement.identifier] = oneAchievement
-                                        
-                                        EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier, completion: { (tupleGKAchievementAndDescription) -> Void in
-                                            if let achievementTuple = tupleGKAchievementAndDescription {
+                            EasyGameCenter.getGKAllAchievementDescription(completion: {
+                                (arrayGKAD) -> Void in
+                                if arrayGKAD != nil {
+                                    
+                                    for achievementGKDes in arrayGKAD!  {
+                                       // if let oneAchievementGKDes = achievement as GKAchievementDescription {
+                                            
+                                            if let oneAchievement =  EasyGameCenter.achievementForIndentifier(identifierAchievement: achievementGKDes.identifier) {
                                                 
-                                                self.achievementsDescriptionCache[oneAchievement.identifier] = achievementTuple.gkAchievementDescription
+                                                self.achievementsCache[oneAchievement.identifier] = oneAchievement
+                                                
+                                                EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: oneAchievement.identifier, completion: { (tupleGKAchievementAndDescription) -> Void in
+                                                    if let achievementTuple = tupleGKAchievementAndDescription {
+                                                        
+                                                        self.achievementsDescriptionCache[oneAchievement.identifier] = achievementTuple.gkAchievementDescription
+                                                    }
+                                                    
+                                                })
                                             }
                                             
-                                        })
+
+                                      //  }
                                     }
+                                    delegate!.easyGameCenterInCache?()
+                                } else {
+                                    self.checkupInCache()
                                 }
-                                delegate!.easyGameCenterInCache?()
-                            } else {
-                                self.checkupInCache()
-                            }
+                            })
                         }
                     })
             } else {
@@ -573,6 +580,7 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
             
             let instance = Static.instance
             if instance == nil {
+                completionTuple(tupleGKAchievementAndDescription: nil)
                 println("\nError : Instance Nil\n")
             } else {
                 
@@ -600,7 +608,16 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
                         })
                     }
                     
-                } else { completionTuple(tupleGKAchievementAndDescription: nil) }
+                } else {
+                    if EasyGameCenter.achievementForIndentifier(identifierAchievement: achievementIdentifier) != nil {
+                         EasyGameCenter.getTupleGKAchievementAndDescription(achievementIdentifier: achievementIdentifier, completion: {
+                            (tupleGKAchievementAndDescription) -> Void in
+                            completionTuple(tupleGKAchievementAndDescription: tupleGKAchievementAndDescription)
+                         })
+                    } else {
+                       completionTuple(tupleGKAchievementAndDescription: nil)
+                    }
+                }
                 
             }
     }
@@ -844,14 +861,16 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         return nil
     }
     /**
+    <!> Remove Apple want reset all achievements.
     Remove One Achievements
     
     :param: Achievement Identifier
     :param: completion  If achievement is reset to Game Center server
-    */
+    
     class func resetOneAchievement(#achievementIdentifier :String, completion: ((isResetToGameCenterOrNor:Bool) -> Void)?) {
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
             if let achievement = EasyGameCenter.achievementForIndentifier(identifierAchievement: achievementIdentifier) {
+                
                 GKAchievement.resetAchievementsWithCompletionHandler({
                     (var error:NSError!) -> Void in
                     
@@ -873,32 +892,41 @@ class EasyGameCenter: NSObject, GKGameCenterControllerDelegate {
         } else {
             if completion != nil { completion!(isResetToGameCenterOrNor: false) }
         }
-    }
+    }*/
     
     /**
-    Remove All Achievements
+        Remove All Achievements
+    
+        completion: return GKAchievement reset or Nil if game center not work
     */
-    class func resetAllAchievements( completion:  ((achievementReset:GKAchievement) -> Void)?)  {
+    class func resetAllAchievements( completion:  ((achievementReset:GKAchievement?) -> Void)?)  {
         
         if EasyGameCenter.isConnectedToNetwork() && EasyGameCenter.isPlayerIdentifiedToGameCenter() {
-            let gameCenter = EasyGameCenter.Static.instance!
-            
-            for lookupAchievement in gameCenter.achievementsCache {
+
+            GKAchievement.resetAchievementsWithCompletionHandler({
+                (var error:NSError!) -> Void in
                 
-                var achievementID = lookupAchievement.0
-                EasyGameCenter.resetOneAchievement(achievementIdentifier: achievementID, completion: {
-                    (isReset) -> Void in
-                    if !isReset {
+                //var validation = false
+                if error != nil {
+                    println("\n Couldn't Reset achievement (Send data error) \n")
+                    
+                } else {
+                    let gameCenter = EasyGameCenter.Static.instance!
+                    for lookupAchievement in gameCenter.achievementsCache {
                         
-                        if completion != nil {
-                            completion!(achievementReset:lookupAchievement.1)
-                        }
+                        let achievementID = lookupAchievement.0
+                        let achievementGK = lookupAchievement.1
+                        achievementGK.percentComplete = 0
+                        achievementGK.showsCompletionBanner = false
+                        if completion != nil { completion!(achievementReset:achievementGK) }
+                        println("\nReset achievement (\(achievementID))\n")
+                        
                     }
-                })
-                
-            }
+                }
+            })
+        } else {
+            if completion != nil { completion!(achievementReset: nil) }
         }
-        
     }
     /*####################################################################################################*/
     /*                                      Public Func Internet                                          */

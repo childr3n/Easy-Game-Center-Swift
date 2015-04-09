@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dCk-HE-H6c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dCk-HE-H6c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -40,21 +40,6 @@
                                     <action selector="ReportAchievementOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="apF-Bv-Jsu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EAc-7t-P9v">
-                                <rect key="frame" x="0.0" y="300" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="my8-91-ODt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Report achievement Two and no show banner">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ReportAchievementTwo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyt-uO-OSJ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hSd-DZ-pUZ">
                                 <rect key="frame" x="0.0" y="198" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,66 +53,6 @@
                                 </state>
                                 <connections>
                                     <action selector="IfAchievementIsFinished:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NKP-NB-3eZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-Ab-L8e">
-                                <rect key="frame" x="0.0" y="402" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ERF-KJ-Vkq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Show banner achievements completed and banner no show">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ShowAchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04b-bH-Ivb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7lN-6u-x2B">
-                                <rect key="frame" x="0.0" y="249" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="OJn-Hz-ysn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Reset achievement one">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ResetAchievementOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOh-4q-n3l"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="79G-2u-6O6">
-                                <rect key="frame" x="0.0" y="351" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="HPf-XG-vjs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Achievement Completed and no showing">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="AchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUK-dk-TLf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6gQ-OV-5TC">
-                                <rect key="frame" x="0.0" y="453" width="600" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="a7M-2q-jiA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <state key="normal" title="Get all achievements description">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="GetAllChievementsDescription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXC-p8-Iab"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-0v-NZC">
@@ -145,8 +70,68 @@
                                     <action selector="ActionGetAchievementsDescription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WoN-RU-Khv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pXM-V3-IOu">
-                                <rect key="frame" x="0.0" y="504" width="600" height="50"/>
+                            <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EAc-7t-P9v">
+                                <rect key="frame" x="0.0" y="250" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="my8-91-ODt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Report achievement Two and no show banner">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ReportAchievementTwo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyt-uO-OSJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-Ab-L8e">
+                                <rect key="frame" x="0.0" y="352" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ERF-KJ-Vkq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Show banner achievements completed and banner no show">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowAchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04b-bH-Ivb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="79G-2u-6O6">
+                                <rect key="frame" x="0.0" y="301" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HPf-XG-vjs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Achievement Completed and no showing">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AchievementCompletedAndNotShowing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUK-dk-TLf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6gQ-OV-5TC">
+                                <rect key="frame" x="0.0" y="403" width="600" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="a7M-2q-jiA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Get all achievements description">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="GetAllChievementsDescription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXC-p8-Iab"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pXM-V3-IOu">
+                                <rect key="frame" x="0.0" y="454" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="q96-YO-VEW"/>
@@ -167,25 +152,20 @@
                             <constraint firstItem="HPW-Ab-L8e" firstAttribute="top" secondItem="EAc-7t-P9v" secondAttribute="bottom" id="0J5-HJ-Z6Q"/>
                             <constraint firstItem="6hK-aU-xds" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="5uh-ch-sAu"/>
                             <constraint firstAttribute="width" secondItem="fRg-0v-NZC" secondAttribute="width" id="8aq-Ke-Xq8"/>
-                            <constraint firstItem="7lN-6u-x2B" firstAttribute="top" secondItem="hSd-DZ-pUZ" secondAttribute="bottom" constant="1" id="ByC-DU-3Tf"/>
                             <constraint firstItem="pXM-V3-IOu" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="FsL-Pw-ndf"/>
-                            <constraint firstItem="7lN-6u-x2B" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="GJI-Dd-c0z"/>
+                            <constraint firstItem="EAc-7t-P9v" firstAttribute="top" secondItem="hSd-DZ-pUZ" secondAttribute="bottom" constant="1" id="NP0-W1-PbR"/>
                             <constraint firstItem="79G-2u-6O6" firstAttribute="top" secondItem="pXM-V3-IOu" secondAttribute="bottom" id="NYL-i4-deh"/>
-                            <constraint firstItem="EAc-7t-P9v" firstAttribute="top" secondItem="7lN-6u-x2B" secondAttribute="bottom" constant="1" id="OEI-QD-kuC"/>
                             <constraint firstItem="L75-1k-X46" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="1" id="Onh-nd-Vfv"/>
                             <constraint firstAttribute="centerX" secondItem="L75-1k-X46" secondAttribute="centerX" id="SHb-qH-2I6"/>
                             <constraint firstItem="L75-1k-X46" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="XBC-iT-eyA"/>
-                            <constraint firstItem="7lN-6u-x2B" firstAttribute="top" secondItem="hSd-DZ-pUZ" secondAttribute="bottom" constant="1" id="YhA-W8-ihe"/>
                             <constraint firstItem="pXM-V3-IOu" firstAttribute="top" secondItem="6gQ-OV-5TC" secondAttribute="bottom" constant="1" id="ZTA-GQ-FMa"/>
                             <constraint firstAttribute="centerY" secondItem="L75-1k-X46" secondAttribute="centerY" constant="220" id="ZvS-Q4-75p"/>
                             <constraint firstAttribute="centerX" secondItem="EAc-7t-P9v" secondAttribute="centerX" id="alT-cX-br0"/>
                             <constraint firstItem="6hK-aU-xds" firstAttribute="top" secondItem="L75-1k-X46" secondAttribute="bottom" constant="8" id="bIv-iL-heE"/>
                             <constraint firstItem="EAc-7t-P9v" firstAttribute="top" secondItem="6hK-aU-xds" secondAttribute="bottom" id="c6W-Xz-XRu"/>
-                            <constraint firstItem="pXM-V3-IOu" firstAttribute="top" secondItem="7lN-6u-x2B" secondAttribute="bottom" id="fN7-dI-EAX"/>
                             <constraint firstItem="6gQ-OV-5TC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fba-3X-GcA"/>
                             <constraint firstItem="fRg-0v-NZC" firstAttribute="top" secondItem="L75-1k-X46" secondAttribute="bottom" constant="8" id="gRo-Av-g3P"/>
                             <constraint firstItem="hSd-DZ-pUZ" firstAttribute="top" secondItem="HPW-Ab-L8e" secondAttribute="bottom" id="iS4-Xs-Ode"/>
-                            <constraint firstItem="7lN-6u-x2B" firstAttribute="top" secondItem="hSd-DZ-pUZ" secondAttribute="bottom" id="icO-Gu-SGU"/>
                             <constraint firstAttribute="width" secondItem="79G-2u-6O6" secondAttribute="width" id="jIm-ZQ-1by"/>
                             <constraint firstItem="HPW-Ab-L8e" firstAttribute="top" secondItem="79G-2u-6O6" secondAttribute="bottom" constant="1" id="jrq-hr-BhQ"/>
                             <constraint firstItem="hSd-DZ-pUZ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="leq-nR-bOT"/>
@@ -203,12 +183,9 @@
                                 <exclude reference="srz-jB-KnF"/>
                                 <exclude reference="bIv-iL-heE"/>
                                 <exclude reference="iS4-Xs-Ode"/>
-                                <exclude reference="YhA-W8-ihe"/>
-                                <exclude reference="icO-Gu-SGU"/>
                                 <exclude reference="c6W-Xz-XRu"/>
                                 <exclude reference="NYL-i4-deh"/>
                                 <exclude reference="0J5-HJ-Z6Q"/>
-                                <exclude reference="fN7-dI-EAX"/>
                             </mask>
                         </variation>
                     </view>
