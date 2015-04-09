@@ -5,7 +5,7 @@
         <img src="http://s2.postimg.org/jr6rlurax/easy_Game_Center_Swift.png" height="200" width="200" />
 </p>
 **Easy Game Center** helps to manage Game Center in iOS. Report and track high scores, achievements. Easy Game Center falicite management of Game Center.
-**(version 1.1)**
+**(version 1.02)**
 
 <p align="center">
         <img src="http://g.recordit.co/K1I3O6BEXq.gif" height="500" width="280" />
@@ -303,20 +303,6 @@ if achievementOneCompleted {
 * **Get Progress to an achievement**
 ```swift
 let progressAchievement = EasyGameCenter.getProgressForAchievement(achievementIdentifier: "AchievementIdentifier")
-```
-##Reset Achievements
-* **Reset one Achievement**
-* **Option :** Without completion ```EasyGameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier", completion: nil)```
-```swift
-EasyGameCenter.resetOneAchievement(achievementIdentifier: "AchievementIdentifier") {
-        (isResetToGameCenterOrNor) -> Void in
-        
-        if isResetToGameCenterOrNor {
-                /* Is reset to Game Center */
-        } else {
-                /* Is not reset to Game Center (No internet or player not login */
-        }
-}
 ```
 ##Reset all Achievements
 * **Reset all Achievement**
