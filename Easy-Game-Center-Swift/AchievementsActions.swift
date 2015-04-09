@@ -41,7 +41,6 @@ class AchievementsActions: UIViewController {
         
         /* Set New view controller delegate */
         EasyGameCenter.delegate = self
-        println("\n/*****/\nDelegate UIViewController is AchievementsActions (see viewDidAppear)\n/*****/\n")
     }
     /*####################################################################################################*/
     /*                                          Button                                                    */
@@ -81,7 +80,7 @@ class AchievementsActions: UIViewController {
         if EasyGameCenter.isAchievementCompleted(achievementIdentifier: "Achievement_One") {
             AppDelegate.simpleMessage(title: "isAchievementCompleted", message: "Achievement is already report", uiViewController: self)
         } else {
-            EasyGameCenter.reportAchievement(progress: 100.00, achievementIdentifier: "Achievement_One", showBannnerIfCompleted: true)
+            EasyGameCenter.reportAchievement(progress: 100.00, achievementIdentifier: "Achievement_One")
         }
         
         
@@ -143,10 +142,9 @@ class AchievementsActions: UIViewController {
     
     @IBAction func AchievementCompletedAndNotShowing(sender: AnyObject) {
         
-        if let achievements : [String:GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
+        if let achievements : [GKAchievement] = EasyGameCenter.getAchievementCompleteAndBannerNotShowing() {
             
-            for achievement in achievements  {
-                var oneAchievement : GKAchievement = achievement.1
+            for oneAchievement in achievements  {
                 if oneAchievement.completed && oneAchievement.showsCompletionBanner == false {
                     
                     println("\n/***** Achievement Description *****/\n")
@@ -171,7 +169,7 @@ class AchievementsActions: UIViewController {
             (arrayGKAD) -> Void in
             
             if let arrayAchievementDescription = arrayGKAD {
-                for achievement in arrayAchievementDescription  {
+                for achievement in arrayAchievementDescription {
                     println("\n/***** Achievement Description *****/\n")
                     println("ID : \(achievement.identifier)")
                     // The title of the achievement.
@@ -189,7 +187,7 @@ class AchievementsActions: UIViewController {
     }
     
     @IBAction func ResetAllAchievements(sender: AnyObject) {
-        EasyGameCenter.resetAllAchievements(nil)
+        EasyGameCenter.resetAllAchievements()
             
     }
 }

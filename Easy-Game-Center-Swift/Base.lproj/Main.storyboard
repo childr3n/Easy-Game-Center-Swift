@@ -506,7 +506,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ActionGetGKScoreLeaderboard:" destination="idv-H2-3S8" eventType="touchUpInside" id="gCH-Q5-jjA"/>
+                                    <action selector="GetHighScore:" destination="idv-H2-3S8" eventType="touchUpInside" id="GS1-Yr-fnF"/>
                                 </connections>
                             </button>
                         </subviews>

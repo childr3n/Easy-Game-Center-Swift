@@ -35,7 +35,6 @@ class LeaderboardsActions: UIViewController {
         
         /* Set New view controller delegate */
         EasyGameCenter.delegate = self
-        println("\n/*****/\nDelegate UIViewController is AchievementsActions (see viewDidAppear)\n/*****/\n")
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,8 +48,11 @@ class LeaderboardsActions: UIViewController {
     @IBAction func openGameCenterLeaderboard(sender: AnyObject) {
         
         EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "International_Classement", completion: {
-            () -> Void in
-            println("You open Game Center Achievements")
+            (result) -> Void in
+            if result {
+                println("You open Game Center Achievements")  
+            }
+            
         })
     }
     
@@ -94,21 +96,23 @@ class LeaderboardsActions: UIViewController {
         }
     }
     
-    @IBAction func ActionGetHightScore(sender: AnyObject) {
+  
+    @IBAction func GetHighScore(sender: AnyObject) {
         EasyGameCenter.getHighScore(leaderboardIdentifier: "International_Classement") {
             (tupleHighScore) -> Void in
-            //(playerName:String, score:Int,rank:Int)?
+            /// tupleHighScore = (playerName:String, score:Int,rank:Int)?
             
             if  tupleHighScore != nil {
                 println("\n/***** Hight Score (getHighScore) *****/\n")
-                println("Leaderboard Identifier : \(tupleHighScore!.playerName)")
-                println("Date : \(tupleHighScore!.score)")
+                println("Player Name : \(tupleHighScore!.playerName)")
+                println("Score : \(tupleHighScore!.score)")
                 println("Rank :\(tupleHighScore!.rank)")
                 println("\n/**********/\n")
             }
             
         }
     }
+
     
     
 }

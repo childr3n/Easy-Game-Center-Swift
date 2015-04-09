@@ -30,6 +30,9 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
         */
         EasyGameCenter.sharedInstance(self)
         
+        /** If you want not message just delete this ligne **/
+        EasyGameCenter.debugMode = true
+        
         
     }
     
@@ -43,7 +46,6 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
         Set New view controller delegate, when you change UIViewController
         */
         EasyGameCenter.delegate = self
-        println("\n/*****/\nDelegate UIViewController is MainViewController (see viewDidAppear)\n/*****/\n")
     }
     /*####################################################################################################*/
     /*                               Delegate Func Easy Game Center                                       */
@@ -94,9 +96,11 @@ class MainViewController: UIViewController,EasyGameCenterDelegate {
     }
     @IBAction func ShowGameCenterChallenges(sender: AnyObject) {
         EasyGameCenter.showGameCenterChallenges {
-            () -> Void in
+            (result) -> Void in
+            if result {
+               println("Game Center Challenges Is show")
+            }
             
-            println("Game Center Challenges Is show")
         }
     }
     
