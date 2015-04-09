@@ -11,6 +11,8 @@
         <img src="http://g.recordit.co/K1I3O6BEXq.gif" height="500" width="280" />
 </p>
 
+# New Version 1.5 new doc on GitHub is coming
+
 # Project Features
 Easy Game Center is a great way to use Game Center in your iOS app.
 
